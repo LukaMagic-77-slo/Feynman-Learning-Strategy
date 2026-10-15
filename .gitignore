@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info/
+.venv/
+# Secrets and machine-specific configuration
+.env
+.env.*
+!.env.example
+.vscode/
+# Local database files
+faq.db*
+*.db
+*.db-shm
+*.db-wal
+# Frontend dependencies and test artifacts
+node_modules/
+test-results/
+playwright-report/
+# Generated evaluation failures can contain sensitive diagnostic details
+data/*_errors.csv
+data/*.tmp
+# OS files
+.DS_Store
+Thumbs.db
+

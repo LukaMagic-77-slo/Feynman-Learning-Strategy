@@ -24,17 +24,15 @@ from openai import OpenAI, APIConnectionError, APITimeoutError
 from pydantic import BaseModel, Field, field_validator
 from typing import Literal
 
-from call_record import RAGWithRecord
+from assistant import create_assistant
 from init_db import get_db_connection
 from practice_record import PracticeWithRecord
 from practice.get_knowledge import get_sections, get_topics
 from save_feedback import save_feedback
-from vector import create_vector_store
 
 log = logging.getLogger(__name__)
 sessions = {}
 sessions_lock = Lock()
-index_lock = Lock()
 SESSION_TTL = 4 * 3600
 
 
@@ -75,11 +73,6 @@ def model_client():
                   base_url=os.environ['DASHSCOPE_BASE_URL'], timeout=60.0, max_retries=0)
 
 
-@lru_cache(maxsize=1)
-def vector_store():
-    return create_vector_store()
-
-
 @asynccontextmanager
 async def lifespan(app):
     yield
@@ -87,7 +80,6 @@ async def lifespan(app):
         model_client().close()
     sessions.clear()
     model_client.cache_clear()
-    vector_store.cache_clear()
 
 
 app = FastAPI(title='费曼学习 API', lifespan=lifespan)
@@ -202,16 +194,11 @@ def topics(section: str = Query(min_length=1, max_length=300)):
 @app.post('/api/qa')
 def qa(body: Question, state=Depends(session)):
     def action():
-        # 嵌入模型可能有内部可变状态；串行访问共享检索器，LLM调用不持有此锁。
-        with index_lock:
-            store = vector_store()
-            documents = store.search(body.question)
-        actor = RAGWithRecord(store, model_client(), model=os.environ['DASHSCOPE_MODEL'])
-        # 仍走原RAG.rag以保留自动监控，复用刚刚检索的结果。
-        actor.search = lambda query, num_results=5: documents
+        actor = create_assistant(client=model_client())
         answer = actor.rag(body.question)
         return {'question': body.question, 'answer': answer,
-                'sources': [{'id': d['知识点id'], 'topic': d['主题']} for d in documents],
+                # 当前Agent未单独返回引用列表；不额外搜索或替换工具。
+                'sources': [],
                 **monitor_result(state, actor)}
     return once(state, 'qa', body, action)
 

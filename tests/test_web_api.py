@@ -32,14 +32,11 @@ class WebApiTests(unittest.TestCase):
         self.assertEqual(response.status_code, 422)
 
     def test_qa_once_and_feedback_ownership(self):
-        store = Mock()
-        store.search.return_value = [{'知识点id':'k1', '主题':'测试主题'}]
         actor = Mock(last_call=record(), last_conversation_id=101, last_monitor_error=None)
         actor.rag.return_value = '模型回答'
         payload = {'question':'测试问题', 'request_id':str(uuid4())}
-        with patch.object(api, 'vector_store', return_value=store), \
-             patch.object(api, 'model_client', return_value=Mock()), \
-             patch.object(api, 'RAGWithRecord', return_value=actor), \
+        with patch.object(api, 'model_client', return_value=Mock()), \
+             patch.object(api, 'create_assistant', return_value=actor), \
              patch.object(api, 'save_feedback', return_value=1) as save:
             first = self.client.post('/api/qa', json=payload)
             self.assertEqual(first.status_code, 200)

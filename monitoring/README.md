@@ -1,5 +1,19 @@
 # 监控接入说明
 
+## Agent问答接入（2026-10-17）
+
+monitoring/assistant.py 的 AgentWithRecord 包装现有 RAGWithAgent，保持 .rag(query) 与前端监控属性兼容，不修改工具选择和 Agent Loop。React /api/qa 已改为通过 create_assistant 进入该包装；Streamlit 沿用同一工厂。
+
+工具只由 agent/tools.py 的装饰器与 register_tools.py 注册；监控层与 API 不注入、不覆盖任何工具 handler。新增工具无需修改监控接线。当前 API 保留 sources 字段为空列表，因为 Agent 尚未提供独立引用列表；答案正文中的引用仍由 Agent 自己生成，不为展示来源额外执行搜索。
+
+每次 .rag 开始清空本次记录并分配任务 session_id。循环结束（或中途异常退出）后，在 finally 中遍历已收集的 call_record，复用 persist_record / save_conversation 逐条插入 conversations。每个模型 response 一行，同一任务共享 session_id 和用户问题；不修改表结构或 Dashboard 查询。当前采用循环退出后入库，进程强制退出时内存记录仍可能丢失。
+
+last_call 是仅供页面展示的 Token / 耗时 / 费用汇总，不额外入库；last_conversation_id 指向成功任务的最后一条模型记录，供最终答案点赞。任一保存失败会保留答案并显示保存警告。重用助手不会重复插入之前任务的记录。
+
+Dashboard 因而展示实际模型调用次数，不是用户任务次数。工具调用轮次可能没有文本，answer 列为空是现有 Agent 的正常记录表现；完整工具轨迹尚未单独保存。每条 prompt 保存对应请求的输入快照。费用继续沿用现有估算规则，未重新核价。
+
+本次未实现聊天历史系统、工具执行表、多轮追问或 Agent 循环上限；上述能力与本次监控接入分开推进。
+
 保留原导入路径。前端或测试入口需与当前运行环境一样，保证项目根目录、monitoring和evaluation目录可被导入；本次未重构导入。
 
 ## 问答
@@ -73,4 +87,3 @@ FastAPI 的 api.py 复用本目录对象，并在后端生成匿名会话身份�
 ## 隐私与可改进方向
 
 记录可能包含问题、用户解释和完整提示词。公开部署前需要认证、数据权限与保留策略；不要上传数据库转储或真实用户记录。欢迎改进价格配置、失败请求观测、会话持久化、统计口径和模块边界，并提供回归测试。现有 cost 仅为估算，不能替代账单。
-

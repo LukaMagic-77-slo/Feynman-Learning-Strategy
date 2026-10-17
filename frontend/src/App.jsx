@@ -3,6 +3,7 @@ import { BookOpen, MessageCircle, GraduationCap, ChartNoAxesColumnIncreasing, Ar
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { normalizeStudentMath } from './studentMath';
 
 async function api(path, options = {}) {
   const response = await fetch('/api' + path, {credentials:'same-origin', ...options,
@@ -16,7 +17,7 @@ const money = n => '¥' + Number(n || 0).toFixed(5);
 const purposes = {qa_answer:'知识问答',student_question:'学生出题',explanation_judge:'解释评价'};
 const scoreLabels = {good:'理解得很清楚',partial:'已经抓住部分要点',bad:'再梳理一下核心概念',unjudgeable:'需要更多信息才能评价'};
 function Markdown({children}) {
-  const text = String(children || '').replace(/\\\[([\s\S]*?)\\\]/g, (_, x) => '\n$$\n' + x + '\n$$\n').replace(/\\\(([\s\S]*?)\\\)/g, (_, x) => '$' + x + '$');
+  const text = normalizeStudentMath(String(children || '').replace(/\\\[([\s\S]*?)\\\]/g, (_, x) => '\n$$\n' + x + '\n$$\n').replace(/\\\(([\s\S]*?)\\\)/g, (_, x) => '$' + x + '$'));
   return <div className="prose"><ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{text}</ReactMarkdown></div>;
 }
 function ErrorBox({message, close}) { return message && <div role="alert" className="error"><Info size={17}/><span>{message}</span>{close && <button aria-label="关闭提示" onClick={close}><X size={16}/></button>}</div>; }
@@ -54,8 +55,12 @@ function PracticePage({state,setState,working,setWorking}) {
     <ErrorBox message={error} close={()=>setError('')}/>{!loading&&!sections.length&&!error&&<div className="empty"><BookOpen/><h3>知识库还没有内容</h3><p>请先在后端完成知识入库，再刷新页面。</p></div>}
     {working&&<Busy text={state.question?'正在认真听你的解释…':'学生正在组织一个好问题…'}/>}
     {!state.question?<div className="practice-empty"><div className="empty-orbits"><GraduationCap size={34}/></div><h3>教会别人，也是在教会自己。</h3><p>不必追求完美的措辞。先讲出你的理解，<br/>再一起找到遗漏与误区。</p><div className="tip"><Leaf size={16}/> 试着回答“为什么”，而不只是背出“是什么”。</div></div>:<><section className="student-card"><div className="student-avatar"><GraduationCap size={20}/></div><div><span className="eyebrow">你的 AI 学生</span><Markdown>{state.question.question}</Markdown><Usage value={state.question.usage}/></div></section>{state.question.save_warning&&<ErrorBox message={state.question.save_warning}/>}<form className="explanation-card" onSubmit={judge}><label htmlFor="explanation">现在，讲给我听 <span>用直觉、公式或一个小例子，都可以。</span></label><textarea id="explanation" placeholder="我的理解是…" value={explanation} onChange={e=>setExplanation(e.target.value)} rows={6} disabled={working} maxLength={12000}/><div className="explanation-bottom"><span>{explanation.length} / 12000</span><button className="primary" disabled={working||!explanation.trim()}>提交解释，看看反馈 <ArrowRight size={15}/></button></div></form></>}
-    {state.result&&<section className="evaluation-card"><div className="card-heading"><span className={'score-icon '+state.result.evaluation.score}><Check size={20}/></span><div><span className="eyebrow">YOUR LEARNING FEEDBACK</span><h2>{scoreLabels[state.result.evaluation.score]}</h2></div></div><p>{state.result.evaluation.reasoning}</p><div className="evaluation-columns"><div><h3>可以补充的要点</h3>{state.result.evaluation.missing_points.length?state.result.evaluation.missing_points.map((p,i)=><p key={i}>· {p}</p>):<span className="small muted">没有发现必要的遗漏。</span>}</div><div><h3>需要修正的地方</h3>{state.result.evaluation.errors.length?state.result.evaluation.errors.map((p,i)=><p key={i}>· {p}</p>):<span className="small muted">没有发现明确的错误。</span>}</div></div><div className="next-step"><Leaf size={18}/><div><b>下一小步</b><p>{state.result.evaluation.suggestion}</p></div></div><details><summary>查看本次被评价的解释</summary><p>{state.result.user_answer}</p></details><Usage value={state.result.usage}/>{state.result.save_warning&&<ErrorBox message={state.result.save_warning}/>}<Feedback kind="judge" key={state.result.record_id||state.result.user_answer} id={state.result.record_id}/><p className="small muted">评价只针对这次解释，不代表你对整个主题的最终掌握程度。</p></section>}
+    {state.result&&<section className="evaluation-card"><div className="card-heading"><span className={'score-icon '+state.result.evaluation.score}><Check size={20}/></span><div><span className="eyebrow">YOUR LEARNING FEEDBACK</span><h2>{scoreLabels[state.result.evaluation.score]}</h2></div></div><EvaluationBody evaluation={state.result.evaluation}/><details><summary>查看本次被评价的解释</summary><p>{state.result.user_answer}</p></details><Usage value={state.result.usage}/>{state.result.save_warning&&<ErrorBox message={state.result.save_warning}/>}<Feedback kind="judge" key={state.result.record_id||state.result.user_answer} id={state.result.record_id}/><p className="small muted">评价只针对这次解释，不代表你对整个主题的最终掌握程度。</p></section>}
   </div>;
+}
+
+function EvaluationBody({evaluation}) {
+  return <><div className="evaluation-reason"><Markdown>{evaluation.reasoning}</Markdown></div><div className="evaluation-columns"><div><h3>可以补充的要点</h3>{evaluation.missing_points?.length?evaluation.missing_points.map((point,i)=><Markdown key={i}>{'· '+point}</Markdown>):<span className="small muted">没有发现必要的遗漏。</span>}</div><div><h3>需要修正的地方</h3>{evaluation.errors?.length?evaluation.errors.map((point,i)=><Markdown key={i}>{'· '+point}</Markdown>):<span className="small muted">没有发现明确的错误。</span>}</div></div><div className="next-step"><Leaf size={18}/><div><b>下一小步</b><Markdown>{evaluation.suggestion}</Markdown></div></div></>;
 }
 
 function Dashboard(){

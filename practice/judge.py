@@ -67,6 +67,11 @@ EXPLANATION_JUDGE_INSTRUCTIONS = """
   优先引导用户补充解释，而不是直接提供完整标准答案。
 - 语气尊重、清楚，不使用羞辱性或绝对化评价。
 
+数学排版：
+- reasoning、missing_points、errors 和 suggestion 中出现的数学变量、上下标或公式都使用 LaTeX；行内用 $...$，独立公式用 $$...$$。
+- 例如写 $q_p$、$F(q_p)=p$，不要输出裸露的 q_p 或 F(q_p)=p；中文叙述保持普通文字。
+- 这些字段仍是普通 JSON 字符串，不要嵌套 Markdown 代码块；LaTeX 命令的反斜杠需符合 JSON 转义规则。
+
 只返回一个有效JSON对象：
 {
   "reasoning": "具体的评价依据",

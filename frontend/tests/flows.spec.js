@@ -1,6 +1,7 @@
 import {test,expect} from '@playwright/test';
 const usage={seconds:1.2,total_tokens:230,estimated_cost:.0008,model:'test'};
 test('问答、反馈、主题练习和响应式布局',async({page})=>{
+  await page.route('**/api/chats',route=>route.fulfill({json:[]}));
   const failures=[];page.on('pageerror',e=>failures.push(e.message));
   let qaCalls=0,judgeCalls=0;const votes=[];
   await page.route('**/api/qa',route=>{qaCalls++;return route.fulfill({json:{

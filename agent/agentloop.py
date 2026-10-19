@@ -94,11 +94,18 @@ class RAGWithAgent:
         
         return function_call_record
 
-    def agent_loop(self, query):
+    def agent_loop(self, query, history=None):
         input = [
-            {"role": "system", "content": self.instruction},
-            {"role": "user", "content": query}
+            {"role": "system", "content": self.instruction}
         ]
+
+        input.extend(history or [])
+
+        input.append({
+            "role": "user",
+            "content": query,
+        })
+
         while True:
             function_call = False
             start_time = time.perf_counter()
@@ -154,9 +161,3 @@ class RAGWithAgent:
                 break
 
         return answer
-                
-
-
-
-    
-

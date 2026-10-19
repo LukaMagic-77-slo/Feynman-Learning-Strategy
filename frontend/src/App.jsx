@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { BookOpen, MessageCircle, GraduationCap, ChartNoAxesColumnIncreasing, ArrowUpRight, ArrowUp, ArrowRight, Plus, Leaf, Info, RefreshCw, ThumbsUp, ThumbsDown, Check, Loader2, X, Clock3, Coins, ChevronRight, Sparkles, LayoutGrid, CircleHelp } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import HistorySidebar from './components/HistorySidebar';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { normalizeStudentMath } from './studentMath';
@@ -33,17 +34,33 @@ function Feedback({id, kind}) {
 }
 function Busy({text}) {return <div className="busy"><Loader2 size={18} className="spin"/><div>{text}<span>请稍候，不需要重复提交</span></div></div>;}
 
-function AskPage({state,setState,working,setWorking}) {
+function AskPage({state,setState,working,setWorking,onNewChat,onSaved,historyLoading}) {
   const [input,setInput] = useState(''), [error,setError] = useState('');
   const suggestions = ['概率密度为什么可以大于 1？','如何直观理解分布函数？','指数分布的无记忆性是什么意思？','正态分布如何进行标准化？'];
-  async function submit(event) {event.preventDefault();if(!input.trim()||working)return;setWorking(true);setError('');const question=input.trim();try {const result=await post('/qa',{question,request_id:crypto.randomUUID()});setState(result);setInput('');}catch(e){setError(e.message);}finally{setWorking(false);}}
+  const turns = state.turns || [];
+  const bottom = useRef(null);
+  useEffect(()=>{setInput('');setError('');},[state.chatId]);
+  useEffect(()=>{bottom.current?.scrollIntoView({block:'end',behavior:'smooth'});},[turns.length]);
+  async function submit(event) {
+    event.preventDefault();
+    if(!input.trim()||working||historyLoading)return;
+    setWorking(true);setError('');
+    const question=input.trim(),chatId=state.chatId||crypto.randomUUID();
+    setState(old=>({...old,chatId}));
+    try {
+      const result=await post('/qa',{question,chat_id:chatId,request_id:crypto.randomUUID()});
+      setState(old=>({...old,chatId,turns:[...(old.turns||[]),result]}));
+      setInput('');
+      if(result.history_id)localStorage.setItem('feynman_active_chat',chatId);
+      onSaved();
+    } catch(e){setError(e.message);} finally{setWorking(false);}
+  }
   return <div className="page ask-page"><KnowledgeScope/><div className="page-top"><div className="eyebrow"><span className="tiny-dot"/> 知识问答</div><span className="pill">概率论 <ChevronRight size={12}/> 连续分布</span></div>
-    {!state ? <><div className="hero"><div className="hero-tag"><Sparkles size={14}/> 从一个好问题开始</div><h1>不止知道答案，<br/>更要<span>理解为什么。</span></h1><p>把模糊的概念变成清晰的理解。<br/>基于你的知识库，找到有依据、讲得明白的解释。</p><div className="formula-art" aria-hidden="true"><div className="art-orbit"/><div className="formula-card f1"><Markdown>{'$\\int f(x)\\,dx = 1$'}</Markdown><span>概率，藏在曲线下面。</span></div><div className="formula-card f2"><svg viewBox="0 0 180 80"><path className="curve-area" d="M5 65 C45 65 47 12 90 12 S135 65 175 65 Z"/><path className="curve-line" d="M5 65 C45 65 47 12 90 12 S135 65 175 65"/><path className="axis" d="M5 68H175"/></svg><span>从直觉到理解</span></div><div className="art-dot"/></div></div><div className="suggestions-label">还没想好？从这些问题开始 <ArrowUpRight size={14}/></div><div className="suggestions">{suggestions.map((q,i)=><button key={q} disabled={working} onClick={()=>setInput(q)}><span className="suggestion-number">0{i+1}</span><span>{q}</span><ArrowUpRight size={16}/></button>)}</div></> : <><div className="section-heading"><div><h1>把疑问讲清楚</h1><p>答案来自知识检索，理解从这里继续。</p></div><button className="secondary" disabled={working} onClick={()=>setState(null)}><Plus size={15}/>新的问题</button></div><div className="user-bubble"><span className="avatar">你</span><div>{state.question}</div></div><article className="answer-card"><div className="answer-label"><span className="brand-small">f.</span>费曼助手<span className="label-tag">知识库回答</span></div><Markdown>{state.answer}</Markdown>{state.sources?.length>0&&<div className="source-list"><span>参考知识</span>{state.sources.map(source=><span className="source" title={source.id} key={source.id}><BookOpen size={12}/>{source.topic}</span>)}</div>}<Usage value={state.usage}/>{state.save_warning&&<ErrorBox message={state.save_warning}/>}<Feedback key={state.record_id||state.question} id={state.record_id}/></article></>}
+    {historyLoading?<Busy text="正在读取聊天历史…"/>:!turns.length ? <><div className="hero"><div className="hero-tag"><Sparkles size={14}/> 从一个好问题开始</div><h1>不止知道答案，<br/>更要<span>理解为什么。</span></h1><p>把模糊的概念变成清晰的理解。<br/>基于你的知识库，找到有依据、讲得明白的解释。</p><div className="formula-art" aria-hidden="true"><div className="art-orbit"/><div className="formula-card f1"><Markdown>{'$\\int f(x)\\,dx = 1$'}</Markdown><span>概率，藏在曲线下面。</span></div><div className="formula-card f2"><svg viewBox="0 0 180 80"><path className="curve-area" d="M5 65 C45 65 47 12 90 12 S135 65 175 65 Z"/><path className="curve-line" d="M5 65 C45 65 47 12 90 12 S135 65 175 65"/><path className="axis" d="M5 68H175"/></svg><span>从直觉到理解</span></div><div className="art-dot"/></div></div><div className="suggestions-label">还没想好？从这些问题开始 <ArrowUpRight size={14}/></div><div className="suggestions">{suggestions.map((q,i)=><button key={q} disabled={working} onClick={()=>setInput(q)}><span className="suggestion-number">0{i+1}</span><span>{q}</span><ArrowUpRight size={16}/></button>)}</div></> : <><div className="section-heading"><div><h1>把疑问讲清楚</h1><p>继续提问会结合本聊天中已保存的上下文；新建聊天将开启独立对话。</p></div><button className="secondary" disabled={working} onClick={onNewChat}><Plus size={15}/>新聊天</button></div><div className="chat-turns">{turns.map((turn,i)=><section className="chat-turn" key={turn.history_id||turn.id||i}><div className="user-bubble"><span className="avatar">你</span><div>{turn.question}</div></div><article className="answer-card"><div className="answer-label"><span className="brand-small">f.</span>费曼助手<span className="label-tag">知识库回答</span></div><Markdown>{turn.answer}</Markdown>{turn.sources?.length>0&&<div className="source-list"><span>参考知识</span>{turn.sources.map(source=><span className="source" title={source.id} key={source.id}><BookOpen size={12}/>{source.topic}</span>)}</div>}<Usage value={turn.usage}/>{turn.save_warning&&<ErrorBox message={turn.save_warning}/>}<Feedback id={turn.record_id}/>{turn.history_warning&&<ErrorBox message={turn.history_warning}/>}</article></section>)}</div></>}
     <ErrorBox message={error} close={()=>setError('')}/>{working&&<Busy text="正在检索知识并组织回答…"/>}
-    <form className="composer" onSubmit={submit}><textarea aria-label="输入问题" value={input} onChange={e=>setInput(e.target.value)} placeholder="写下你的疑问，让理解更进一步…" disabled={working} maxLength={6000} rows={2} onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();submit(e);}}}/><div className="composer-bottom"><span><BookOpen size={14}/> 基于概率论知识库 <span className="shortcut">Enter 发送 · Shift + Enter 换行</span></span><button aria-label="发送问题" disabled={!input.trim()||working}>{working?<Loader2 size={18} className="spin"/>:<ArrowUp size={20}/>}</button></div></form><p className="footnote">AI 的解释可能存在偏差。保留提问，也保留你的判断。</p>
+    <form className="composer" onSubmit={submit}><textarea aria-label="输入问题" value={input} onChange={e=>setInput(e.target.value)} placeholder={turns.length?"继续追问，或补充你的理解…":"写下你的疑问，让理解更进一步…"} disabled={working||historyLoading} maxLength={6000} rows={2} onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.nativeEvent.isComposing){e.preventDefault();submit(e);}}}/><div className="composer-bottom"><span><BookOpen size={14}/> 基于概率论知识库 <span className="shortcut">Enter 发送 · Shift + Enter 换行</span></span><button aria-label="发送问题" disabled={!input.trim()||working||historyLoading}>{working?<Loader2 size={18} className="spin"/>:<ArrowUp size={20}/>}</button></div></form><p className="footnote">本机单用户历史 · 仅显示成功保存的问答 · AI 的解释可能存在偏差</p><div ref={bottom}/>
   </div>;
 }
-
 function PracticePage({state,setState,working,setWorking}) {
   const [sections,setSections]=useState([]),[topics,setTopics]=useState([]),[loading,setLoading]=useState(true),[error,setError]=useState(''),[explanation,setExplanation]=useState('');
   const generation=useRef(0);
@@ -74,8 +91,37 @@ function Dashboard(){
 function prettyJSON(text){try{return JSON.stringify(JSON.parse(text),null,2);}catch{return text;}}
 
 export default function App(){
-  const [page,setPage]=useState('qa'),[qa,setQa]=useState(null),[practice,setPractice]=useState({section:'',topic:'',question:null,result:null}),[working,setWorking]=useState(false),[online,setOnline]=useState(null),[sessionError,setSessionError]=useState(''),[model,setModel]=useState(''),[sessionReady,setSessionReady]=useState(false);
+  const [page,setPage]=useState('qa'),[qa,setQa]=useState({chatId:null,turns:[]}),[practice,setPractice]=useState({section:'',topic:'',question:null,result:null}),[working,setWorking]=useState(false),[online,setOnline]=useState(null),[sessionError,setSessionError]=useState(''),[model,setModel]=useState(''),[sessionReady,setSessionReady]=useState(false);
   useEffect(()=>{let active=true;api('/session').then(data=>{if(active){setModel(data.model);setSessionReady(true);}}).catch(e=>{if(active)setSessionError(e.message);});api('/health').then(data=>{if(active)setOnline(data.database);}).catch(()=>{if(active)setOnline(false);});return()=>{active=false;};},[]);
+  const [chats,setChats]=useState([]),[historyLoading,setHistoryLoading]=useState(false),[historyBusy,setHistoryBusy]=useState(false),[historyError,setHistoryError]=useState('');
+  const historyRequest=useRef(0);
+  async function refreshChats(){
+    setHistoryLoading(true);setHistoryError('');
+    try{setChats(await api('/chats'));}catch(e){setHistoryError('历史读取失败：'+e.message);}finally{setHistoryLoading(false);}
+  }
+  function newChat(){
+    historyRequest.current++;setHistoryBusy(false);setPage('qa');
+    setQa({chatId:crypto.randomUUID(),turns:[]});
+    localStorage.removeItem('feynman_active_chat');
+  }
+  async function loadChat(chatId){
+    const version=++historyRequest.current;
+    setPage('qa');setHistoryBusy(true);setHistoryError('');
+    try{
+      const turns=await api('/chats/'+encodeURIComponent(chatId)+'/history');
+      if(version!==historyRequest.current)return;
+      setQa({chatId,turns});
+      if(turns.length)localStorage.setItem('feynman_active_chat',chatId);
+      else localStorage.removeItem('feynman_active_chat');
+    }catch(e){if(version===historyRequest.current)setHistoryError('聊天加载失败：'+e.message);}
+    finally{if(version===historyRequest.current)setHistoryBusy(false);}
+  }
+  useEffect(()=>{
+    if(!sessionReady)return;
+    refreshChats();
+    const saved=localStorage.getItem('feynman_active_chat');
+    if(saved)loadChat(saved);
+  },[sessionReady]);
   const nav=[['qa',MessageCircle,'知识问答','Ask & understand'],['practice',GraduationCap,'费曼练习','Learn by teaching'],['dashboard',ChartNoAxesColumnIncreasing,'学习记录','Your learning, in view']];
-  return <div className="app-shell" data-page={page}><aside className="sidebar"><a href="#" className="brand" onClick={e=>e.preventDefault()}><span className="brand-mark"><img src={appIcon} alt="f." width="64" height="64"/></span><div>费曼<span>LEARNING WORKSPACE</span></div></a><div className="workspace"><span className="workspace-icon"><BookOpen size={19}/></span><div><b>概率论学习空间</b><span>让理解真正发生</span></div><ChevronRight size={14}/></div><div className="nav-label">你的学习空间</div><nav>{nav.map(([id,Icon,label,sub])=><button key={id} data-section={id} aria-label={label} title={label} disabled={working} className={page===id?'nav-item selected':'nav-item'} onClick={()=>setPage(id)}><Icon size={20}/><span>{label}<small>{sub}</small></span>{page===id&&<span className="nav-dot"/>}</button>)}</nav><div className="sidebar-note"><Leaf size={22}/><p>如果你不能简单地解释它，<br/>你就还没有充分理解它。</p><span>把理解，变成自己的语言。</span></div><div className="sidebar-bottom"><span className={'status-dot '+(online===true?'ok':online===false?'bad':'')}/><span>{online===null?'正在连接知识库':online?'知识库已连接':'数据库暂不可用'}</span><span className="version">v0.1</span></div></aside><div className="main-shell"><header className="topbar"><div>学习工作台 <ChevronRight size={13}/><b>{nav.find(x=>x[0]===page)[2]}</b></div><span className="model-label"><span className="tiny-dot"/>{model||'本地学习空间'}</span></header><main>{sessionError?<div className="page"><ErrorBox message={'后端连接失败：'+sessionError}/><button className="secondary" onClick={()=>window.location.reload()}>重新连接</button></div>:!sessionReady?<div className="page"><Busy text="正在连接学习空间…"/></div>:page==='qa'?<AskPage state={qa} setState={setQa} working={working} setWorking={setWorking}/>:page==='practice'?<PracticePage state={practice} setState={setPractice} working={working} setWorking={setWorking}/>:<Dashboard/>}</main><footer><span>FEYNMAN / 让知识成为理解</span><span>持续提问，慢慢想明白。 <Leaf size={12}/></span></footer></div></div>;
+  return <div className="app-shell" data-page={page}><aside className="sidebar"><a href="#" className="brand" onClick={e=>e.preventDefault()}><span className="brand-mark"><img src={appIcon} alt="f." width="64" height="64"/></span><div>费曼<span>LEARNING WORKSPACE</span></div></a><div className="workspace"><span className="workspace-icon"><BookOpen size={19}/></span><div><b>概率论学习空间</b><span>让理解真正发生</span></div><ChevronRight size={14}/></div><div className="nav-label">你的学习空间</div><nav>{nav.map(([id,Icon,label,sub])=><button key={id} data-section={id} aria-label={label} title={label} disabled={working||historyBusy} className={page===id?'nav-item selected':'nav-item'} onClick={()=>setPage(id)}><Icon size={20}/><span>{label}<small>{sub}</small></span>{page===id&&<span className="nav-dot"/>}</button>)}</nav><HistorySidebar chats={chats} activeId={qa.chatId} busy={working||historyBusy} loading={historyLoading} error={historyError} onNew={newChat} onSelect={loadChat} onRefresh={refreshChats}/><div className="sidebar-bottom"><span className={'status-dot '+(online===true?'ok':online===false?'bad':'')}/><span>{online===null?'正在连接知识库':online?'知识库已连接':'数据库暂不可用'}</span><span className="version">v0.1</span></div></aside><div className="main-shell"><header className="topbar"><div>学习工作台 <ChevronRight size={13}/><b>{nav.find(x=>x[0]===page)[2]}</b></div><span className="model-label"><span className="tiny-dot"/>{model||'本地学习空间'}</span></header><main>{sessionError?<div className="page"><ErrorBox message={'后端连接失败：'+sessionError}/><button className="secondary" onClick={()=>window.location.reload()}>重新连接</button></div>:!sessionReady?<div className="page"><Busy text="正在连接学习空间…"/></div>:page==='qa'?<AskPage state={qa} setState={setQa} working={working} setWorking={setWorking} onNewChat={newChat} onSaved={refreshChats} historyLoading={historyBusy}/>:page==='practice'?<PracticePage state={practice} setState={setPractice} working={working} setWorking={setWorking}/>:<Dashboard/>}</main><footer><span>FEYNMAN / 让知识成为理解</span><span>持续提问，慢慢想明白。 <Leaf size={12}/></span></footer></div></div>;
 }

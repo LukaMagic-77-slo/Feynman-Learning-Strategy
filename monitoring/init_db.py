@@ -73,7 +73,37 @@ def init_feedback():
     finally:
         conn.close()
 
+def init_history(drop=False):
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cur:
+            if drop:
+                cur.execute("DROP TABLE IF EXISTS chat_history")
+
+            cur.execute("""
+                CREATE TABLE IF NOT EXISTS chat_history (
+                    id SERIAL PRIMARY KEY,
+                    question TEXT NOT NULL,
+                    answer TEXT NOT NULL,
+                    course TEXT NOT NULL
+                )
+            """)
+            # 对已存在的表补列，不删除或重建旧数据。
+            cur.execute("ALTER TABLE chat_history ADD COLUMN IF NOT EXISTS purpose TEXT NOT NULL DEFAULT 'qa_answer'")
+            cur.execute("ALTER TABLE chat_history ADD COLUMN IF NOT EXISTS chat_id TEXT")
+            cur.execute("ALTER TABLE chat_history ADD COLUMN IF NOT EXISTS session_id TEXT")
+            cur.execute("ALTER TABLE chat_history ADD COLUMN IF NOT EXISTS user_answer TEXT")
+            cur.execute("ALTER TABLE chat_history ADD COLUMN IF NOT EXISTS timestamp TIMESTAMPTZ NOT NULL DEFAULT NOW()")
+            cur.execute("ALTER TABLE chat_history ADD COLUMN IF NOT EXISTS conversation_id INTEGER")
+            cur.execute("ALTER TABLE chat_history ADD COLUMN IF NOT EXISTS usage_json JSONB")
+            cur.execute("CREATE INDEX IF NOT EXISTS chat_history_chat_order ON chat_history (chat_id, id)")
+        conn.commit()
+
+    finally:
+        conn.close()
+
 if __name__ == "__main__":
     init_db()
     init_feedback()
+    init_history()
     print("Database initialized")

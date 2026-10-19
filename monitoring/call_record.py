@@ -21,6 +21,7 @@ class LLMCallRecord:
     question: str = ""
     course: str = "概率论"
     purpose: str = "qa_answer"
+    chat_id: str | None = None
     session_id: str | None = None
     user_answer: str | None = None
 

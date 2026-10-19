@@ -5,6 +5,7 @@ import logging
 import os
 import sys
 import time
+from copy import copy
 from contextlib import asynccontextmanager
 from dataclasses import asdict, dataclass, field
 from functools import lru_cache
@@ -29,6 +30,8 @@ from init_db import get_db_connection
 from practice_record import PracticeWithRecord
 from practice.get_knowledge import get_sections, get_topics
 from save_feedback import save_feedback
+from save_history import save_history
+from record_query import get_chat_list, get_history
 
 log = logging.getLogger(__name__)
 sessions = {}
@@ -101,6 +104,7 @@ class Operation(BaseModel):
 
 class Question(Operation):
     question: str = Field(min_length=1, max_length=6000)
+    chat_id: UUID | None = None
 
     @field_validator('question')
     @classmethod
@@ -191,15 +195,59 @@ def topics(section: str = Query(min_length=1, max_length=300)):
     return get_topics('概率论', section)
 
 
+@app.get('/api/chats')
+def chats(state=Depends(session)):
+    # 本机单用户原型：列出本地知识问答历史，不代表登录用户隔离。
+    return get_chat_list()
+
+
+@app.get('/api/chats/{chat_id}/history')
+def chat_history(chat_id: UUID, state=Depends(session)):
+    rows = get_history(limit=None, chat_id=str(chat_id))
+    # 恢复历史答案的反馈入口，沿用当前匿名浏览器的投票标识。
+    state.record_ids.update(row['record_id'] for row in rows if row['record_id'] is not None)
+    return rows
+
+
 @app.post('/api/qa')
 def qa(body: Question, state=Depends(session)):
     def action():
+        # 在保存本轮之前读取同一聊天的旧问答，当前问题由Agent自己追加。
+        history = []
+        if body.chat_id is not None:
+            rows = get_history(limit=None, chat_id=str(body.chat_id))
+            for row in rows:
+                history.append({'role': 'user', 'content': row['question']})
+                history.append({'role': 'assistant', 'content': row['answer']})
         actor = create_assistant(client=model_client())
-        answer = actor.rag(body.question)
+        answer = (actor.rag(body.question, history=history)
+                  if body.chat_id is not None else actor.rag(body.question))
+        result = monitor_result(state, actor)
+        history_id = None
+        history_warning = None
+        if body.chat_id is not None:
+            try:
+                # 只存整次任务的最终问答，不在模型调用记录循环中重复保存。
+                record = copy(actor.last_call)
+                if record is None:
+                    raise ValueError('没有可保存的最终调用记录')
+                record.chat_id = str(body.chat_id)
+                record.session_id = actor.session_id
+                record.answer = answer
+                history_id = save_history(
+                    record, body.question, '概率论',
+                    conversation_id=actor.last_conversation_id,
+                    usage=result['usage'],
+                )
+            except Exception:
+                log.exception('Chat history save failed')
+                history_warning = '答案已生成，但聊天历史保存失败；当前答案仍可查看。'
         return {'question': body.question, 'answer': answer,
                 # 当前Agent未单独返回引用列表；不额外搜索或替换工具。
                 'sources': [],
-                **monitor_result(state, actor)}
+                'chat_id': str(body.chat_id) if body.chat_id else None,
+                'history_id': history_id, 'history_warning': history_warning,
+                **result}
     return once(state, 'qa', body, action)
 
 

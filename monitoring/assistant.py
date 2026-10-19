@@ -22,7 +22,7 @@ class AgentWithRecord(RAGWithAgent):
         self.last_monitor_error = None
         self.session_id = None
 
-    def rag(self, query):
+    def rag(self, query, history=None):
         self.call_record = []
         self.last_call = None
         self.last_conversation_id = None
@@ -30,7 +30,7 @@ class AgentWithRecord(RAGWithAgent):
         self.session_id = str(uuid4())
         succeeded = False
         try:
-            answer = self.agent_loop(query)
+            answer = self.agent_loop(query, history=history)
             succeeded = True
             return answer
         finally:

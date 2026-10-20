@@ -9,3 +9,23 @@
 @media(max-width:850px){.history-panel{margin-top:20px;flex:0}.history-toggle{display:flex;align-items:center;justify-content:center;border:0;background:none;color:#355e45;padding:16px 8px;cursor:pointer;width:100%}.history-content{display:none}.history-open .history-content{display:flex;position:fixed;left:88px;top:100px;width:min(290px,calc(100vw - 106px));max-height:70vh;height:auto;z-index:50;background:#fcfdf9;border:1px solid #dbe3d5;border-radius:14px;padding:16px;box-shadow:0 18px 50px #233a3520}.history-heading .history-close{display:inline-flex}.history-list{max-height:48vh}.history-item>span{font-size:12px}}
 @media(max-width:590px){.history-open .history-content{left:70px;width:calc(100vw - 86px)}.chat-turn+.chat-turn{margin-top:24px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition:none!important}}
+.calculus-intro{margin:0 0 28px;padding:5px 0 21px;border-bottom:1px solid var(--line)}
+.calculus-intro h1{font-size:34px;line-height:1.3;color:#334f3b;margin:0 0 9px}
+.calculus-intro p{font-size:12px;line-height:1.8;color:#788b78;margin:0;max-width:690px}
+.calculus-layout{display:grid;grid-template-columns:minmax(210px,260px) minmax(0,1fr);gap:24px;align-items:start}
+.calculus-modules{display:grid;gap:3px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:7px}
+.calculus-module{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;border-radius:8px;padding:13px 10px;color:#61745e}
+.calculus-module:hover,.calculus-module.active{background:#edf3e7;color:#31573a}
+.calculus-module:focus-visible,.calculus-entry-toggle:focus-visible{outline:2px solid #376d4c;outline-offset:2px}
+.calculus-module-number{font:17px Georgia,serif;color:#9caf92;width:24px;flex-shrink:0}
+.calculus-module-copy{display:grid;gap:3px;flex:1;min-width:0}.calculus-module-copy strong{font-size:12px;font-weight:600}.calculus-module-copy small{font-size:9px;color:#95a18e}
+.calculus-module>svg{flex-shrink:0;color:#a6b19f}
+.calculus-content{min-width:0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:25px 28px}
+.calculus-section-head{display:flex;justify-content:space-between;align-items:start;gap:12px;border-bottom:1px solid #e8eee5;padding-bottom:20px}.calculus-section-head span{font-size:10px;color:#90a287}.calculus-section-head h2{font-size:25px;margin:7px 0;color:#34543a}.calculus-section-head p{font-size:12px;line-height:1.7;color:#7e907a;margin:0}.calculus-section-count{font-size:10px;color:#5e815a;background:#eef4ea;border-radius:20px;padding:6px 10px;white-space:nowrap}
+.calculus-review{display:flex;gap:8px;align-items:flex-start;margin-top:18px;padding:12px 14px;border-radius:8px;background:#f7f4e9;color:#756b49;font-size:11px;line-height:1.7}.calculus-review svg{flex-shrink:0;margin-top:2px}
+.calculus-group{margin-top:25px}.calculus-group h3{font-size:14px;color:#3c5e45;display:flex;align-items:center;gap:10px;margin:0 0 11px}.calculus-group h3 span{font-size:10px;color:#9dac97;font-weight:400}
+.calculus-entry-list{border-top:1px solid #e7ede5}.calculus-entry{border-bottom:1px solid #e7ede5}.calculus-entry-toggle{display:flex;align-items:center;gap:11px;width:100%;text-align:left;padding:15px 2px;color:#536a55;background:transparent;font-size:12px}.calculus-entry-toggle span{flex:1}.calculus-entry-toggle svg:last-child{transition:transform .2s}.calculus-entry-toggle .rotated{transform:rotate(90deg)}
+.calculus-entry-body{padding:2px 12px 16px 30px}.calculus-entry-body .prose{font-size:13px}.calculus-entry-meta{display:flex;flex-wrap:wrap;gap:6px 15px;margin-top:12px;color:#94a38f;font-size:9px}
+.calculus-pending{text-align:center;padding:68px 18px;color:#93a28e}.calculus-pending svg{margin:auto}.calculus-pending h3{font-size:16px;color:#627e60;margin:13px 0 8px}.calculus-pending p,.calculus-loading{font-size:12px;line-height:1.8;color:#899888}
+@media(max-width:920px){.calculus-layout{grid-template-columns:1fr}.calculus-modules{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:590px){.calculus-intro h1{font-size:28px}.calculus-modules{grid-template-columns:1fr}.calculus-content{padding:19px 16px}}

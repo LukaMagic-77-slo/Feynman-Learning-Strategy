@@ -1,6 +1,6 @@
 # 费曼学习平台 · Feynman Platform
 
-模块说明：[数据](data/README.md) · [评估](evaluation/README.md) · [费曼练习](practice/README.md) · [监控与反馈](monitoring/README.md) · [React 前端](frontend/README.md) · [后端测试](tests/README.md) · [浏览器测试](frontend/tests/README.md)。根目录的 RAG、向量存储和 API 说明见下文及 [Web 接入说明](WEB_README.md)。
+模块说明：[数据](data/README.md) · [高等数学初稿](data/calculus/README.md) · [评估](evaluation/README.md) · [费曼练习](practice/README.md) · [监控与反馈](monitoring/README.md) · [React 前端](frontend/README.md) · [后端测试](tests/README.md) · [浏览器测试](frontend/tests/README.md)。根目录的 RAG、向量存储和 API 说明见下文及 [Web 接入说明](WEB_README.md)。
 
 ### 上传 GitHub 前
 
@@ -14,6 +14,8 @@
 
 > **当前是小规模知识库演示版，仅支持数据库内已收录的知识点。**
 > 初始数据包含 40 条知识，聚焦概率密度函数、分布函数、均匀分布、正态分布和指数分布，不覆盖完整概率论课程，也不支持任意学科的开放问答。模型的回答与评价可能出错，不应代替教材、教师或人工判断。
+
+高等数学另设独立知识目录，按八个子模块展示；目前只有“函数与极限”的 17 条待核对初稿可浏览，尚未接入问答与检索。
 
 ## 两种学习方式
 

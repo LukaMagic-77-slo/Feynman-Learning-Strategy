@@ -190,6 +190,12 @@ def sections():
     return get_sections('概率论')
 
 
+@app.get('/api/calculus/catalog')
+def calculus_catalog():
+    """供审阅高等数学初稿；不依赖数据库或问答模型。"""
+    return json.loads((ROOT / 'data' / 'calculus' / 'catalog.json').read_text(encoding='utf-8'))
+
+
 @app.get('/api/topics')
 def topics(section: str = Query(min_length=1, max_length=300)):
     return get_topics('概率论', section)

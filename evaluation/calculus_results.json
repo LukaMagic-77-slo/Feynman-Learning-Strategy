@@ -1,0 +1,602 @@
+{
+  "metric": "Hit@5 (distinct parents)",
+  "dataset": "开发者编写的初步知识理解测试，非独立盲测",
+  "total": 42,
+  "hits": 25,
+  "hit_rate": 0.5952380952380952,
+  "cases": [
+    {
+      "question": "同一个输入可以对应两个输出吗？这还能叫函数吗？",
+      "relevant": [
+        "calc-tj-01-01",
+        "calc-tj-01-02"
+      ],
+      "retrieved": [
+        "calc-tj-06-02",
+        "calc-tj-01-02",
+        "calc-tj-08-01",
+        "calc-tj-01-05",
+        "calc-tj-01-04"
+      ],
+      "hit": true
+    },
+    {
+      "question": "两个式子一样但允许输入的范围不同，算不算同一个函数？",
+      "relevant": [
+        "calc-tj-01-02"
+      ],
+      "retrieved": [
+        "calc-tj-06-04",
+        "calc-tj-01-05",
+        "calc-tj-01-02",
+        "calc-tj-01-04",
+        "calc-tj-01-03"
+      ],
+      "hit": true
+    },
+    {
+      "question": "反函数为什么要求原来的函数是一一对应的？",
+      "relevant": [
+        "calc-tj-01-04"
+      ],
+      "retrieved": [
+        "calc-tj-01-04",
+        "calc-tj-01-05",
+        "calc-tj-09-02",
+        "calc-tj-01-02",
+        "calc-tj-01-03"
+      ],
+      "hit": true
+    },
+    {
+      "question": "定义域不关于原点对称时能不能说函数是奇函数？",
+      "relevant": [
+        "calc-tj-01-03"
+      ],
+      "retrieved": [
+        "calc-tj-01-02",
+        "calc-tj-03-06",
+        "calc-tj-03-05",
+        "calc-tj-01-03",
+        "calc-tj-03-08"
+      ],
+      "hit": true
+    },
+    {
+      "question": "双曲余弦为什么要限制到非负区间才能求反函数？",
+      "relevant": [
+        "calc-tj-01-05"
+      ],
+      "retrieved": [
+        "calc-tj-01-05",
+        "calc-tj-06-04",
+        "calc-tj-06-06",
+        "calc-tj-03-07",
+        "calc-tj-03-04"
+      ],
+      "hit": true
+    },
+    {
+      "question": "把数列的前十项全部改掉会影响收敛吗？",
+      "relevant": [
+        "calc-tj-02-01"
+      ],
+      "retrieved": [
+        "calc-an-seq-004",
+        "calc-tj-02-05",
+        "calc-an-seq-002",
+        "calc-tj-08-02",
+        "calc-tj-06-03"
+      ],
+      "hit": false
+    },
+    {
+      "question": "怎样说明一个数列不能同时趋向两个不同的数？",
+      "relevant": [
+        "calc-tj-02-02"
+      ],
+      "retrieved": [
+        "calc-tj-02-05",
+        "calc-tj-05-01",
+        "calc-tj-03-04",
+        "calc-an-seq-004",
+        "calc-tj-06-01"
+      ],
+      "hit": false
+    },
+    {
+      "question": "所有数列项都落在一个有限区间内，就一定收敛吗？",
+      "relevant": [
+        "calc-tj-02-03"
+      ],
+      "retrieved": [
+        "calc-tj-08-02",
+        "calc-an-seq-002",
+        "calc-an-seq-004",
+        "calc-tj-06-03",
+        "calc-tj-03-02"
+      ],
+      "hit": false
+    },
+    {
+      "question": "每一项都是正数，极限也一定大于零吗？",
+      "relevant": [
+        "calc-tj-02-04"
+      ],
+      "retrieved": [
+        "calc-tj-10-02",
+        "calc-an-seq-004",
+        "calc-tj-05-01",
+        "calc-tj-07-02",
+        "calc-tj-02-02"
+      ],
+      "hit": false
+    },
+    {
+      "question": "只找到一个收敛子列能说明整个数列收敛吗？",
+      "relevant": [
+        "calc-tj-02-05",
+        "calc-an-seq-002"
+      ],
+      "retrieved": [
+        "calc-tj-02-05",
+        "calc-an-seq-002",
+        "calc-tj-06-03",
+        "calc-tj-02-03",
+        "calc-tj-02-02"
+      ],
+      "hit": true
+    },
+    {
+      "question": "函数在某点没有定义，为什么仍然可能在那里有极限？",
+      "relevant": [
+        "calc-tj-03-01"
+      ],
+      "retrieved": [
+        "calc-tj-03-04",
+        "calc-tj-03-01",
+        "calc-tj-06-04",
+        "calc-tj-03-06",
+        "calc-tj-01-02"
+      ],
+      "hit": true
+    },
+    {
+      "question": "左右两边都趋于某个数但数值不同，双侧极限存在吗？",
+      "relevant": [
+        "calc-tj-03-02"
+      ],
+      "retrieved": [
+        "calc-tj-03-02",
+        "calc-tj-06-01",
+        "calc-tj-02-02",
+        "calc-tj-06-06",
+        "calc-an-seq-004"
+      ],
+      "hit": true
+    },
+    {
+      "question": "正无穷和负无穷处的极限不相等，能说无穷远处有同一个极限吗？",
+      "relevant": [
+        "calc-tj-03-03"
+      ],
+      "retrieved": [
+        "calc-tj-05-01",
+        "calc-tj-03-03",
+        "calc-tj-04-03",
+        "calc-tj-05-02",
+        "calc-tj-04-04"
+      ],
+      "hit": true
+    },
+    {
+      "question": "某点附近有有限极限，是不是整个函数就有界了？",
+      "relevant": [
+        "calc-tj-03-05"
+      ],
+      "retrieved": [
+        "calc-tj-03-04",
+        "calc-tj-06-04",
+        "calc-tj-03-06",
+        "calc-tj-03-01",
+        "calc-tj-08-02"
+      ],
+      "hit": false
+    },
+    {
+      "question": "如何保证趋于非零数的函数在附近不会等于零？",
+      "relevant": [
+        "calc-tj-03-07"
+      ],
+      "retrieved": [
+        "calc-tj-10-02",
+        "calc-tj-03-07",
+        "calc-tj-05-03",
+        "calc-tj-05-02",
+        "calc-tj-03-08"
+      ],
+      "hit": true
+    },
+    {
+      "question": "用几条趋近路径就能断定函数的极限存在吗？",
+      "relevant": [
+        "calc-tj-03-08"
+      ],
+      "retrieved": [
+        "calc-tj-03-04",
+        "calc-tj-06-04",
+        "calc-tj-05-06",
+        "calc-tj-06-02",
+        "calc-tj-08-02"
+      ],
+      "hit": false
+    },
+    {
+      "question": "一个固定的百万分之一是不是无穷小？",
+      "relevant": [
+        "calc-tj-04-01"
+      ],
+      "retrieved": [
+        "calc-tj-05-01",
+        "calc-tj-06-05",
+        "calc-tj-02-02",
+        "calc-tj-04-03",
+        "calc-tj-05-02"
+      ],
+      "hit": false
+    },
+    {
+      "question": "函数无界和函数趋于无穷大有什么不同？",
+      "relevant": [
+        "calc-tj-04-03"
+      ],
+      "retrieved": [
+        "calc-tj-03-03",
+        "calc-tj-05-02",
+        "calc-tj-08-02",
+        "calc-tj-09-04",
+        "calc-tj-04-01"
+      ],
+      "hit": false
+    },
+    {
+      "question": "一个趋于零的函数取倒数需要检查哪些条件？",
+      "relevant": [
+        "calc-tj-04-04"
+      ],
+      "retrieved": [
+        "calc-tj-10-02",
+        "calc-tj-03-07",
+        "calc-tj-05-03",
+        "calc-tj-06-06",
+        "calc-tj-09-01"
+      ],
+      "hit": false
+    },
+    {
+      "question": "有界的振荡因子乘一个趋于零的量会怎样？",
+      "relevant": [
+        "calc-tj-05-02"
+      ],
+      "retrieved": [
+        "calc-tj-10-02",
+        "calc-tj-03-07",
+        "calc-tj-07-02",
+        "calc-tj-04-04",
+        "calc-tj-02-03"
+      ],
+      "hit": false
+    },
+    {
+      "question": "分母极限是零，为什么不能直接用商的极限法则？",
+      "relevant": [
+        "calc-tj-05-03",
+        "calc-tj-05-04"
+      ],
+      "retrieved": [
+        "calc-tj-02-02",
+        "calc-tj-10-02",
+        "calc-tj-06-03",
+        "calc-an-seq-004",
+        "calc-tj-03-01"
+      ],
+      "hit": false
+    },
+    {
+      "question": "严格大于的不等式取极限后为什么可能只剩大于等于？",
+      "relevant": [
+        "calc-tj-05-05"
+      ],
+      "retrieved": [
+        "calc-an-seq-004",
+        "calc-tj-05-05",
+        "calc-tj-05-01",
+        "calc-tj-02-02",
+        "calc-tj-04-02"
+      ],
+      "hit": true
+    },
+    {
+      "question": "复合函数取极限为什么有时要要求内层不等于目标值？",
+      "relevant": [
+        "calc-tj-05-06",
+        "calc-tj-09-03"
+      ],
+      "retrieved": [
+        "calc-tj-03-04",
+        "calc-tj-03-01",
+        "calc-tj-06-04",
+        "calc-tj-03-06",
+        "calc-tj-05-06"
+      ],
+      "hit": true
+    },
+    {
+      "question": "夹逼中上下界的极限不一样，还能确定中间数列的极限吗？",
+      "relevant": [
+        "calc-tj-06-01"
+      ],
+      "retrieved": [
+        "calc-an-seq-004",
+        "calc-tj-06-01",
+        "calc-tj-03-02",
+        "calc-tj-08-02",
+        "calc-an-real-001"
+      ],
+      "hit": true
+    },
+    {
+      "question": "一个不断递增的数列为什么还需要上界才能保证收敛？",
+      "relevant": [
+        "calc-tj-06-03"
+      ],
+      "retrieved": [
+        "calc-tj-06-03",
+        "calc-an-seq-002",
+        "calc-tj-08-02",
+        "calc-an-seq-004",
+        "calc-tj-02-05"
+      ],
+      "hit": true
+    },
+    {
+      "question": "不知道极限是多少，能否仅比较后面的数列项来判断收敛？",
+      "relevant": [
+        "calc-tj-06-05"
+      ],
+      "retrieved": [
+        "calc-an-seq-004",
+        "calc-tj-02-05",
+        "calc-an-real-001",
+        "calc-tj-06-01",
+        "calc-tj-06-03"
+      ],
+      "hit": false
+    },
+    {
+      "question": "常用正弦比值极限为什么要求角度用弧度？",
+      "relevant": [
+        "calc-tj-06-06"
+      ],
+      "retrieved": [
+        "calc-tj-03-02",
+        "calc-tj-08-02",
+        "calc-an-seq-004",
+        "calc-tj-02-02",
+        "calc-tj-06-03"
+      ],
+      "hit": false
+    },
+    {
+      "question": "同阶无穷小一定等价吗？",
+      "relevant": [
+        "calc-tj-07-01"
+      ],
+      "retrieved": [
+        "calc-tj-07-01",
+        "calc-tj-06-05",
+        "calc-an-seq-004",
+        "calc-tj-05-01",
+        "calc-tj-04-04"
+      ],
+      "hit": true
+    },
+    {
+      "question": "为什么不能在两个相减的项里直接替换等价无穷小？",
+      "relevant": [
+        "calc-tj-07-02",
+        "calc-tj-07-03"
+      ],
+      "retrieved": [
+        "calc-tj-05-01",
+        "calc-tj-02-02",
+        "calc-tj-07-01",
+        "calc-an-seq-004",
+        "calc-an-seq-002"
+      ],
+      "hit": false
+    },
+    {
+      "question": "只修改间断点的函数值，哪些间断可以修复？",
+      "relevant": [
+        "calc-tj-08-02"
+      ],
+      "retrieved": [
+        "calc-tj-08-02",
+        "calc-tj-06-02",
+        "calc-tj-06-04",
+        "calc-tj-05-04",
+        "calc-tj-05-03"
+      ],
+      "hit": true
+    },
+    {
+      "question": "函数在闭区间两端连续该检查哪一侧？",
+      "relevant": [
+        "calc-tj-08-01"
+      ],
+      "retrieved": [
+        "calc-tj-06-02",
+        "calc-tj-08-02",
+        "calc-tj-06-04",
+        "calc-tj-10-05",
+        "calc-tj-09-01"
+      ],
+      "hit": false
+    },
+    {
+      "question": "反函数什么时候能保持连续？",
+      "relevant": [
+        "calc-tj-09-02"
+      ],
+      "retrieved": [
+        "calc-tj-09-02",
+        "calc-tj-09-04",
+        "calc-tj-09-01",
+        "calc-tj-10-05",
+        "calc-tj-01-04"
+      ],
+      "hit": true
+    },
+    {
+      "question": "连续函数为什么能在有限闭区间取得最大值？证明思路是什么？",
+      "relevant": [
+        "calc-tj-10-01"
+      ],
+      "retrieved": [
+        "calc-tj-09-04",
+        "calc-tj-10-05",
+        "calc-tj-10-01",
+        "calc-tj-08-01",
+        "calc-tj-05-02"
+      ],
+      "hit": true
+    },
+    {
+      "question": "两端异号能保证零点唯一吗？",
+      "relevant": [
+        "calc-tj-10-02"
+      ],
+      "retrieved": [
+        "calc-tj-10-02",
+        "calc-tj-06-06",
+        "calc-an-seq-002",
+        "calc-tj-02-02",
+        "calc-an-seq-004"
+      ],
+      "hit": true
+    },
+    {
+      "question": "连续曲线能不能跳过两端函数值中间的一个数？",
+      "relevant": [
+        "calc-tj-10-03"
+      ],
+      "retrieved": [
+        "calc-tj-10-05",
+        "calc-tj-06-01",
+        "calc-tj-01-05",
+        "calc-tj-03-04",
+        "calc-tj-08-02"
+      ],
+      "hit": false
+    },
+    {
+      "question": "一致连续和每一点都连续的量词有什么区别？",
+      "relevant": [
+        "calc-tj-10-04"
+      ],
+      "retrieved": [
+        "calc-tj-10-04",
+        "calc-tj-10-05",
+        "calc-tj-09-04",
+        "calc-tj-09-01",
+        "calc-tj-08-01"
+      ],
+      "hit": true
+    },
+    {
+      "question": "如何用两列距离越来越近的点反证闭区间上的一致连续性？",
+      "relevant": [
+        "calc-tj-10-05"
+      ],
+      "retrieved": [
+        "calc-an-seq-002",
+        "calc-tj-06-02",
+        "calc-tj-05-01",
+        "calc-tj-10-05",
+        "calc-tj-06-01"
+      ],
+      "hit": true
+    },
+    {
+      "question": "集合的上确界必须属于集合吗？",
+      "relevant": [
+        "calc-an-real-001"
+      ],
+      "retrieved": [
+        "calc-tj-08-02",
+        "calc-tj-02-01",
+        "calc-tj-06-03",
+        "calc-tj-06-05",
+        "calc-an-seq-004"
+      ],
+      "hit": false
+    },
+    {
+      "question": "实数的完备性和最小上界有什么关系？",
+      "relevant": [
+        "calc-an-real-002"
+      ],
+      "retrieved": [
+        "calc-an-real-002",
+        "calc-tj-06-05",
+        "calc-tj-06-03",
+        "calc-tj-02-02",
+        "calc-an-seq-004"
+      ],
+      "hit": true
+    },
+    {
+      "question": "聚点一定是集合本身的元素吗？",
+      "relevant": [
+        "calc-an-real-003"
+      ],
+      "retrieved": [
+        "calc-an-real-003",
+        "calc-tj-01-01",
+        "calc-tj-08-02",
+        "calc-an-seq-002",
+        "calc-tj-03-02"
+      ],
+      "hit": true
+    },
+    {
+      "question": "有界实数列至少能找到一个收敛子列吗？",
+      "relevant": [
+        "calc-an-seq-002"
+      ],
+      "retrieved": [
+        "calc-tj-06-03",
+        "calc-an-real-002",
+        "calc-tj-02-05",
+        "calc-tj-02-03",
+        "calc-an-seq-002"
+      ],
+      "hit": true
+    },
+    {
+      "question": "怎样用尾部的上确界和下确界判断数列是否收敛？",
+      "relevant": [
+        "calc-an-seq-004"
+      ],
+      "retrieved": [
+        "calc-an-seq-004",
+        "calc-tj-02-05",
+        "calc-tj-02-03",
+        "calc-an-real-001",
+        "calc-tj-06-01"
+      ],
+      "hit": true
+    }
+  ]
+}

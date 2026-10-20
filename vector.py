@@ -78,6 +78,9 @@ class PgVectorStore:
         return len(documents)
 
     def search(self, query, course='概率论', num_results=5):
+        if course == '高等数学':
+            from calculus_index import ParentChildIndex
+            return ParentChildIndex(self).search(query, course, num_results)
         if not isinstance(query, str) or not query.strip():
             raise ValueError('问题不能为空')
         if num_results < 1:

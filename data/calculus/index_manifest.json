@@ -1,0 +1,1110 @@
+{
+  "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "dimension": 384,
+  "token_limit": 128,
+  "catalog_sha256": "4e42168285d7cb4f132ec8f6ba89d92bc14427e26150cd569e83b467785b3043",
+  "parents": 53,
+  "children": 122,
+  "qa_only_parents": 5,
+  "max_child_tokens": 128,
+  "children_manifest": [
+    {
+      "id": "calc-tj-01-01:content:000",
+      "parent_id": "calc-tj-01-01",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "设 $A,B$ 为非空集合。映射 $f:A\\to B$ 为每个 $x\\in A$ 指定唯一的 $f(x)\\in B$。定义域为 $A$，到达集为 $B$，值域为 $f(A)=\\{f(x):x\\in A\\}$。不同自变量可有同一像；每个自变量不能对应多个像。",
+      "text": "映射的定义\n陈述：设 $A,B$ 为非空集合。映射 $f:A\\to B$ 为每个 $x\\in A$ 指定唯一的 $f(x)\\in B$。定义域为 $A$，到达集为 $B$，值域为 $f(A)=\\{f(x):x\\in A\\}$。不同自变量可有同一像；每个自变量不能对应多个像。",
+      "tokens": 111
+    },
+    {
+      "id": "calc-tj-01-01:proof_sketch:000",
+      "parent_id": "calc-tj-01-01",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "定义无需证明。判断是否为映射应检查全体自变量都有像、像属于到达集且唯一。",
+      "text": "映射的定义\n证明思路：定义无需证明。判断是否为映射应检查全体自变量都有像、像属于到达集且唯一。",
+      "tokens": 36
+    },
+    {
+      "id": "calc-tj-01-02:content:000",
+      "parent_id": "calc-tj-01-02",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "实函数是非空实数集 $D\\subseteq\\mathbb R$ 到 $\\mathbb R$ 的映射 $f:D\\to\\mathbb R$。$x$ 为自变量，$f(x)$ 为函数值，$D$ 为定义域，$f(D)$ 为值域。定义域和对应法则共同确定函数；自然定义域是表达式有意义的实数集合。",
+      "text": "函数的定义\n陈述：实函数是非空实数集 $D\\subseteq\\mathbb R$ 到 $\\mathbb R$ 的映射 $f:D\\to\\mathbb R$。$x$ 为自变量，$f(x)$ 为函数值，$D$ 为定义域，$f(D)$ 为值域。定义域和对应法则共同确定函数；自然定义域是表达式有意义的实数集合。",
+      "tokens": 115
+    },
+    {
+      "id": "calc-tj-01-02:proof_sketch:000",
+      "parent_id": "calc-tj-01-02",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "定义无需证明。相同公式配不同定义域可以表示不同函数。",
+      "text": "函数的定义\n证明思路：定义无需证明。相同公式配不同定义域可以表示不同函数。",
+      "tokens": 25
+    },
+    {
+      "id": "calc-tj-01-03:content:000",
+      "parent_id": "calc-tj-01-03",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "设 $f:D\\to\\mathbb R$。在非空 $E\\subseteq D$ 上有界指存在 $M>0$ 使所有 $x\\in E$ 满足 $|f(x)|\\le M$；有上界、下界分别用 $f(x)\\le M$、$f(x)\\ge m$ 定义。",
+      "text": "函数的基本特性\n陈述：设 $f:D\\to\\mathbb R$。在非空 $E\\subseteq D$ 上有界指存在 $M>0$ 使所有 $x\\in E$ 满足 $|f(x)|\\le M$；有上界、下界分别用 $f(x)\\le M$、$f(x)\\ge m$ 定义。",
+      "tokens": 97
+    },
+    {
+      "id": "calc-tj-01-03:content:001",
+      "parent_id": "calc-tj-01-03",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "在区间 $I\\subseteq D$ 上严格递增指 $x_1<x_2$ 蕴含 $f(x_1)<f(x_2)$，严格递减取反向不等式；非严格单调用 $\\le$ 或 $\\ge$。奇偶性要求 $D=-D$，偶函数满足 $f(-x)=f(x)$，奇函数满足 $f(-x)=-f(x)$。",
+      "text": "函数的基本特性\n陈述：在区间 $I\\subseteq D$ 上严格递增指 $x_1<x_2$ 蕴含 $f(x_1)<f(x_2)$，严格递减取反向不等式；非严格单调用 $\\le$ 或 $\\ge$。奇偶性要求 $D=-D$，偶函数满足 $f(-x)=f(x)$，奇函数满足 $f(-x)=-f(x)$。",
+      "tokens": 122
+    },
+    {
+      "id": "calc-tj-01-03:content:002",
+      "parent_id": "calc-tj-01-03",
+      "kind": "content",
+      "ordinal": 2,
+      "body": "周期性要求存在 $T>0$ 使 $D+T=D$ 且 $f(x+T)=f(x)$；最小正周期仅在存在时定义。",
+      "text": "函数的基本特性\n陈述：周期性要求存在 $T>0$ 使 $D+T=D$ 且 $f(x+T)=f(x)$；最小正周期仅在存在时定义。",
+      "tokens": 54
+    },
+    {
+      "id": "calc-tj-01-03:proof_sketch:000",
+      "parent_id": "calc-tj-01-03",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "这些均为定义。必须说明讨论集合；例如 $x^2$ 在 $\\mathbb R$ 上不单调，在 $[0,\\infty)$ 上严格递增。常函数有周期但无最小正周期。",
+      "text": "函数的基本特性\n证明思路：这些均为定义。必须说明讨论集合；例如 $x^2$ 在 $\\mathbb R$ 上不单调，在 $[0,\\infty)$ 上严格递增。常函数有周期但无最小正周期。",
+      "tokens": 66
+    },
+    {
+      "id": "calc-tj-01-04:content:000",
+      "parent_id": "calc-tj-01-04",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "单射 $f:A\\to B$ 的逆映射定义在值域 $f(A)$ 上，满足 $f^{-1}(f(x))=x$。若要求逆映射定义在整个 $B$，还须 $f(A)=B$。严格单调实函数是单射，故在值域上有反函数。",
+      "text": "逆映射、反函数与复合函数\n陈述：单射 $f:A\\to B$ 的逆映射定义在值域 $f(A)$ 上，满足 $f^{-1}(f(x))=x$。若要求逆映射定义在整个 $B$，还须 $f(A)=B$。严格单调实函数是单射，故在值域上有反函数。",
+      "tokens": 101
+    },
+    {
+      "id": "calc-tj-01-04:content:001",
+      "parent_id": "calc-tj-01-04",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "复合函数 $(f\\circ g)(x)=f(g(x))$ 的定义域为 $\\{x\\in D_g:g(x)\\in D_f\\}$；若要求在整个 $D_g$ 上复合，需 $g(D_g)\\subseteq D_f$。",
+      "text": "逆映射、反函数与复合函数\n陈述：复合函数 $(f\\circ g)(x)=f(g(x))$ 的定义域为 $\\{x\\in D_g:g(x)\\in D_f\\}$；若要求在整个 $D_g$ 上复合，需 $g(D_g)\\subseteq D_f$。",
+      "tokens": 94
+    },
+    {
+      "id": "calc-tj-01-04:proof_sketch:000",
+      "parent_id": "calc-tj-01-04",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "单射保证每个像只有一个原像，从而逆对应唯一。严格单调使不同自变量的函数值不同。",
+      "text": "逆映射、反函数与复合函数\n证明思路：单射保证每个像只有一个原像，从而逆对应唯一。严格单调使不同自变量的函数值不同。",
+      "tokens": 44
+    },
+    {
+      "id": "calc-tj-01-05:content:000",
+      "parent_id": "calc-tj-01-05",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "双曲函数定义为 $\\sinh x=(e^x-e^{-x})/2$、$\\cosh x=(e^x+e^{-x})/2$、$\\tanh x=\\sinh x/\\cosh x$，定义域均为 $\\mathbb R$。$\\sinh$ 严格递增且值域为 $\\mathbb R$；",
+      "text": "双曲函数与反双曲函数\n陈述：双曲函数定义为 $\\sinh x=(e^x-e^{-x})/2$、$\\cosh x=(e^x+e^{-x})/2$、$\\tanh x=\\sinh x/\\cosh x$，定义域均为 $\\mathbb R$。$\\sinh$ 严格递增且值域为 $\\mathbb R$；",
+      "tokens": 110
+    },
+    {
+      "id": "calc-tj-01-05:content:001",
+      "parent_id": "calc-tj-01-05",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "$\\cosh$ 限制到 $[0,\\infty)$ 后严格递增，值域为 $[1,\\infty)$；$\\tanh$ 严格递增且值域为 $(-1,1)$。",
+      "text": "双曲函数与反双曲函数\n陈述：$\\cosh$ 限制到 $[0,\\infty)$ 后严格递增，值域为 $[1,\\infty)$；$\\tanh$ 严格递增且值域为 $(-1,1)$。",
+      "tokens": 71
+    },
+    {
+      "id": "calc-tj-01-05:content:002",
+      "parent_id": "calc-tj-01-05",
+      "kind": "content",
+      "ordinal": 2,
+      "body": "相应反函数为 $\\operatorname{arsinh}y=\\ln(y+\\sqrt{y^2+1})$、$\\operatorname{arcosh}y=\\ln(y+\\sqrt{y^2-1})$（$y\\ge1$）、$\\operatorname{artanh}y=\\tfrac12\\ln((1+y)/(1-y))$（$|y|<1$）。",
+      "text": "双曲函数与反双曲函数\n陈述：相应反函数为 $\\operatorname{arsinh}y=\\ln(y+\\sqrt{y^2+1})$、$\\operatorname{arcosh}y=\\ln(y+\\sqrt{y^2-1})$（$y\\ge1$）、$\\operatorname{artanh}y=\\tfrac12\\ln((1+y)/(1-y))$（$|y|<1$）。",
+      "tokens": 123
+    },
+    {
+      "id": "calc-tj-01-05:proof_sketch:000",
+      "parent_id": "calc-tj-01-05",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "由指数函数的定义和单调性核对值域；令 $t=e^x>0$ 解代数方程即可得到反函数公式。$\\cosh$ 必须先限制到单调区间。",
+      "text": "双曲函数与反双曲函数\n证明思路：由指数函数的定义和单调性核对值域；令 $t=e^x>0$ 解代数方程即可得到反函数公式。$\\cosh$ 必须先限制到单调区间。",
+      "tokens": 66
+    },
+    {
+      "id": "calc-tj-02-01:content:000",
+      "parent_id": "calc-tj-02-01",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "实数列 $a_n$ 收敛于 $L\\in\\mathbb R$，是指对每个 $\\varepsilon>0$ 都存在正整数 $N$，使所有 $n>N$ 满足 $|a_n-L|<\\varepsilon$。记作 $\\lim_{n\\to\\infty}a_n=L$；无有限极限时称发散。$N$ 可依赖 $\\varepsilon$，",
+      "text": "数列极限的定义\n陈述：实数列 $a_n$ 收敛于 $L\\in\\mathbb R$，是指对每个 $\\varepsilon>0$ 都存在正整数 $N$，使所有 $n>N$ 满足 $|a_n-L|<\\varepsilon$。记作 $\\lim_{n\\to\\infty}a_n=L$；无有限极限时称发散。$N$ 可依赖 $\\varepsilon$，",
+      "tokens": 123
+    },
+    {
+      "id": "calc-tj-02-01:content:001",
+      "parent_id": "calc-tj-02-01",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "不可依赖所检验的 $n$。",
+      "text": "数列极限的定义\n陈述：不可依赖所检验的 $n$。",
+      "tokens": 22
+    },
+    {
+      "id": "calc-tj-02-01:proof_sketch:000",
+      "parent_id": "calc-tj-02-01",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "定义无需证明。有限个前项不影响定义中的尾部条件。",
+      "text": "数列极限的定义\n证明思路：定义无需证明。有限个前项不影响定义中的尾部条件。",
+      "tokens": 29
+    },
+    {
+      "id": "calc-tj-02-02:content:000",
+      "parent_id": "calc-tj-02-02",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "若实数列 $a_n$ 收敛，则它的有限极限唯一。",
+      "text": "极限唯一性定理\n陈述：若实数列 $a_n$ 收敛，则它的有限极限唯一。",
+      "tokens": 33
+    },
+    {
+      "id": "calc-tj-02-02:proof_sketch:000",
+      "parent_id": "calc-tj-02-02",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "若同时趋于不同的 $A,B$，取 $\\varepsilon=|A-B|/3$；充分大的 $n$ 同时接近两者，三角不等式给出 $|A-B|<2|A-B|/3$，矛盾。",
+      "text": "极限唯一性定理\n证明思路：若同时趋于不同的 $A,B$，取 $\\varepsilon=|A-B|/3$；充分大的 $n$ 同时接近两者，三角不等式给出 $|A-B|<2|A-B|/3$，矛盾。",
+      "tokens": 72
+    },
+    {
+      "id": "calc-tj-02-03:content:000",
+      "parent_id": "calc-tj-02-03",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "若实数列 $a_n$ 收敛于有限实数 $L$，则存在 $M>0$ 使每个 $n$ 都有 $|a_n|\\le M$。有界不保证收敛，如 $(-1)^n$。",
+      "text": "收敛数列有界性定理\n陈述：若实数列 $a_n$ 收敛于有限实数 $L$，则存在 $M>0$ 使每个 $n$ 都有 $|a_n|\\le M$。有界不保证收敛，如 $(-1)^n$。",
+      "tokens": 77
+    },
+    {
+      "id": "calc-tj-02-03:proof_sketch:000",
+      "parent_id": "calc-tj-02-03",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "取 $\\varepsilon=1$ 控制尾部 $|a_n|<|L|+1$，再与有限个前项绝对值的最大值合并。",
+      "text": "收敛数列有界性定理\n证明思路：取 $\\varepsilon=1$ 控制尾部 $|a_n|<|L|+1$，再与有限个前项绝对值的最大值合并。",
+      "tokens": 54
+    },
+    {
+      "id": "calc-tj-02-04:content:000",
+      "parent_id": "calc-tj-02-04",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "若 $a_n\\to L>0$（或 $L<0$），则存在 $N$ 使 $n>N$ 时 $a_n>0$（或 $a_n<0$）。附属推论：若从某项起 $a_n\\ge0$（或 $\\le0$）且极限存在，则 $L\\ge0$（或 $\\le0$）；不能据此推出严格不等式。",
+      "text": "收敛数列保号性定理\n陈述：若 $a_n\\to L>0$（或 $L<0$），则存在 $N$ 使 $n>N$ 时 $a_n>0$（或 $a_n<0$）。附属推论：若从某项起 $a_n\\ge0$（或 $\\le0$）且极限存在，则 $L\\ge0$（或 $\\le0$）；不能据此推出严格不等式。",
+      "tokens": 120
+    },
+    {
+      "id": "calc-tj-02-04:proof_sketch:000",
+      "parent_id": "calc-tj-02-04",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "保号性取 $\\varepsilon=|L|/2$。推论用反证法：若极限异号，保号性与尾部条件矛盾。",
+      "text": "收敛数列保号性定理\n证明思路：保号性取 $\\varepsilon=|L|/2$。推论用反证法：若极限异号，保号性与尾部条件矛盾。",
+      "tokens": 54
+    },
+    {
+      "id": "calc-tj-02-05:content:000",
+      "parent_id": "calc-tj-02-05",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "子列 $a_{n_k}$ 的指标为严格递增正整数 $n_1<n_2<\\cdots$。若 $a_n\\to L$，则每个子列均趋于 $L$。找到两个极限不同的子列即可证明原数列不收敛；只找到一个收敛子列不足以证明原数列收敛。",
+      "text": "收敛数列与子列的关系定理\n陈述：子列 $a_{n_k}$ 的指标为严格递增正整数 $n_1<n_2<\\cdots$。若 $a_n\\to L$，则每个子列均趋于 $L$。找到两个极限不同的子列即可证明原数列不收敛；只找到一个收敛子列不足以证明原数列收敛。",
+      "tokens": 105
+    },
+    {
+      "id": "calc-tj-02-05:proof_sketch:000",
+      "parent_id": "calc-tj-02-05",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "因为 $n_k\\ge k$，原数列的尾部估计也适用于充分大的子列指标。",
+      "text": "收敛数列与子列的关系定理\n证明思路：因为 $n_k\\ge k$，原数列的尾部估计也适用于充分大的子列指标。",
+      "tokens": 42
+    },
+    {
+      "id": "calc-tj-03-01:content:000",
+      "parent_id": "calc-tj-03-01",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "设 $f$ 在 $a$ 的某个去心邻域有定义。$\\lim_{x\\to a}f(x)=L\\in\\mathbb R$ 指对每个 $\\varepsilon>0$ 都存在 $\\delta>0$，使 $0<|x-a|<\\delta$ 时 $|f(x)-L|<\\varepsilon$。$f(a)$ 可以未定义；",
+      "text": "自变量趋于有限点时的函数极限\n陈述：设 $f$ 在 $a$ 的某个去心邻域有定义。$\\lim_{x\\to a}f(x)=L\\in\\mathbb R$ 指对每个 $\\varepsilon>0$ 都存在 $\\delta>0$，使 $0<|x-a|<\\delta$ 时 $|f(x)-L|<\\varepsilon$。$f(a)$ 可以未定义；",
+      "tokens": 126
+    },
+    {
+      "id": "calc-tj-03-01:content:001",
+      "parent_id": "calc-tj-03-01",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "此极限不约束点 $a$ 本身的函数值。",
+      "text": "自变量趋于有限点时的函数极限\n陈述：此极限不约束点 $a$ 本身的函数值。",
+      "tokens": 34
+    },
+    {
+      "id": "calc-tj-03-01:proof_sketch:000",
+      "parent_id": "calc-tj-03-01",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "定义无需证明。去心条件排除了 $x=a$，故改变单点函数值不改变该极限。",
+      "text": "自变量趋于有限点时的函数极限\n证明思路：定义无需证明。去心条件排除了 $x=a$，故改变单点函数值不改变该极限。",
+      "tokens": 46
+    },
+    {
+      "id": "calc-tj-03-02:content:000",
+      "parent_id": "calc-tj-03-02",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "左极限 $\\lim_{x\\to a^-}f(x)=L$ 将极限定义中的邻域条件改为 $a-\\delta<x<a$；右极限改为 $a<x<a+\\delta$。当两侧都有定义时，双侧有限极限为 $L$ 当且仅当左右极限均为 $L$。",
+      "text": "单侧极限及双侧极限的判别\n陈述：左极限 $\\lim_{x\\to a^-}f(x)=L$ 将极限定义中的邻域条件改为 $a-\\delta<x<a$；右极限改为 $a<x<a+\\delta$。当两侧都有定义时，双侧有限极限为 $L$ 当且仅当左右极限均为 $L$。",
+      "tokens": 110
+    },
+    {
+      "id": "calc-tj-03-02:proof_sketch:000",
+      "parent_id": "calc-tj-03-02",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "必要性是限制到一侧；充分性取左右两侧可用半径的较小值。同侧无定义时不能直接套用双侧判别。",
+      "text": "单侧极限及双侧极限的判别\n证明思路：必要性是限制到一侧；充分性取左右两侧可用半径的较小值。同侧无定义时不能直接套用双侧判别。",
+      "tokens": 55
+    },
+    {
+      "id": "calc-tj-03-03:content:000",
+      "parent_id": "calc-tj-03-03",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "设 $f$ 在充分大的正自变量处有定义。$\\lim_{x\\to+\\infty}f(x)=L$ 指对每个 $\\varepsilon>0$ 存在 $X>0$，使 $x>X$ 时 $|f(x)-L|<\\varepsilon$。负无穷处用 $x<-X$，双向无穷处用 $|x|>X$。",
+      "text": "自变量趋于无穷大时的函数极限\n陈述：设 $f$ 在充分大的正自变量处有定义。$\\lim_{x\\to+\\infty}f(x)=L$ 指对每个 $\\varepsilon>0$ 存在 $X>0$，使 $x>X$ 时 $|f(x)-L|<\\varepsilon$。负无穷处用 $x<-X$，双向无穷处用 $|x|>X$。",
+      "tokens": 125
+    },
+    {
+      "id": "calc-tj-03-03:content:001",
+      "parent_id": "calc-tj-03-03",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "双向有限极限存在当且仅当正、负无穷处极限都存在且相等。",
+      "text": "自变量趋于无穷大时的函数极限\n陈述：双向有限极限存在当且仅当正、负无穷处极限都存在且相等。",
+      "tokens": 44
+    },
+    {
+      "id": "calc-tj-03-03:proof_sketch:000",
+      "parent_id": "calc-tj-03-03",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "定义无需证明。双向判别分别限制到两端，再取两个阈值的较大者。",
+      "text": "自变量趋于无穷大时的函数极限\n证明思路：定义无需证明。双向判别分别限制到两端，再取两个阈值的较大者。",
+      "tokens": 43
+    },
+    {
+      "id": "calc-tj-03-04:content:000",
+      "parent_id": "calc-tj-03-04",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "在同一自变量趋近过程中，函数若有有限极限，该极限唯一。目标点须可由所讨论的定义域趋近。",
+      "text": "函数极限唯一性定理\n陈述：在同一自变量趋近过程中，函数若有有限极限，该极限唯一。目标点须可由所讨论的定义域趋近。",
+      "tokens": 47
+    },
+    {
+      "id": "calc-tj-03-04:proof_sketch:000",
+      "parent_id": "calc-tj-03-04",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "假设极限为两个不同数，取它们距离的三分之一作误差，再在两组条件同时成立处用三角不等式得到矛盾。",
+      "text": "函数极限唯一性定理\n证明思路：假设极限为两个不同数，取它们距离的三分之一作误差，再在两组条件同时成立处用三角不等式得到矛盾。",
+      "tokens": 47
+    },
+    {
+      "id": "calc-tj-03-05:content:000",
+      "parent_id": "calc-tj-03-05",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "若 $\\lim_{x\\to a}f(x)=L\\in\\mathbb R$，则存在 $\\delta>0$、$M>0$，使 $0<|x-a|<\\delta$ 时 $|f(x)|\\le M$。这是局部有界性，不是整个定义域有界。",
+      "text": "函数极限局部有界性定理\n陈述：若 $\\lim_{x\\to a}f(x)=L\\in\\mathbb R$，则存在 $\\delta>0$、$M>0$，使 $0<|x-a|<\\delta$ 时 $|f(x)|\\le M$。这是局部有界性，不是整个定义域有界。",
+      "tokens": 98
+    },
+    {
+      "id": "calc-tj-03-05:proof_sketch:000",
+      "parent_id": "calc-tj-03-05",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "取误差 $1$，由 $|f(x)|\\le |f(x)-L|+|L|$ 得局部界 $|L|+1$。",
+      "text": "函数极限局部有界性定理\n证明思路：取误差 $1$，由 $|f(x)|\\le |f(x)-L|+|L|$ 得局部界 $|L|+1$。",
+      "tokens": 57
+    },
+    {
+      "id": "calc-tj-03-06:content:000",
+      "parent_id": "calc-tj-03-06",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "若 $\\lim_{x\\to a}f(x)=L>0$（或 $L<0$），则某个去心邻域内 $f(x)>0$（或 $f(x)<0$）。附属推论：若附近 $f(x)\\ge0$（或 $\\le0$）且有限极限存在，则极限非负（或非正）。",
+      "text": "函数极限局部保号性定理\n陈述：若 $\\lim_{x\\to a}f(x)=L>0$（或 $L<0$），则某个去心邻域内 $f(x)>0$（或 $f(x)<0$）。附属推论：若附近 $f(x)\\ge0$（或 $\\le0$）且有限极限存在，则极限非负（或非正）。",
+      "tokens": 109
+    },
+    {
+      "id": "calc-tj-03-06:proof_sketch:000",
+      "parent_id": "calc-tj-03-06",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "取误差 $|L|/2$ 即得保号性。推论反证：若极限异号，则附近函数值必须异号，与假设矛盾。极限为零时不能推出附近函数值符号固定。",
+      "text": "函数极限局部保号性定理\n证明思路：取误差 $|L|/2$ 即得保号性。推论反证：若极限异号，则附近函数值必须异号，与假设矛盾。极限为零时不能推出附近函数值符号固定。",
+      "tokens": 69
+    },
+    {
+      "id": "calc-tj-03-07:content:000",
+      "parent_id": "calc-tj-03-07",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "若 $\\lim_{x\\to a}f(x)=L\\ne0$，则存在 $\\delta>0$ 使 $0<|x-a|<\\delta$ 时 $|f(x)|>|L|/2$；因此函数在此邻域不为零，且其倒数有界。",
+      "text": "非零极限的定量下界定理\n陈述：若 $\\lim_{x\\to a}f(x)=L\\ne0$，则存在 $\\delta>0$ 使 $0<|x-a|<\\delta$ 时 $|f(x)|>|L|/2$；因此函数在此邻域不为零，且其倒数有界。",
+      "tokens": 96
+    },
+    {
+      "id": "calc-tj-03-07:proof_sketch:000",
+      "parent_id": "calc-tj-03-07",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "取误差 $|L|/2$，使用反三角不等式 $|f(x)|\\ge |L|-|f(x)-L|$。",
+      "text": "非零极限的定量下界定理\n证明思路：取误差 $|L|/2$，使用反三角不等式 $|f(x)|\\ge |L|-|f(x)-L|$。",
+      "tokens": 58
+    },
+    {
+      "id": "calc-tj-03-08:content:000",
+      "parent_id": "calc-tj-03-08",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "教材结论：若 $\\lim_{x\\to a}f(x)=L$，对于定义域内每个满足 $x_n\\ne a$、$x_n\\to a$ 的数列，都有 $f(x_n)\\to L$。补充的反向判别：若每个这样的数列均满足 $f(x_n)\\to L$，且 $a$ 是定义域聚点，",
+      "text": "函数极限与数列极限的关系定理（教材星号）\n陈述：教材结论：若 $\\lim_{x\\to a}f(x)=L$，对于定义域内每个满足 $x_n\\ne a$、$x_n\\to a$ 的数列，都有 $f(x_n)\\to L$。补充的反向判别：若每个这样的数列均满足 $f(x_n)\\to L$，且 $a$ 是定义域聚点，",
+      "tokens": 123
+    },
+    {
+      "id": "calc-tj-03-08:content:001",
+      "parent_id": "calc-tj-03-08",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "则函数极限为 $L$。不能只检验一列。",
+      "text": "函数极限与数列极限的关系定理（教材星号）\n陈述：则函数极限为 $L$。不能只检验一列。",
+      "tokens": 38
+    },
+    {
+      "id": "calc-tj-03-08:proof_sketch:000",
+      "parent_id": "calc-tj-03-08",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "正向把数列尾部放进函数极限的去心邻域。反向用否定定义：若函数极限不是 $L$，可在半径 $1/n$ 内选取误差至少为某固定正数的点，构成反例数列。",
+      "text": "函数极限与数列极限的关系定理（教材星号）\n证明思路：正向把数列尾部放进函数极限的去心邻域。反向用否定定义：若函数极限不是 $L$，可在半径 $1/n$ 内选取误差至少为某固定正数的点，构成反例数列。",
+      "tokens": 84
+    },
+    {
+      "id": "calc-tj-04-01:content:000",
+      "parent_id": "calc-tj-04-01",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "在指定的自变量变化过程中，极限为零的函数（或数列）称为无穷小。无穷小是依赖变化过程的量；固定非零常数无论多小都不是无穷小，恒零函数是无穷小。",
+      "text": "无穷小的定义\n陈述：在指定的自变量变化过程中，极限为零的函数（或数列）称为无穷小。无穷小是依赖变化过程的量；固定非零常数无论多小都不是无穷小，恒零函数是无穷小。",
+      "tokens": 68
+    },
+    {
+      "id": "calc-tj-04-01:proof_sketch:000",
+      "parent_id": "calc-tj-04-01",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "定义无需证明。判断时必须写明趋近过程，例如 $x$ 在 $x\\to0$ 时是无穷小，在 $x\\to1$ 时不是。",
+      "text": "无穷小的定义\n证明思路：定义无需证明。判断时必须写明趋近过程，例如 $x$ 在 $x\\to0$ 时是无穷小，在 $x\\to1$ 时不是。",
+      "tokens": 53
+    },
+    {
+      "id": "calc-tj-04-02:content:000",
+      "parent_id": "calc-tj-04-02",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "在相同变化过程中，$f(x)\\to L\\in\\mathbb R$ 当且仅当可写为 $f(x)=L+\\alpha(x)$，其中 $\\alpha(x)\\to0$。",
+      "text": "有限极限与无穷小的等价表述定理\n陈述：在相同变化过程中，$f(x)\\to L\\in\\mathbb R$ 当且仅当可写为 $f(x)=L+\\alpha(x)$，其中 $\\alpha(x)\\to0$。",
+      "tokens": 76
+    },
+    {
+      "id": "calc-tj-04-02:proof_sketch:000",
+      "parent_id": "calc-tj-04-02",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "令 $\\alpha=f-L$，两个极限定义中的误差表达式完全相同。",
+      "text": "有限极限与无穷小的等价表述定理\n证明思路：令 $\\alpha=f-L$，两个极限定义中的误差表达式完全相同。",
+      "tokens": 43
+    },
+    {
+      "id": "calc-tj-04-03:content:000",
+      "parent_id": "calc-tj-04-03",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "在 $x\\to a$ 过程中，$f(x)$ 为无穷大指对每个 $M>0$ 都存在 $\\delta>0$，使 $0<|x-a|<\\delta$ 时 $|f(x)|>M$；记作 $f(x)\\to\\infty$。若改为 $f(x)>M$ 或 $f(x)<-M$，",
+      "text": "无穷大的定义\n陈述：在 $x\\to a$ 过程中，$f(x)$ 为无穷大指对每个 $M>0$ 都存在 $\\delta>0$，使 $0<|x-a|<\\delta$ 时 $|f(x)|>M$；记作 $f(x)\\to\\infty$。若改为 $f(x)>M$ 或 $f(x)<-M$，",
+      "tokens": 115
+    },
+    {
+      "id": "calc-tj-04-03:content:001",
+      "parent_id": "calc-tj-04-03",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "分别记为 $+\\infty$ 或 $-\\infty$。自变量趋于无穷远时将邻域条件改为相应尾部条件。无界并不必然是无穷大。",
+      "text": "无穷大的定义\n陈述：分别记为 $+\\infty$ 或 $-\\infty$。自变量趋于无穷远时将邻域条件改为相应尾部条件。无界并不必然是无穷大。",
+      "tokens": 58
+    },
+    {
+      "id": "calc-tj-04-03:proof_sketch:000",
+      "parent_id": "calc-tj-04-03",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "定义无需证明。无穷大要求所有充分接近的点都越过任意阈值，普通无界只要求能找到超过阈值的点。",
+      "text": "无穷大的定义\n证明思路：定义无需证明。无穷大要求所有充分接近的点都越过任意阈值，普通无界只要求能找到超过阈值的点。",
+      "tokens": 44
+    },
+    {
+      "id": "calc-tj-04-04:content:000",
+      "parent_id": "calc-tj-04-04",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "在相同变化过程中，若 $|f|\\to\\infty$，则 $1/f\\to0$；反之若 $f\\to0$ 且在相应去心邻域或尾部不为零，则 $|1/f|\\to\\infty$。倒数的正负无穷还需相应符号条件。",
+      "text": "无穷大与无穷小的倒数关系定理\n陈述：在相同变化过程中，若 $|f|\\to\\infty$，则 $1/f\\to0$；反之若 $f\\to0$ 且在相应去心邻域或尾部不为零，则 $|1/f|\\to\\infty$。倒数的正负无穷还需相应符号条件。",
+      "tokens": 96
+    },
+    {
+      "id": "calc-tj-04-04:proof_sketch:000",
+      "parent_id": "calc-tj-04-04",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "互换误差与阈值：$|f|>1/\\varepsilon$ 蕴含 $|1/f|<\\varepsilon$；$0<|f|<1/M$ 蕴含 $|1/f|>M$。",
+      "text": "无穷大与无穷小的倒数关系定理\n证明思路：互换误差与阈值：$|f|>1/\\varepsilon$ 蕴含 $|1/f|<\\varepsilon$；$0<|f|<1/M$ 蕴含 $|1/f|>M$。",
+      "tokens": 75
+    },
+    {
+      "id": "calc-tj-05-01:content:000",
+      "parent_id": "calc-tj-05-01",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "同一变化过程中，两个无穷小的和仍为无穷小；有限个无穷小的和也如此。该结论不直接适用于无穷项求和。",
+      "text": "无穷小之和定理\n陈述：同一变化过程中，两个无穷小的和仍为无穷小；有限个无穷小的和也如此。该结论不直接适用于无穷项求和。",
+      "tokens": 49
+    },
+    {
+      "id": "calc-tj-05-01:proof_sketch:000",
+      "parent_id": "calc-tj-05-01",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "对两项分别取误差 $\\varepsilon/2$ 并合并邻域，再用三角不等式；有限项情形用归纳法。",
+      "text": "无穷小之和定理\n证明思路：对两项分别取误差 $\\varepsilon/2$ 并合并邻域，再用三角不等式；有限项情形用归纳法。",
+      "tokens": 50
+    },
+    {
+      "id": "calc-tj-05-02:content:000",
+      "parent_id": "calc-tj-05-02",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "在同一变化过程中，若 $u$ 在所讨论的邻域或尾部有界且 $\\alpha\\to0$，则 $u\\alpha\\to0$。附属推论：常数乘无穷小仍为无穷小；有限个无穷小的乘积仍为无穷小。",
+      "text": "有界函数与无穷小乘积定理\n陈述：在同一变化过程中，若 $u$ 在所讨论的邻域或尾部有界且 $\\alpha\\to0$，则 $u\\alpha\\to0$。附属推论：常数乘无穷小仍为无穷小；有限个无穷小的乘积仍为无穷小。",
+      "tokens": 88
+    },
+    {
+      "id": "calc-tj-05-02:proof_sketch:000",
+      "parent_id": "calc-tj-05-02",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "取界 $M>0$，让 $|\\alpha|<\\varepsilon/M$。常数有界，而无穷小在局部有界，所以可反复应用乘积结论。",
+      "text": "有界函数与无穷小乘积定理\n证明思路：取界 $M>0$，让 $|\\alpha|<\\varepsilon/M$。常数有界，而无穷小在局部有界，所以可反复应用乘积结论。",
+      "tokens": 64
+    },
+    {
+      "id": "calc-tj-05-03:content:000",
+      "parent_id": "calc-tj-05-03",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "同一变化过程中，若 $f\\to A$、$g\\to B$ 都为有限极限，则 $f\\pm g\\to A\\pm B$，$fg\\to AB$；若 $B\\ne0$，则 $f/g\\to A/B$，分母在充分靠近时自动非零。附属推论：常数 $c$ 满足 $\\lim(cf)=cA$；",
+      "text": "函数极限四则运算定理\n陈述：同一变化过程中，若 $f\\to A$、$g\\to B$ 都为有限极限，则 $f\\pm g\\to A\\pm B$，$fg\\to AB$；若 $B\\ne0$，则 $f/g\\to A/B$，分母在充分靠近时自动非零。附属推论：常数 $c$ 满足 $\\lim(cf)=cA$；",
+      "tokens": 115
+    },
+    {
+      "id": "calc-tj-05-03:content:001",
+      "parent_id": "calc-tj-05-03",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "正整数 $n$ 满足 $\\lim f^n=A^n$。",
+      "text": "函数极限四则运算定理\n陈述：正整数 $n$ 满足 $\\lim f^n=A^n$。",
+      "tokens": 36
+    },
+    {
+      "id": "calc-tj-05-03:proof_sketch:000",
+      "parent_id": "calc-tj-05-03",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "写 $f=A+\\alpha$、$g=B+\\beta$，把误差化为无穷小的和与乘积。商的证明另用非零极限的定量下界控制 $1/g$。",
+      "text": "函数极限四则运算定理\n证明思路：写 $f=A+\\alpha$、$g=B+\\beta$，把误差化为无穷小的和与乘积。商的证明另用非零极限的定量下界控制 $1/g$。",
+      "tokens": 69
+    },
+    {
+      "id": "calc-tj-05-04:content:000",
+      "parent_id": "calc-tj-05-04",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "若实数列 $a_n\\to A$、$b_n\\to B$，则 $a_n\\pm b_n\\to A\\pm B$、$a_nb_n\\to AB$。若 $B\\ne0$，则从某项起 $b_n\\ne0$，并有 $a_n/b_n\\to A/B$；前面未定义的商不影响尾部极限。",
+      "text": "数列极限四则运算定理\n陈述：若实数列 $a_n\\to A$、$b_n\\to B$，则 $a_n\\pm b_n\\to A\\pm B$、$a_nb_n\\to AB$。若 $B\\ne0$，则从某项起 $b_n\\ne0$，并有 $a_n/b_n\\to A/B$；前面未定义的商不影响尾部极限。",
+      "tokens": 120
+    },
+    {
+      "id": "calc-tj-05-04:proof_sketch:000",
+      "parent_id": "calc-tj-05-04",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "采用与函数极限四则运算相同的误差分解，把邻域条件换成指标充分大。",
+      "text": "数列极限四则运算定理\n证明思路：采用与函数极限四则运算相同的误差分解，把邻域条件换成指标充分大。",
+      "tokens": 41
+    },
+    {
+      "id": "calc-tj-05-05:content:000",
+      "parent_id": "calc-tj-05-05",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "同一变化过程中，若充分靠近时 $\\phi(x)\\ge\\psi(x)$，且 $\\phi\\to A$、$\\psi\\to B$ 为有限极限，则 $A\\ge B$。严格不等式取极限后可能成为等式。",
+      "text": "极限的不等式保序定理\n陈述：同一变化过程中，若充分靠近时 $\\phi(x)\\ge\\psi(x)$，且 $\\phi\\to A$、$\\psi\\to B$ 为有限极限，则 $A\\ge B$。严格不等式取极限后可能成为等式。",
+      "tokens": 82
+    },
+    {
+      "id": "calc-tj-05-05:proof_sketch:000",
+      "parent_id": "calc-tj-05-05",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "差函数非负且趋于 $A-B$，由保号性的附属推论得 $A-B\\ge0$。",
+      "text": "极限的不等式保序定理\n证明思路：差函数非负且趋于 $A-B$，由保号性的附属推论得 $A-B\\ge0$。",
+      "tokens": 46
+    },
+    {
+      "id": "calc-tj-05-06:content:000",
+      "parent_id": "calc-tj-05-06",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "设 $g(x)\\to u_0$（$x\\to a$），$f(u)\\to A$（$u\\to u_0$），复合函数在 $a$ 的某去心邻域有定义，并且该邻域内 $g(x)\\ne u_0$。则 $f(g(x))\\to A$。若没有内层避开 $u_0$ 的条件，仅有这两个极限不足以保证结论。",
+      "text": "复合函数的极限运算法则\n陈述：设 $g(x)\\to u_0$（$x\\to a$），$f(u)\\to A$（$u\\to u_0$），复合函数在 $a$ 的某去心邻域有定义，并且该邻域内 $g(x)\\ne u_0$。则 $f(g(x))\\to A$。若没有内层避开 $u_0$ 的条件，仅有这两个极限不足以保证结论。",
+      "tokens": 125
+    },
+    {
+      "id": "calc-tj-05-06:proof_sketch:000",
+      "parent_id": "calc-tj-05-06",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "先由外层极限选误差对应的 $u$ 邻域，再由内层极限把 $g(x)$ 放入其中。非零距离条件保证落入的是去心邻域。",
+      "text": "复合函数的极限运算法则\n证明思路：先由外层极限选误差对应的 $u$ 邻域，再由内层极限把 $g(x)$ 放入其中。非零距离条件保证落入的是去心邻域。",
+      "tokens": 62
+    },
+    {
+      "id": "calc-tj-06-01:content:000",
+      "parent_id": "calc-tj-06-01",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "若从某项起 $a_n\\le b_n\\le c_n$，且 $a_n,c_n$ 都趋于同一有限数 $L$，则 $b_n\\to L$。",
+      "text": "数列夹逼准则\n陈述：若从某项起 $a_n\\le b_n\\le c_n$，且 $a_n,c_n$ 都趋于同一有限数 $L$，则 $b_n\\to L$。",
+      "tokens": 64
+    },
+    {
+      "id": "calc-tj-06-01:proof_sketch:000",
+      "parent_id": "calc-tj-06-01",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "两端均在 $(L-\\varepsilon,L+\\varepsilon)$ 内时，中间项也在其中；取两个尾部阈值的较大者。",
+      "text": "数列夹逼准则\n证明思路：两端均在 $(L-\\varepsilon,L+\\varepsilon)$ 内时，中间项也在其中；取两个尾部阈值的较大者。",
+      "tokens": 52
+    },
+    {
+      "id": "calc-tj-06-02:content:000",
+      "parent_id": "calc-tj-06-02",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "在相同自变量变化过程中，若充分靠近目标处 $\\phi(x)\\le f(x)\\le\\psi(x)$，且 $\\phi,\\psi\\to L\\in\\mathbb R$，则 $f\\to L$。",
+      "text": "函数夹逼准则\n陈述：在相同自变量变化过程中，若充分靠近目标处 $\\phi(x)\\le f(x)\\le\\psi(x)$，且 $\\phi,\\psi\\to L\\in\\mathbb R$，则 $f\\to L$。",
+      "tokens": 71
+    },
+    {
+      "id": "calc-tj-06-02:proof_sketch:000",
+      "parent_id": "calc-tj-06-02",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "合并两端极限给出的邻域或尾部阈值，再用夹在同一个误差区间中的关系。",
+      "text": "函数夹逼准则\n证明思路：合并两端极限给出的邻域或尾部阈值，再用夹在同一个误差区间中的关系。",
+      "tokens": 40
+    },
+    {
+      "id": "calc-tj-06-03:content:000",
+      "parent_id": "calc-tj-06-03",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "实数列若单调非减且有上界，或单调非增且有下界，则有有限极限。单调或有界单独都不足以保证收敛。",
+      "text": "单调有界数列收敛准则\n陈述：实数列若单调非减且有上界，或单调非增且有下界，则有有限极限。单调或有界单独都不足以保证收敛。",
+      "tokens": 57
+    },
+    {
+      "id": "calc-tj-06-03:proof_sketch:000",
+      "parent_id": "calc-tj-06-03",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "递增情形取全体项的上确界 $L$。确界性质给出一项大于 $L-\\varepsilon$，单调性让后续所有项介于它与 $L$ 之间；递减情形对偶处理。",
+      "text": "单调有界数列收敛准则\n证明思路：递增情形取全体项的上确界 $L$。确界性质给出一项大于 $L-\\varepsilon$，单调性让后续所有项介于它与 $L$ 之间；递减情形对偶处理。",
+      "tokens": 70
+    },
+    {
+      "id": "calc-tj-06-04:content:000",
+      "parent_id": "calc-tj-06-04",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "若实函数在 $(a-\\delta_0,a)$ 上单调且有界，则左侧有限极限 $f(a^-)$ 存在。右邻域有相同结论；两侧极限分别存在不保证相等。",
+      "text": "单侧单调有界函数极限准则\n陈述：若实函数在 $(a-\\delta_0,a)$ 上单调且有界，则左侧有限极限 $f(a^-)$ 存在。右邻域有相同结论；两侧极限分别存在不保证相等。",
+      "tokens": 77
+    },
+    {
+      "id": "calc-tj-06-04:proof_sketch:000",
+      "parent_id": "calc-tj-06-04",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "按单调方向取该邻域函数值的上确界或下确界；用确界性质选一点，单调性控制此点至端点之间的全部函数值。",
+      "text": "单侧单调有界函数极限准则\n证明思路：按单调方向取该邻域函数值的上确界或下确界；用确界性质选一点，单调性控制此点至端点之间的全部函数值。",
+      "tokens": 57
+    },
+    {
+      "id": "calc-tj-06-05:content:000",
+      "parent_id": "calc-tj-06-05",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "实数列 $a_n$ 收敛当且仅当它满足柯西条件：对每个 $\\varepsilon>0$，存在 $N$，使任意 $m,n>N$ 都有 $|a_m-a_n|<\\varepsilon$。这里不预先给定极限值，充分性依赖实数完备性。",
+      "text": "柯西极限存在准则（教材星号）\n陈述：实数列 $a_n$ 收敛当且仅当它满足柯西条件：对每个 $\\varepsilon>0$，存在 $N$，使任意 $m,n>N$ 都有 $|a_m-a_n|<\\varepsilon$。这里不预先给定极限值，充分性依赖实数完备性。",
+      "tokens": 102
+    },
+    {
+      "id": "calc-tj-06-05:proof_sketch:000",
+      "parent_id": "calc-tj-06-05",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "必要性用到极限的距离各小于 $\\varepsilon/2$。充分性的一种证明先由柯西条件得有界，取收敛子列，再将一般尾项与子列中充分靠后的项比较；这是借用数学分析子列定理的证明路线。",
+      "text": "柯西极限存在准则（教材星号）\n证明思路：必要性用到极限的距离各小于 $\\varepsilon/2$。充分性的一种证明先由柯西条件得有界，取收敛子列，再将一般尾项与子列中充分靠后的项比较；这是借用数学分析子列定理的证明路线。",
+      "tokens": 84
+    },
+    {
+      "id": "calc-tj-06-06:content:000",
+      "parent_id": "calc-tj-06-06",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "两个重要极限为 $\\lim_{x\\to0}\\sin x/x=1$（弧度制，$x\\ne0$）及 $\\lim_{x\\to0}(1+x)^{1/x}=e$（$x\\ne0$，$1+x>0$）。后者亦对应 $\\lim_{t\\to+\\infty}(1+1/t)^t=e$。",
+      "text": "两个重要极限\n陈述：两个重要极限为 $\\lim_{x\\to0}\\sin x/x=1$（弧度制，$x\\ne0$）及 $\\lim_{x\\to0}(1+x)^{1/x}=e$（$x\\ne0$，$1+x>0$）。后者亦对应 $\\lim_{t\\to+\\infty}(1+1/t)^t=e$。",
+      "tokens": 112
+    },
+    {
+      "id": "calc-tj-06-06:proof_sketch:000",
+      "parent_id": "calc-tj-06-06",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "第一个在 $0<x<\\pi/2$ 用 $\\sin x<x<\\tan x$ 夹逼，负侧用偶性。第二个先证明数列 $(1+1/n)^n$ 单调有界并定义其极限为 $e$，再用整数夹逼推广到实参数，负侧作变量代换。",
+      "text": "两个重要极限\n证明思路：第一个在 $0<x<\\pi/2$ 用 $\\sin x<x<\\tan x$ 夹逼，负侧用偶性。第二个先证明数列 $(1+1/n)^n$ 单调有界并定义其极限为 $e$，再用整数夹逼推广到实参数，负侧作变量代换。",
+      "tokens": 93
+    },
+    {
+      "id": "calc-tj-07-01:content:000",
+      "parent_id": "calc-tj-07-01",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "同一变化过程中设 $\\alpha,\\beta\\to0$，且所用分母充分靠近时非零。若 $\\beta/\\alpha\\to0$，则 $\\beta$ 比 $\\alpha$ 高阶，记 $\\beta=o(\\alpha)$；若 $|\\beta/\\alpha|\\to\\infty$，则 $\\beta$ 比 $\\alpha$ 低阶；",
+      "text": "高阶、低阶、同阶与等价无穷小的定义\n陈述：同一变化过程中设 $\\alpha,\\beta\\to0$，且所用分母充分靠近时非零。若 $\\beta/\\alpha\\to0$，则 $\\beta$ 比 $\\alpha$ 高阶，记 $\\beta=o(\\alpha)$；若 $|\\beta/\\alpha|\\to\\infty$，则 $\\beta$ 比 $\\alpha$ 低阶；",
+      "tokens": 124
+    },
+    {
+      "id": "calc-tj-07-01:content:001",
+      "parent_id": "calc-tj-07-01",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "若 $\\beta/\\alpha\\to c\\ne0$ 且 $c$ 有限，则同阶；若 $c=1$ 则等价，记 $\\alpha\\sim\\beta$。若 $\\beta/\\alpha^k\\to c\\ne0$、$k>0$ 且实数幂有定义，则 $\\beta$ 为关于 $\\alpha$ 的 $k$ 阶无穷小。",
+      "text": "高阶、低阶、同阶与等价无穷小的定义\n陈述：若 $\\beta/\\alpha\\to c\\ne0$ 且 $c$ 有限，则同阶；若 $c=1$ 则等价，记 $\\alpha\\sim\\beta$。若 $\\beta/\\alpha^k\\to c\\ne0$、$k>0$ 且实数幂有定义，则 $\\beta$ 为关于 $\\alpha$ 的 $k$ 阶无穷小。",
+      "tokens": 125
+    },
+    {
+      "id": "calc-tj-07-01:proof_sketch:000",
+      "parent_id": "calc-tj-07-01",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "定义无需证明。先固定同一趋近过程并核对分母；同阶不等于等价，例如 $2x$ 与 $x$ 在 $x\\to0$ 时同阶而不等价。",
+      "text": "高阶、低阶、同阶与等价无穷小的定义\n证明思路：定义无需证明。先固定同一趋近过程并核对分母；同阶不等于等价，例如 $2x$ 与 $x$ 在 $x\\to0$ 时同阶而不等价。",
+      "tokens": 70
+    },
+    {
+      "id": "calc-tj-07-02:content:000",
+      "parent_id": "calc-tj-07-02",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "对于同一变化过程中的无穷小，且 $\\alpha$ 充分靠近时非零，$\\alpha\\sim\\beta$ 当且仅当 $\\beta=\\alpha+o(\\alpha)$，即 $(\\beta-\\alpha)/\\alpha\\to0$。",
+      "text": "等价无穷小的判别定理\n陈述：对于同一变化过程中的无穷小，且 $\\alpha$ 充分靠近时非零，$\\alpha\\sim\\beta$ 当且仅当 $\\beta=\\alpha+o(\\alpha)$，即 $(\\beta-\\alpha)/\\alpha\\to0$。",
+      "tokens": 86
+    },
+    {
+      "id": "calc-tj-07-02:proof_sketch:000",
+      "parent_id": "calc-tj-07-02",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "恒等式 $(\\beta-\\alpha)/\\alpha=\\beta/\\alpha-1$ 将两种表述直接互换。",
+      "text": "等价无穷小的判别定理\n证明思路：恒等式 $(\\beta-\\alpha)/\\alpha=\\beta/\\alpha-1$ 将两种表述直接互换。",
+      "tokens": 50
+    },
+    {
+      "id": "calc-tj-07-03:content:000",
+      "parent_id": "calc-tj-07-03",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "同一变化过程中，若 $\\alpha\\sim\\widetilde\\alpha$、$\\beta\\sim\\widetilde\\beta$，相关比值均有定义且 $\\widetilde\\beta/\\widetilde\\alpha\\to L$ 为有限极限，则 $\\beta/\\alpha\\to L$。可在乘除结构中替换，不能未经验证替换加减结构中的各项。",
+      "text": "等价无穷小替换定理\n陈述：同一变化过程中，若 $\\alpha\\sim\\widetilde\\alpha$、$\\beta\\sim\\widetilde\\beta$，相关比值均有定义且 $\\widetilde\\beta/\\widetilde\\alpha\\to L$ 为有限极限，则 $\\beta/\\alpha\\to L$。可在乘除结构中替换，不能未经验证替换加减结构中的各项。",
+      "tokens": 113
+    },
+    {
+      "id": "calc-tj-07-03:proof_sketch:000",
+      "parent_id": "calc-tj-07-03",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "将 $\\beta/\\alpha$ 分解为 $(\\beta/\\widetilde\\beta)(\\widetilde\\beta/\\widetilde\\alpha)(\\widetilde\\alpha/\\alpha)$，两端因子趋于 $1$。和差中的抵消可能改变误差阶数。",
+      "text": "等价无穷小替换定理\n证明思路：将 $\\beta/\\alpha$ 分解为 $(\\beta/\\widetilde\\beta)(\\widetilde\\beta/\\widetilde\\alpha)(\\widetilde\\alpha/\\alpha)$，两端因子趋于 $1$。和差中的抵消可能改变误差阶数。",
+      "tokens": 90
+    },
+    {
+      "id": "calc-tj-08-01:content:000",
+      "parent_id": "calc-tj-08-01",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "函数 $f$ 在内点 $a$ 连续指 $f(a)$ 有定义且 $\\lim_{x\\to a}f(x)=f(a)$；等价于任给 $\\varepsilon>0$ 存在 $\\delta>0$ 使 $|x-a|<\\delta$ 时 $|f(x)-f(a)|<\\varepsilon$。",
+      "text": "函数在一点连续的定义\n陈述：函数 $f$ 在内点 $a$ 连续指 $f(a)$ 有定义且 $\\lim_{x\\to a}f(x)=f(a)$；等价于任给 $\\varepsilon>0$ 存在 $\\delta>0$ 使 $|x-a|<\\delta$ 时 $|f(x)-f(a)|<\\varepsilon$。",
+      "tokens": 113
+    },
+    {
+      "id": "calc-tj-08-01:content:001",
+      "parent_id": "calc-tj-08-01",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "增量表述为 $\\Delta x\\to0$ 时 $\\Delta y=f(a+\\Delta x)-f(a)\\to0$。闭区间连续要求内部逐点连续且两端分别右、左连续。",
+      "text": "函数在一点连续的定义\n陈述：增量表述为 $\\Delta x\\to0$ 时 $\\Delta y=f(a+\\Delta x)-f(a)\\to0$。闭区间连续要求内部逐点连续且两端分别右、左连续。",
+      "tokens": 72
+    },
+    {
+      "id": "calc-tj-08-01:proof_sketch:000",
+      "parent_id": "calc-tj-08-01",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "等价表述由极限定义和变量代换得到。连续性的数列判别可附属使用：定义域中每个 $x_n\\to a$ 都满足 $f(x_n)\\to f(a)$；证明沿用函数极限的数列判别。",
+      "text": "函数在一点连续的定义\n证明思路：等价表述由极限定义和变量代换得到。连续性的数列判别可附属使用：定义域中每个 $x_n\\to a$ 都满足 $f(x_n)\\to f(a)$；证明沿用函数极限的数列判别。",
+      "tokens": 80
+    },
+    {
+      "id": "calc-tj-08-02:content:000",
+      "parent_id": "calc-tj-08-02",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "设函数在 $a$ 的某个去心邻域有定义，却在 $a$ 未定义或不连续，则 $a$ 为间断点。左右有限极限都存在时为第一类间断：二者相等但函数值缺失或不等时为可去间断，二者不等时为跳跃间断。至少一侧没有有限极限为第二类间断，包括无穷间断和振荡间断。",
+      "text": "间断点及其类型\n陈述：设函数在 $a$ 的某个去心邻域有定义，却在 $a$ 未定义或不连续，则 $a$ 为间断点。左右有限极限都存在时为第一类间断：二者相等但函数值缺失或不等时为可去间断，二者不等时为跳跃间断。至少一侧没有有限极限为第二类间断，包括无穷间断和振荡间断。",
+      "tokens": 117
+    },
+    {
+      "id": "calc-tj-08-02:proof_sketch:000",
+      "parent_id": "calc-tj-08-02",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "分类以左右有限极限为依据。可去间断可补成共同极限而连续；跳跃间断不能仅靠修改单点函数值消除。",
+      "text": "间断点及其类型\n证明思路：分类以左右有限极限为依据。可去间断可补成共同极限而连续；跳跃间断不能仅靠修改单点函数值消除。",
+      "tokens": 48
+    },
+    {
+      "id": "calc-tj-09-01:content:000",
+      "parent_id": "calc-tj-09-01",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "若 $f,g$ 在 $a$ 连续，则 $f+g,f-g,fg$ 在 $a$ 连续；若另有 $g(a)\\ne0$，则 $f/g$ 在 $a$ 连续。",
+      "text": "连续函数四则运算定理\n陈述：若 $f,g$ 在 $a$ 连续，则 $f+g,f-g,fg$ 在 $a$ 连续；若另有 $g(a)\\ne0$，则 $f/g$ 在 $a$ 连续。",
+      "tokens": 73
+    },
+    {
+      "id": "calc-tj-09-01:proof_sketch:000",
+      "parent_id": "calc-tj-09-01",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "先把各自极限写为点值，再应用极限四则运算；分母点值非零保证附近的商有定义。",
+      "text": "连续函数四则运算定理\n证明思路：先把各自极限写为点值，再应用极限四则运算；分母点值非零保证附近的商有定义。",
+      "tokens": 46
+    },
+    {
+      "id": "calc-tj-09-02:content:000",
+      "parent_id": "calc-tj-09-02",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "设 $f$ 在区间 $I$ 上严格递增（或严格递减）且连续，则值域 $J=f(I)$ 是区间，反函数 $f^{-1}:J\\to I$ 连续且保持相同单调方向。端点连续按相对定义域的一侧理解。",
+      "text": "严格单调连续函数的反函数连续性定理\n陈述：设 $f$ 在区间 $I$ 上严格递增（或严格递减）且连续，则值域 $J=f(I)$ 是区间，反函数 $f^{-1}:J\\to I$ 连续且保持相同单调方向。端点连续按相对定义域的一侧理解。",
+      "tokens": 93
+    },
+    {
+      "id": "calc-tj-09-02:proof_sketch:000",
+      "parent_id": "calc-tj-09-02",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "严格单调保证逆对应存在，连续性和介值性质保证值域没有空缺。用 $x_0$ 两侧邻近点的像夹住 $y_0=f(x_0)$，即可将像的邻域拉回到 $x_0$ 的邻域。",
+      "text": "严格单调连续函数的反函数连续性定理\n证明思路：严格单调保证逆对应存在，连续性和介值性质保证值域没有空缺。用 $x_0$ 两侧邻近点的像夹住 $y_0=f(x_0)$，即可将像的邻域拉回到 $x_0$ 的邻域。",
+      "tokens": 86
+    },
+    {
+      "id": "calc-tj-09-03:content:000",
+      "parent_id": "calc-tj-09-03",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "设 $g(x)\\to u_0$，$f$ 在 $u_0$ 连续，并且 $f(g(x))$ 在所讨论的邻域或尾部有定义，则 $f(g(x))\\to f(u_0)$。这里允许 $g(x)=u_0$。",
+      "text": "外层连续时的复合极限定理\n陈述：设 $g(x)\\to u_0$，$f$ 在 $u_0$ 连续，并且 $f(g(x))$ 在所讨论的邻域或尾部有定义，则 $f(g(x))\\to f(u_0)$。这里允许 $g(x)=u_0$。",
+      "tokens": 94
+    },
+    {
+      "id": "calc-tj-09-03:proof_sketch:000",
+      "parent_id": "calc-tj-09-03",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "外层连续性的误差估计包括 $u=u_0$，所以无需内层避开该点；再用内层极限把 $g(x)$ 放入连续性邻域。",
+      "text": "外层连续时的复合极限定理\n证明思路：外层连续性的误差估计包括 $u=u_0$，所以无需内层避开该点；再用内层极限把 $g(x)$ 放入连续性邻域。",
+      "tokens": 61
+    },
+    {
+      "id": "calc-tj-09-04:content:000",
+      "parent_id": "calc-tj-09-04",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "若 $g$ 在 $a$ 连续、$f$ 在 $g(a)$ 连续，且复合函数在相应定义域有意义，则 $f\\circ g$ 在 $a$ 连续。附属结论：由基本初等函数经有限次四则运算及复合所得的初等函数，在其定义区间内连续，商的分母需非零。",
+      "text": "复合函数连续性定理\n陈述：若 $g$ 在 $a$ 连续、$f$ 在 $g(a)$ 连续，且复合函数在相应定义域有意义，则 $f\\circ g$ 在 $a$ 连续。附属结论：由基本初等函数经有限次四则运算及复合所得的初等函数，在其定义区间内连续，商的分母需非零。",
+      "tokens": 100
+    },
+    {
+      "id": "calc-tj-09-04:proof_sketch:000",
+      "parent_id": "calc-tj-09-04",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "先由内层连续得 $g(x)\\to g(a)$，再用外层连续的复合极限定理。有限次重复即得初等函数结论。",
+      "text": "复合函数连续性定理\n证明思路：先由内层连续得 $g(x)\\to g(a)$，再用外层连续的复合极限定理。有限次重复即得初等函数结论。",
+      "tokens": 53
+    },
+    {
+      "id": "calc-tj-10-01:content:000",
+      "parent_id": "calc-tj-10-01",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "设 $a<b$，实函数 $f$ 在有限闭区间 $[a,b]$ 上连续，则存在 $\\xi,\\eta\\in[a,b]$，使每个 $x\\in[a,b]$ 满足 $f(\\eta)\\le f(x)\\le f(\\xi)$；因此有界并取得最小值、最大值。",
+      "text": "有界性与最大值最小值定理\n陈述：设 $a<b$，实函数 $f$ 在有限闭区间 $[a,b]$ 上连续，则存在 $\\xi,\\eta\\in[a,b]$，使每个 $x\\in[a,b]$ 满足 $f(\\eta)\\le f(x)\\le f(\\xi)$；因此有界并取得最小值、最大值。",
+      "tokens": 110
+    },
+    {
+      "id": "calc-tj-10-01:proof_sketch:000",
+      "parent_id": "calc-tj-10-01",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "若无界，可选函数值绝对值发散的点列；闭区间内可抽收敛子列，与连续性矛盾。再取函数值趋向上确界的点列并抽子列，连续性保证取到上确界；最小值类似。",
+      "text": "有界性与最大值最小值定理\n证明思路：若无界，可选函数值绝对值发散的点列；闭区间内可抽收敛子列，与连续性矛盾。再取函数值趋向上确界的点列并抽子列，连续性保证取到上确界；最小值类似。",
+      "tokens": 79
+    },
+    {
+      "id": "calc-tj-10-02:content:000",
+      "parent_id": "calc-tj-10-02",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "设 $a<b$，$f$ 在 $[a,b]$ 连续且 $f(a)f(b)<0$，则存在 $c\\in(a,b)$ 使 $f(c)=0$。只保证至少一个零点，不能保证唯一。",
+      "text": "零点定理\n陈述：设 $a<b$，$f$ 在 $[a,b]$ 连续且 $f(a)f(b)<0$，则存在 $c\\in(a,b)$ 使 $f(c)=0$。只保证至少一个零点，不能保证唯一。",
+      "tokens": 78
+    },
+    {
+      "id": "calc-tj-10-02:proof_sketch:000",
+      "parent_id": "calc-tj-10-02",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "不断二分并保留端点异号的一半，若中点为零则结束。否则嵌套区间长度趋零，其共同极限点由连续性被迫满足函数值为零。",
+      "text": "零点定理\n证明思路：不断二分并保留端点异号的一半，若中点为零则结束。否则嵌套区间长度趋零，其共同极限点由连续性被迫满足函数值为零。",
+      "tokens": 56
+    },
+    {
+      "id": "calc-tj-10-03:content:000",
+      "parent_id": "calc-tj-10-03",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "设 $f$ 在 $[a,b]$ 连续且 $f(a)\\ne f(b)$。对每个严格介于两端函数值之间的 $y$，存在 $c\\in(a,b)$ 使 $f(c)=y$。附属推论：若 $m,M$ 是此区间最小值与最大值，则 $f([a,b])=[m,M]$，包括 $m=M$ 的常函数情形。",
+      "text": "介值定理\n陈述：设 $f$ 在 $[a,b]$ 连续且 $f(a)\\ne f(b)$。对每个严格介于两端函数值之间的 $y$，存在 $c\\in(a,b)$ 使 $f(c)=y$。附属推论：若 $m,M$ 是此区间最小值与最大值，则 $f([a,b])=[m,M]$，包括 $m=M$ 的常函数情形。",
+      "tokens": 127
+    },
+    {
+      "id": "calc-tj-10-03:proof_sketch:000",
+      "parent_id": "calc-tj-10-03",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "对 $f-y$ 用零点定理。推论在取得最小值、最大值的两点之间使用介值定理，端值已由最值定理取到。",
+      "text": "介值定理\n证明思路：对 $f-y$ 用零点定理。推论在取得最小值、最大值的两点之间使用介值定理，端值已由最值定理取到。",
+      "tokens": 55
+    },
+    {
+      "id": "calc-tj-10-04:content:000",
+      "parent_id": "calc-tj-10-04",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "实函数 $f$ 在区间 $I$ 一致连续指：每个 $\\varepsilon>0$ 都存在 $\\delta>0$，使任意 $x,y\\in I$ 满足 $|x-y|<\\delta$ 时均有 $|f(x)-f(y)|<\\varepsilon$。$\\delta$ 可依赖 $\\varepsilon$，但不可依赖所选位置。",
+      "text": "一致连续的定义（教材星号）\n陈述：实函数 $f$ 在区间 $I$ 一致连续指：每个 $\\varepsilon>0$ 都存在 $\\delta>0$，使任意 $x,y\\in I$ 满足 $|x-y|<\\delta$ 时均有 $|f(x)-f(y)|<\\varepsilon$。$\\delta$ 可依赖 $\\varepsilon$，但不可依赖所选位置。",
+      "tokens": 120
+    },
+    {
+      "id": "calc-tj-10-04:proof_sketch:000",
+      "parent_id": "calc-tj-10-04",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "定义无需证明。一致连续蕴含逐点连续，反之不成立：$1/x$ 在 $(0,1]$ 连续，取 $x_n=1/n,y_n=1/(n+1)$，距离趋零而函数值之差恒为 $1$。",
+      "text": "一致连续的定义（教材星号）\n证明思路：定义无需证明。一致连续蕴含逐点连续，反之不成立：$1/x$ 在 $(0,1]$ 连续，取 $x_n=1/n,y_n=1/(n+1)$，距离趋零而函数值之差恒为 $1$。",
+      "tokens": 80
+    },
+    {
+      "id": "calc-tj-10-05:content:000",
+      "parent_id": "calc-tj-10-05",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "若实函数在有限闭区间 $[a,b]$ 上连续，则在该区间上一致连续。闭区间条件是充分条件，不是所有一致连续函数的必要条件。",
+      "text": "闭区间上一致连续性定理（教材星号）\n陈述：若实函数在有限闭区间 $[a,b]$ 上连续，则在该区间上一致连续。闭区间条件是充分条件，不是所有一致连续函数的必要条件。",
+      "tokens": 66
+    },
+    {
+      "id": "calc-tj-10-05:proof_sketch:000",
+      "parent_id": "calc-tj-10-05",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "若不一致连续，可取 $|x_n-y_n|\\to0$ 但函数值差至少为固定正数的点对。对 $x_n$ 抽收敛子列，$y_n$ 的相应子列趋于同一点，连续性导致函数值差趋零，矛盾。",
+      "text": "闭区间上一致连续性定理（教材星号）\n证明思路：若不一致连续，可取 $|x_n-y_n|\\to0$ 但函数值差至少为固定正数的点对。对 $x_n$ 抽收敛子列，$y_n$ 的相应子列趋于同一点，连续性导致函数值差趋零，矛盾。",
+      "tokens": 94
+    },
+    {
+      "id": "calc-an-real-001:content:000",
+      "parent_id": "calc-an-real-001",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "设非空 $A\\subseteq\\mathbb R$ 有上界。$s=\\sup A$ 指 $s$ 为上界且每个 $\\varepsilon>0$ 都存在 $x\\in A$ 使 $s-\\varepsilon<x\\le s$。若 $A$ 有下界，",
+      "text": "上确界与下确界\n陈述：设非空 $A\\subseteq\\mathbb R$ 有上界。$s=\\sup A$ 指 $s$ 为上界且每个 $\\varepsilon>0$ 都存在 $x\\in A$ 使 $s-\\varepsilon<x\\le s$。若 $A$ 有下界，",
+      "tokens": 94
+    },
+    {
+      "id": "calc-an-real-001:content:001",
+      "parent_id": "calc-an-real-001",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "则 $t=\\inf A$ 指 $t$ 为下界且每个 $\\varepsilon>0$ 都存在 $x\\in A$ 使 $t\\le x<t+\\varepsilon$。确界不必属于集合。",
+      "text": "上确界与下确界\n陈述：则 $t=\\inf A$ 指 $t$ 为下界且每个 $\\varepsilon>0$ 都存在 $x\\in A$ 使 $t\\le x<t+\\varepsilon$。确界不必属于集合。",
+      "tokens": 72
+    },
+    {
+      "id": "calc-an-real-001:proof_sketch:000",
+      "parent_id": "calc-an-real-001",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "这是最小上界、最大下界的等价定义：若某个正误差区间内无集合元素，就可得到更小的上界或更大的下界。",
+      "text": "上确界与下确界\n证明思路：这是最小上界、最大下界的等价定义：若某个正误差区间内无集合元素，就可得到更小的上界或更大的下界。",
+      "tokens": 51
+    },
+    {
+      "id": "calc-an-real-002:content:000",
+      "parent_id": "calc-an-real-002",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "实数完备性的确界表述：每个非空有上界的实数集合存在实数上确界；等价地每个非空有下界的实数集合存在实数下确界。非空、有界及实数范围均不可省略。",
+      "text": "实数的确界性质\n陈述：实数完备性的确界表述：每个非空有上界的实数集合存在实数上确界；等价地每个非空有下界的实数集合存在实数下确界。非空、有界及实数范围均不可省略。",
+      "tokens": 71
+    },
+    {
+      "id": "calc-an-real-002:proof_sketch:000",
+      "parent_id": "calc-an-real-002",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "此性质可作为实数公理，不在未选定实数构造的情况下循环证明。下确界性质可由集合取负号及上确界性质推出；有理数集不满足同一完备性。",
+      "text": "实数的确界性质\n证明思路：此性质可作为实数公理，不在未选定实数构造的情况下循环证明。下确界性质可由集合取负号及上确界性质推出；有理数集不满足同一完备性。",
+      "tokens": 61
+    },
+    {
+      "id": "calc-an-real-003:content:000",
+      "parent_id": "calc-an-real-003",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "对 $D\\subseteq\\mathbb R$，若每个 $\\delta>0$ 都存在 $x\\in D$ 满足 $0<|x-a|<\\delta$，则 $a$ 为 $D$ 的聚点。点 $a$ 可属于或不属于 $D$。去心邻域为 $\\{x:0<|x-a|<\\delta\\}$；",
+      "text": "聚点与去心邻域\n陈述：对 $D\\subseteq\\mathbb R$，若每个 $\\delta>0$ 都存在 $x\\in D$ 满足 $0<|x-a|<\\delta$，则 $a$ 为 $D$ 的聚点。点 $a$ 可属于或不属于 $D$。去心邻域为 $\\{x:0<|x-a|<\\delta\\}$；",
+      "tokens": 113
+    },
+    {
+      "id": "calc-an-real-003:content:001",
+      "parent_id": "calc-an-real-003",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "聚点条件保证可从定义域中实际趋近 $a$。",
+      "text": "聚点与去心邻域\n陈述：聚点条件保证可从定义域中实际趋近 $a$。",
+      "tokens": 30
+    },
+    {
+      "id": "calc-an-real-003:proof_sketch:000",
+      "parent_id": "calc-an-real-003",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "定义无需证明。可依次在半径 $1/n$ 内取非 $a$ 的点，构造趋于 $a$ 的数列；反过来这种点列保证每个去心邻域与 $D$ 相交。",
+      "text": "聚点与去心邻域\n证明思路：定义无需证明。可依次在半径 $1/n$ 内取非 $a$ 的点，构造趋于 $a$ 的数列；反过来这种点列保证每个去心邻域与 $D$ 相交。",
+      "tokens": 70
+    },
+    {
+      "id": "calc-an-seq-002:content:000",
+      "parent_id": "calc-an-seq-002",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "每个有界实数列都有收敛子列，称 Bolzano--Weierstrass 定理。结论只保证存在一个收敛子列，不保证原数列收敛。",
+      "text": "Bolzano--Weierstrass 定理\n陈述：每个有界实数列都有收敛子列，称 Bolzano--Weierstrass 定理。结论只保证存在一个收敛子列，不保证原数列收敛。",
+      "tokens": 60
+    },
+    {
+      "id": "calc-an-seq-002:proof_sketch:000",
+      "parent_id": "calc-an-seq-002",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "把包含全部项的闭区间二分，每次保留含无穷多项的一半。得到长度趋零的嵌套闭区间，在各区间内按递增指标取项，便形成趋于共同点的子列。",
+      "text": "Bolzano--Weierstrass 定理\n证明思路：把包含全部项的闭区间二分，每次保留含无穷多项的一半。得到长度趋零的嵌套闭区间，在各区间内按递增指标取项，便形成趋于共同点的子列。",
+      "tokens": 71
+    },
+    {
+      "id": "calc-an-seq-004:content:000",
+      "parent_id": "calc-an-seq-004",
+      "kind": "content",
+      "ordinal": 0,
+      "body": "对有界实数列，令 $u_n=\\sup\\{a_k:k\\ge n\\}$、$\\ell_n=\\inf\\{a_k:k\\ge n\\}$。$u_n$ 单调非增且有界，$\\ell_n$ 单调非减且有界；定义 $\\limsup a_n=\\lim u_n$、$\\liminf a_n=\\lim\\ell_n$。",
+      "text": "上极限与下极限\n陈述：对有界实数列，令 $u_n=\\sup\\{a_k:k\\ge n\\}$、$\\ell_n=\\inf\\{a_k:k\\ge n\\}$。$u_n$ 单调非增且有界，$\\ell_n$ 单调非减且有界；定义 $\\limsup a_n=\\lim u_n$、$\\liminf a_n=\\lim\\ell_n$。",
+      "tokens": 128
+    },
+    {
+      "id": "calc-an-seq-004:content:001",
+      "parent_id": "calc-an-seq-004",
+      "kind": "content",
+      "ordinal": 1,
+      "body": "原数列收敛当且仅当二者相等，且相等值就是极限。",
+      "text": "上极限与下极限\n陈述：原数列收敛当且仅当二者相等，且相等值就是极限。",
+      "tokens": 36
+    },
+    {
+      "id": "calc-an-seq-004:proof_sketch:000",
+      "parent_id": "calc-an-seq-004",
+      "kind": "proof_sketch",
+      "ordinal": 0,
+      "body": "尾集合逐渐缩小给出单调性；若上下极限相等，利用 $\\ell_n\\le a_n\\le u_n$ 夹逼。反向由收敛数列尾部的全部项落在同一误差区间得到。",
+      "text": "上极限与下极限\n证明思路：尾集合逐渐缩小给出单调性；若上下极限相等，利用 $\\ell_n\\le a_n\\le u_n$ 夹逼。反向由收敛数列尾部的全部项落在同一误差区间得到。",
+      "tokens": 72
+    }
+  ]
+}

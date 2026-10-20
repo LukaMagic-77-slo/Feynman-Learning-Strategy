@@ -1,0 +1,309 @@
+\documentclass[UTF8,11pt,a4paper]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=black]{hyperref}
+\setlength{\parskip}{0.45em}
+\title{函数与极限知识条目\\教材核对审阅稿}
+\author{费曼学习平台知识库}
+\date{2026年10月}
+\newcommand{\qaonly}[1]{\par\noindent{\small\color{blue!55!black}条目 ID：\texttt{#1}\quad\textbf{使用范围：仅用于知识问答，不用于费曼练习出题。}\quad\texttt{scope=qa\_only}}\par}
+\newcommand{\tjentry}[2]{\par\noindent{\small\color{gray}条目 ID：\texttt{#1}\quad 来源：同济《高等数学》第七版上册第一章，所附 PDF 第 #2 页。}\par}
+\begin{document}
+\maketitle
+\noindent\textbf{审阅状态：}按所提供的同济大学数学系《高等数学》第七版上册第一章核对条目范围；页码指所附 PDF 的页序。星号内容同样纳入。已补齐陈述及证明思路，并建立独立父子块向量索引用于知识理解检索测试。数学分析扩展条目仅供知识问答，不用于费曼练习出题；网页聊天仍使用原概率论入口。
+\tableofcontents
+\newpage
+\section{高等数学课程目录}
+\begin{enumerate}
+\item \textbf{函数与极限}（本次整理）：函数、数列极限、函数极限、连续性
+\item \textbf{一元微分学}（待整理）：导数与微分、求导法则、隐函数与参数方程求导、高阶导数
+\item \textbf{微分学应用}（待整理）：中值定理、洛必达法则、单调性与极值、曲线描绘、优化问题
+\item \textbf{一元积分学}（待整理）：不定积分、定积分、微积分基本定理、积分技巧
+\item \textbf{积分应用与广义积分}（待整理）：面积、体积、弧长、功与平均值、反常积分
+\item \textbf{无穷级数}（待整理）：数项级数、收敛判别、幂级数、Taylor 级数
+\item \textbf{多元微积分}（待整理）：多元函数与偏导数、方向导数与梯度、多重积分、曲线积分与曲面积分
+\item \textbf{常微分方程}（待整理）：一阶方程、二阶线性方程、简单应用
+\end{enumerate}
+\section{函数与极限：同济《高等数学》第七版上册第一章}
+以下按教材顺序整理，星号内容一并收录；证明思路为独立撰写的辅助说明，非教材逐字转录。
+\subsection{第一节：映射与函数}
+\subsubsection{映射的定义}
+设 $A,B$ 为非空集合。映射 $f:A\to B$ 为每个 $x\in A$ 指定唯一的 $f(x)\in B$。定义域为 $A$，到达集为 $B$，值域为 $f(A)=\{f(x):x\in A\}$。不同自变量可有同一像；每个自变量不能对应多个像。
+
+\textbf{证明思路或理解要点：}定义无需证明。判断是否为映射应检查全体自变量都有像、像属于到达集且唯一。
+\tjentry{calc-tj-01-01}{14}
+\subsubsection{函数的定义}
+实函数是非空实数集 $D\subseteq\mathbb R$ 到 $\mathbb R$ 的映射 $f:D\to\mathbb R$。$x$ 为自变量，$f(x)$ 为函数值，$D$ 为定义域，$f(D)$ 为值域。定义域和对应法则共同确定函数；自然定义域是表达式有意义的实数集合。
+
+\textbf{证明思路或理解要点：}定义无需证明。相同公式配不同定义域可以表示不同函数。
+\tjentry{calc-tj-01-02}{16--17}
+\subsubsection{函数的基本特性}
+设 $f:D\to\mathbb R$。在非空 $E\subseteq D$ 上有界指存在 $M>0$ 使所有 $x\in E$ 满足 $|f(x)|\le M$；有上界、下界分别用 $f(x)\le M$、$f(x)\ge m$ 定义。在区间 $I\subseteq D$ 上严格递增指 $x_1<x_2$ 蕴含 $f(x_1)<f(x_2)$，严格递减取反向不等式；非严格单调用 $\le$ 或 $\ge$。奇偶性要求 $D=-D$，偶函数满足 $f(-x)=f(x)$，奇函数满足 $f(-x)=-f(x)$。周期性要求存在 $T>0$ 使 $D+T=D$ 且 $f(x+T)=f(x)$；最小正周期仅在存在时定义。
+
+\textbf{证明思路或理解要点：}这些均为定义。必须说明讨论集合；例如 $x^2$ 在 $\mathbb R$ 上不单调，在 $[0,\infty)$ 上严格递增。常函数有周期但无最小正周期。
+\tjentry{calc-tj-01-03}{19--22}
+\subsubsection{逆映射、反函数与复合函数}
+单射 $f:A\to B$ 的逆映射定义在值域 $f(A)$ 上，满足 $f^{-1}(f(x))=x$。若要求逆映射定义在整个 $B$，还须 $f(A)=B$。严格单调实函数是单射，故在值域上有反函数。复合函数 $(f\circ g)(x)=f(g(x))$ 的定义域为 $\{x\in D_g:g(x)\in D_f\}$；若要求在整个 $D_g$ 上复合，需 $g(D_g)\subseteq D_f$。
+
+\textbf{证明思路或理解要点：}单射保证每个像只有一个原像，从而逆对应唯一。严格单调使不同自变量的函数值不同。
+\tjentry{calc-tj-01-04}{15--16、22--24}
+\subsubsection{双曲函数与反双曲函数}
+双曲函数定义为 $\sinh x=(e^x-e^{-x})/2$、$\cosh x=(e^x+e^{-x})/2$、$\tanh x=\sinh x/\cosh x$，定义域均为 $\mathbb R$。$\sinh$ 严格递增且值域为 $\mathbb R$；$\cosh$ 限制到 $[0,\infty)$ 后严格递增，值域为 $[1,\infty)$；$\tanh$ 严格递增且值域为 $(-1,1)$。相应反函数为 $\operatorname{arsinh}y=\ln(y+\sqrt{y^2+1})$、$\operatorname{arcosh}y=\ln(y+\sqrt{y^2-1})$（$y\ge1$）、$\operatorname{artanh}y=\tfrac12\ln((1+y)/(1-y))$（$|y|<1$）。
+
+\textbf{证明思路或理解要点：}由指数函数的定义和单调性核对值域；令 $t=e^x>0$ 解代数方程即可得到反函数公式。$\cosh$ 必须先限制到单调区间。
+\tjentry{calc-tj-01-05}{25--28}
+\subsection{第二节：数列的极限}
+\subsubsection{数列极限的定义}
+实数列 $a_n$ 收敛于 $L\in\mathbb R$，是指对每个 $\varepsilon>0$ 都存在正整数 $N$，使所有 $n>N$ 满足 $|a_n-L|<\varepsilon$。记作 $\lim_{n\to\infty}a_n=L$；无有限极限时称发散。$N$ 可依赖 $\varepsilon$，不可依赖所检验的 $n$。
+
+\textbf{证明思路或理解要点：}定义无需证明。有限个前项不影响定义中的尾部条件。
+\tjentry{calc-tj-02-01}{33--34}
+\subsubsection{极限唯一性定理}
+若实数列 $a_n$ 收敛，则它的有限极限唯一。
+
+\textbf{证明思路或理解要点：}若同时趋于不同的 $A,B$，取 $\varepsilon=|A-B|/3$；充分大的 $n$ 同时接近两者，三角不等式给出 $|A-B|<2|A-B|/3$，矛盾。
+\tjentry{calc-tj-02-02}{36}
+\subsubsection{收敛数列有界性定理}
+若实数列 $a_n$ 收敛于有限实数 $L$，则存在 $M>0$ 使每个 $n$ 都有 $|a_n|\le M$。有界不保证收敛，如 $(-1)^n$。
+
+\textbf{证明思路或理解要点：}取 $\varepsilon=1$ 控制尾部 $|a_n|<|L|+1$，再与有限个前项绝对值的最大值合并。
+\tjentry{calc-tj-02-03}{37}
+\subsubsection{收敛数列保号性定理}
+若 $a_n\to L>0$（或 $L<0$），则存在 $N$ 使 $n>N$ 时 $a_n>0$（或 $a_n<0$）。附属推论：若从某项起 $a_n\ge0$（或 $\le0$）且极限存在，则 $L\ge0$（或 $\le0$）；不能据此推出严格不等式。
+
+\textbf{证明思路或理解要点：}保号性取 $\varepsilon=|L|/2$。推论用反证法：若极限异号，保号性与尾部条件矛盾。
+\tjentry{calc-tj-02-04}{38}
+\subsubsection{收敛数列与子列的关系定理}
+子列 $a_{n_k}$ 的指标为严格递增正整数 $n_1<n_2<\cdots$。若 $a_n\to L$，则每个子列均趋于 $L$。找到两个极限不同的子列即可证明原数列不收敛；只找到一个收敛子列不足以证明原数列收敛。
+
+\textbf{证明思路或理解要点：}因为 $n_k\ge k$，原数列的尾部估计也适用于充分大的子列指标。
+\tjentry{calc-tj-02-05}{38--39}
+\subsection{第三节：函数的极限}
+\subsubsection{自变量趋于有限点时的函数极限}
+设 $f$ 在 $a$ 的某个去心邻域有定义。$\lim_{x\to a}f(x)=L\in\mathbb R$ 指对每个 $\varepsilon>0$ 都存在 $\delta>0$，使 $0<|x-a|<\delta$ 时 $|f(x)-L|<\varepsilon$。$f(a)$ 可以未定义；此极限不约束点 $a$ 本身的函数值。
+
+\textbf{证明思路或理解要点：}定义无需证明。去心条件排除了 $x=a$，故改变单点函数值不改变该极限。
+\tjentry{calc-tj-03-01}{40--41}
+\subsubsection{单侧极限及双侧极限的判别}
+左极限 $\lim_{x\to a^-}f(x)=L$ 将极限定义中的邻域条件改为 $a-\delta<x<a$；右极限改为 $a<x<a+\delta$。当两侧都有定义时，双侧有限极限为 $L$ 当且仅当左右极限均为 $L$。
+
+\textbf{证明思路或理解要点：}必要性是限制到一侧；充分性取左右两侧可用半径的较小值。同侧无定义时不能直接套用双侧判别。
+\tjentry{calc-tj-03-02}{42--43}
+\subsubsection{自变量趋于无穷大时的函数极限}
+设 $f$ 在充分大的正自变量处有定义。$\lim_{x\to+\infty}f(x)=L$ 指对每个 $\varepsilon>0$ 存在 $X>0$，使 $x>X$ 时 $|f(x)-L|<\varepsilon$。负无穷处用 $x<-X$，双向无穷处用 $|x|>X$。双向有限极限存在当且仅当正、负无穷处极限都存在且相等。
+
+\textbf{证明思路或理解要点：}定义无需证明。双向判别分别限制到两端，再取两个阈值的较大者。
+\tjentry{calc-tj-03-03}{44}
+\subsubsection{函数极限唯一性定理}
+在同一自变量趋近过程中，函数若有有限极限，该极限唯一。目标点须可由所讨论的定义域趋近。
+
+\textbf{证明思路或理解要点：}假设极限为两个不同数，取它们距离的三分之一作误差，再在两组条件同时成立处用三角不等式得到矛盾。
+\tjentry{calc-tj-03-04}{45}
+\subsubsection{函数极限局部有界性定理}
+若 $\lim_{x\to a}f(x)=L\in\mathbb R$，则存在 $\delta>0$、$M>0$，使 $0<|x-a|<\delta$ 时 $|f(x)|\le M$。这是局部有界性，不是整个定义域有界。
+
+\textbf{证明思路或理解要点：}取误差 $1$，由 $|f(x)|\le |f(x)-L|+|L|$ 得局部界 $|L|+1$。
+\tjentry{calc-tj-03-05}{45}
+\subsubsection{函数极限局部保号性定理}
+若 $\lim_{x\to a}f(x)=L>0$（或 $L<0$），则某个去心邻域内 $f(x)>0$（或 $f(x)<0$）。附属推论：若附近 $f(x)\ge0$（或 $\le0$）且有限极限存在，则极限非负（或非正）。
+
+\textbf{证明思路或理解要点：}取误差 $|L|/2$ 即得保号性。推论反证：若极限异号，则附近函数值必须异号，与假设矛盾。极限为零时不能推出附近函数值符号固定。
+\tjentry{calc-tj-03-06}{45}
+\subsubsection{非零极限的定量下界定理}
+若 $\lim_{x\to a}f(x)=L\ne0$，则存在 $\delta>0$ 使 $0<|x-a|<\delta$ 时 $|f(x)|>|L|/2$；因此函数在此邻域不为零，且其倒数有界。
+
+\textbf{证明思路或理解要点：}取误差 $|L|/2$，使用反三角不等式 $|f(x)|\ge |L|-|f(x)-L|$。
+\tjentry{calc-tj-03-07}{45--46}
+\subsubsection{函数极限与数列极限的关系定理（教材星号）}
+教材结论：若 $\lim_{x\to a}f(x)=L$，对于定义域内每个满足 $x_n\ne a$、$x_n\to a$ 的数列，都有 $f(x_n)\to L$。补充的反向判别：若每个这样的数列均满足 $f(x_n)\to L$，且 $a$ 是定义域聚点，则函数极限为 $L$。不能只检验一列。
+
+\textbf{证明思路或理解要点：}正向把数列尾部放进函数极限的去心邻域。反向用否定定义：若函数极限不是 $L$，可在半径 $1/n$ 内选取误差至少为某固定正数的点，构成反例数列。
+\tjentry{calc-tj-03-08}{46}
+\subsection{第四节：无穷小与无穷大}
+\subsubsection{无穷小的定义}
+在指定的自变量变化过程中，极限为零的函数（或数列）称为无穷小。无穷小是依赖变化过程的量；固定非零常数无论多小都不是无穷小，恒零函数是无穷小。
+
+\textbf{证明思路或理解要点：}定义无需证明。判断时必须写明趋近过程，例如 $x$ 在 $x\to0$ 时是无穷小，在 $x\to1$ 时不是。
+\tjentry{calc-tj-04-01}{47}
+\subsubsection{有限极限与无穷小的等价表述定理}
+在相同变化过程中，$f(x)\to L\in\mathbb R$ 当且仅当可写为 $f(x)=L+\alpha(x)$，其中 $\alpha(x)\to0$。
+
+\textbf{证明思路或理解要点：}令 $\alpha=f-L$，两个极限定义中的误差表达式完全相同。
+\tjentry{calc-tj-04-02}{48}
+\subsubsection{无穷大的定义}
+在 $x\to a$ 过程中，$f(x)$ 为无穷大指对每个 $M>0$ 都存在 $\delta>0$，使 $0<|x-a|<\delta$ 时 $|f(x)|>M$；记作 $f(x)\to\infty$。若改为 $f(x)>M$ 或 $f(x)<-M$，分别记为 $+\infty$ 或 $-\infty$。自变量趋于无穷远时将邻域条件改为相应尾部条件。无界并不必然是无穷大。
+
+\textbf{证明思路或理解要点：}定义无需证明。无穷大要求所有充分接近的点都越过任意阈值，普通无界只要求能找到超过阈值的点。
+\tjentry{calc-tj-04-03}{48--49}
+\subsubsection{无穷大与无穷小的倒数关系定理}
+在相同变化过程中，若 $|f|\to\infty$，则 $1/f\to0$；反之若 $f\to0$ 且在相应去心邻域或尾部不为零，则 $|1/f|\to\infty$。倒数的正负无穷还需相应符号条件。
+
+\textbf{证明思路或理解要点：}互换误差与阈值：$|f|>1/\varepsilon$ 蕴含 $|1/f|<\varepsilon$；$0<|f|<1/M$ 蕴含 $|1/f|>M$。
+\tjentry{calc-tj-04-04}{49}
+\subsection{第五节：极限运算法则}
+\subsubsection{无穷小之和定理}
+同一变化过程中，两个无穷小的和仍为无穷小；有限个无穷小的和也如此。该结论不直接适用于无穷项求和。
+
+\textbf{证明思路或理解要点：}对两项分别取误差 $\varepsilon/2$ 并合并邻域，再用三角不等式；有限项情形用归纳法。
+\tjentry{calc-tj-05-01}{51--52}
+\subsubsection{有界函数与无穷小乘积定理}
+在同一变化过程中，若 $u$ 在所讨论的邻域或尾部有界且 $\alpha\to0$，则 $u\alpha\to0$。附属推论：常数乘无穷小仍为无穷小；有限个无穷小的乘积仍为无穷小。
+
+\textbf{证明思路或理解要点：}取界 $M>0$，让 $|\alpha|<\varepsilon/M$。常数有界，而无穷小在局部有界，所以可反复应用乘积结论。
+\tjentry{calc-tj-05-02}{52}
+\subsubsection{函数极限四则运算定理}
+同一变化过程中，若 $f\to A$、$g\to B$ 都为有限极限，则 $f\pm g\to A\pm B$，$fg\to AB$；若 $B\ne0$，则 $f/g\to A/B$，分母在充分靠近时自动非零。附属推论：常数 $c$ 满足 $\lim(cf)=cA$；正整数 $n$ 满足 $\lim f^n=A^n$。
+
+\textbf{证明思路或理解要点：}写 $f=A+\alpha$、$g=B+\beta$，把误差化为无穷小的和与乘积。商的证明另用非零极限的定量下界控制 $1/g$。
+\tjentry{calc-tj-05-03}{52--54}
+\subsubsection{数列极限四则运算定理}
+若实数列 $a_n\to A$、$b_n\to B$，则 $a_n\pm b_n\to A\pm B$、$a_nb_n\to AB$。若 $B\ne0$，则从某项起 $b_n\ne0$，并有 $a_n/b_n\to A/B$；前面未定义的商不影响尾部极限。
+
+\textbf{证明思路或理解要点：}采用与函数极限四则运算相同的误差分解，把邻域条件换成指标充分大。
+\tjentry{calc-tj-05-04}{54}
+\subsubsection{极限的不等式保序定理}
+同一变化过程中，若充分靠近时 $\phi(x)\ge\psi(x)$，且 $\phi\to A$、$\psi\to B$ 为有限极限，则 $A\ge B$。严格不等式取极限后可能成为等式。
+
+\textbf{证明思路或理解要点：}差函数非负且趋于 $A-B$，由保号性的附属推论得 $A-B\ge0$。
+\tjentry{calc-tj-05-05}{54}
+\subsubsection{复合函数的极限运算法则}
+设 $g(x)\to u_0$（$x\to a$），$f(u)\to A$（$u\to u_0$），复合函数在 $a$ 的某去心邻域有定义，并且该邻域内 $g(x)\ne u_0$。则 $f(g(x))\to A$。若没有内层避开 $u_0$ 的条件，仅有这两个极限不足以保证结论。
+
+\textbf{证明思路或理解要点：}先由外层极限选误差对应的 $u$ 邻域，再由内层极限把 $g(x)$ 放入其中。非零距离条件保证落入的是去心邻域。
+\tjentry{calc-tj-05-06}{57}
+\subsection{第六节：极限存在准则与两个重要极限}
+\subsubsection{数列夹逼准则}
+若从某项起 $a_n\le b_n\le c_n$，且 $a_n,c_n$ 都趋于同一有限数 $L$，则 $b_n\to L$。
+
+\textbf{证明思路或理解要点：}两端均在 $(L-\varepsilon,L+\varepsilon)$ 内时，中间项也在其中；取两个尾部阈值的较大者。
+\tjentry{calc-tj-06-01}{59}
+\subsubsection{函数夹逼准则}
+在相同自变量变化过程中，若充分靠近目标处 $\phi(x)\le f(x)\le\psi(x)$，且 $\phi,\psi\to L\in\mathbb R$，则 $f\to L$。
+
+\textbf{证明思路或理解要点：}合并两端极限给出的邻域或尾部阈值，再用夹在同一个误差区间中的关系。
+\tjentry{calc-tj-06-02}{59}
+\subsubsection{单调有界数列收敛准则}
+实数列若单调非减且有上界，或单调非增且有下界，则有有限极限。单调或有界单独都不足以保证收敛。
+
+\textbf{证明思路或理解要点：}递增情形取全体项的上确界 $L$。确界性质给出一项大于 $L-\varepsilon$，单调性让后续所有项介于它与 $L$ 之间；递减情形对偶处理。
+\tjentry{calc-tj-06-03}{61}
+\subsubsection{单侧单调有界函数极限准则}
+若实函数在 $(a-\delta_0,a)$ 上单调且有界，则左侧有限极限 $f(a^-)$ 存在。右邻域有相同结论；两侧极限分别存在不保证相等。
+
+\textbf{证明思路或理解要点：}按单调方向取该邻域函数值的上确界或下确界；用确界性质选一点，单调性控制此点至端点之间的全部函数值。
+\tjentry{calc-tj-06-04}{64}
+\subsubsection{柯西极限存在准则（教材星号）}
+实数列 $a_n$ 收敛当且仅当它满足柯西条件：对每个 $\varepsilon>0$，存在 $N$，使任意 $m,n>N$ 都有 $|a_m-a_n|<\varepsilon$。这里不预先给定极限值，充分性依赖实数完备性。
+
+\textbf{证明思路或理解要点：}必要性用到极限的距离各小于 $\varepsilon/2$。充分性的一种证明先由柯西条件得有界，取收敛子列，再将一般尾项与子列中充分靠后的项比较；这是借用数学分析子列定理的证明路线。
+\tjentry{calc-tj-06-05}{64--65}
+\subsubsection{两个重要极限}
+两个重要极限为 $\lim_{x\to0}\sin x/x=1$（弧度制，$x\ne0$）及 $\lim_{x\to0}(1+x)^{1/x}=e$（$x\ne0$，$1+x>0$）。后者亦对应 $\lim_{t\to+\infty}(1+1/t)^t=e$。
+
+\textbf{证明思路或理解要点：}第一个在 $0<x<\pi/2$ 用 $\sin x<x<\tan x$ 夹逼，负侧用偶性。第二个先证明数列 $(1+1/n)^n$ 单调有界并定义其极限为 $e$，再用整数夹逼推广到实参数，负侧作变量代换。
+\tjentry{calc-tj-06-06}{59--63}
+\subsection{第七节：无穷小的比较}
+\subsubsection{高阶、低阶、同阶与等价无穷小的定义}
+同一变化过程中设 $\alpha,\beta\to0$，且所用分母充分靠近时非零。若 $\beta/\alpha\to0$，则 $\beta$ 比 $\alpha$ 高阶，记 $\beta=o(\alpha)$；若 $|\beta/\alpha|\to\infty$，则 $\beta$ 比 $\alpha$ 低阶；若 $\beta/\alpha\to c\ne0$ 且 $c$ 有限，则同阶；若 $c=1$ 则等价，记 $\alpha\sim\beta$。若 $\beta/\alpha^k\to c\ne0$、$k>0$ 且实数幂有定义，则 $\beta$ 为关于 $\alpha$ 的 $k$ 阶无穷小。
+
+\textbf{证明思路或理解要点：}定义无需证明。先固定同一趋近过程并核对分母；同阶不等于等价，例如 $2x$ 与 $x$ 在 $x\to0$ 时同阶而不等价。
+\tjentry{calc-tj-07-01}{66}
+\subsubsection{等价无穷小的判别定理}
+对于同一变化过程中的无穷小，且 $\alpha$ 充分靠近时非零，$\alpha\sim\beta$ 当且仅当 $\beta=\alpha+o(\alpha)$，即 $(\beta-\alpha)/\alpha\to0$。
+
+\textbf{证明思路或理解要点：}恒等式 $(\beta-\alpha)/\alpha=\beta/\alpha-1$ 将两种表述直接互换。
+\tjentry{calc-tj-07-02}{67}
+\subsubsection{等价无穷小替换定理}
+同一变化过程中，若 $\alpha\sim\widetilde\alpha$、$\beta\sim\widetilde\beta$，相关比值均有定义且 $\widetilde\beta/\widetilde\alpha\to L$ 为有限极限，则 $\beta/\alpha\to L$。可在乘除结构中替换，不能未经验证替换加减结构中的各项。
+
+\textbf{证明思路或理解要点：}将 $\beta/\alpha$ 分解为 $(\beta/\widetilde\beta)(\widetilde\beta/\widetilde\alpha)(\widetilde\alpha/\alpha)$，两端因子趋于 $1$。和差中的抵消可能改变误差阶数。
+\tjentry{calc-tj-07-03}{67--68}
+\subsection{第八节：函数的连续性与间断点}
+\subsubsection{函数在一点连续的定义}
+函数 $f$ 在内点 $a$ 连续指 $f(a)$ 有定义且 $\lim_{x\to a}f(x)=f(a)$；等价于任给 $\varepsilon>0$ 存在 $\delta>0$ 使 $|x-a|<\delta$ 时 $|f(x)-f(a)|<\varepsilon$。增量表述为 $\Delta x\to0$ 时 $\Delta y=f(a+\Delta x)-f(a)\to0$。闭区间连续要求内部逐点连续且两端分别右、左连续。
+
+\textbf{证明思路或理解要点：}等价表述由极限定义和变量代换得到。连续性的数列判别可附属使用：定义域中每个 $x_n\to a$ 都满足 $f(x_n)\to f(a)$；证明沿用函数极限的数列判别。
+\tjentry{calc-tj-08-01}{70--71}
+\subsubsection{间断点及其类型}
+设函数在 $a$ 的某个去心邻域有定义，却在 $a$ 未定义或不连续，则 $a$ 为间断点。左右有限极限都存在时为第一类间断：二者相等但函数值缺失或不等时为可去间断，二者不等时为跳跃间断。至少一侧没有有限极限为第二类间断，包括无穷间断和振荡间断。
+
+\textbf{证明思路或理解要点：}分类以左右有限极限为依据。可去间断可补成共同极限而连续；跳跃间断不能仅靠修改单点函数值消除。
+\tjentry{calc-tj-08-02}{71--74}
+\subsection{第九节：连续函数的运算与初等函数的连续性}
+\subsubsection{连续函数四则运算定理}
+若 $f,g$ 在 $a$ 连续，则 $f+g,f-g,fg$ 在 $a$ 连续；若另有 $g(a)\ne0$，则 $f/g$ 在 $a$ 连续。
+
+\textbf{证明思路或理解要点：}先把各自极限写为点值，再应用极限四则运算；分母点值非零保证附近的商有定义。
+\tjentry{calc-tj-09-01}{75}
+\subsubsection{严格单调连续函数的反函数连续性定理}
+设 $f$ 在区间 $I$ 上严格递增（或严格递减）且连续，则值域 $J=f(I)$ 是区间，反函数 $f^{-1}:J\to I$ 连续且保持相同单调方向。端点连续按相对定义域的一侧理解。
+
+\textbf{证明思路或理解要点：}严格单调保证逆对应存在，连续性和介值性质保证值域没有空缺。用 $x_0$ 两侧邻近点的像夹住 $y_0=f(x_0)$，即可将像的邻域拉回到 $x_0$ 的邻域。
+\tjentry{calc-tj-09-02}{75}
+\subsubsection{外层连续时的复合极限定理}
+设 $g(x)\to u_0$，$f$ 在 $u_0$ 连续，并且 $f(g(x))$ 在所讨论的邻域或尾部有定义，则 $f(g(x))\to f(u_0)$。这里允许 $g(x)=u_0$。
+
+\textbf{证明思路或理解要点：}外层连续性的误差估计包括 $u=u_0$，所以无需内层避开该点；再用内层极限把 $g(x)$ 放入连续性邻域。
+\tjentry{calc-tj-09-03}{75--76}
+\subsubsection{复合函数连续性定理}
+若 $g$ 在 $a$ 连续、$f$ 在 $g(a)$ 连续，且复合函数在相应定义域有意义，则 $f\circ g$ 在 $a$ 连续。附属结论：由基本初等函数经有限次四则运算及复合所得的初等函数，在其定义区间内连续，商的分母需非零。
+
+\textbf{证明思路或理解要点：}先由内层连续得 $g(x)\to g(a)$，再用外层连续的复合极限定理。有限次重复即得初等函数结论。
+\tjentry{calc-tj-09-04}{76--79}
+\subsection{第十节：闭区间上连续函数的性质}
+\subsubsection{有界性与最大值最小值定理}
+设 $a<b$，实函数 $f$ 在有限闭区间 $[a,b]$ 上连续，则存在 $\xi,\eta\in[a,b]$，使每个 $x\in[a,b]$ 满足 $f(\eta)\le f(x)\le f(\xi)$；因此有界并取得最小值、最大值。
+
+\textbf{证明思路或理解要点：}若无界，可选函数值绝对值发散的点列；闭区间内可抽收敛子列，与连续性矛盾。再取函数值趋向上确界的点列并抽子列，连续性保证取到上确界；最小值类似。
+\tjentry{calc-tj-10-01}{80}
+\subsubsection{零点定理}
+设 $a<b$，$f$ 在 $[a,b]$ 连续且 $f(a)f(b)<0$，则存在 $c\in(a,b)$ 使 $f(c)=0$。只保证至少一个零点，不能保证唯一。
+
+\textbf{证明思路或理解要点：}不断二分并保留端点异号的一半，若中点为零则结束。否则嵌套区间长度趋零，其共同极限点由连续性被迫满足函数值为零。
+\tjentry{calc-tj-10-02}{81}
+\subsubsection{介值定理}
+设 $f$ 在 $[a,b]$ 连续且 $f(a)\ne f(b)$。对每个严格介于两端函数值之间的 $y$，存在 $c\in(a,b)$ 使 $f(c)=y$。附属推论：若 $m,M$ 是此区间最小值与最大值，则 $f([a,b])=[m,M]$，包括 $m=M$ 的常函数情形。
+
+\textbf{证明思路或理解要点：}对 $f-y$ 用零点定理。推论在取得最小值、最大值的两点之间使用介值定理，端值已由最值定理取到。
+\tjentry{calc-tj-10-03}{81}
+\subsubsection{一致连续的定义（教材星号）}
+实函数 $f$ 在区间 $I$ 一致连续指：每个 $\varepsilon>0$ 都存在 $\delta>0$，使任意 $x,y\in I$ 满足 $|x-y|<\delta$ 时均有 $|f(x)-f(y)|<\varepsilon$。$\delta$ 可依赖 $\varepsilon$，但不可依赖所选位置。
+
+\textbf{证明思路或理解要点：}定义无需证明。一致连续蕴含逐点连续，反之不成立：$1/x$ 在 $(0,1]$ 连续，取 $x_n=1/n,y_n=1/(n+1)$，距离趋零而函数值之差恒为 $1$。
+\tjentry{calc-tj-10-04}{82}
+\subsubsection{闭区间上一致连续性定理（教材星号）}
+若实函数在有限闭区间 $[a,b]$ 上连续，则在该区间上一致连续。闭区间条件是充分条件，不是所有一致连续函数的必要条件。
+
+\textbf{证明思路或理解要点：}若不一致连续，可取 $|x_n-y_n|\to0$ 但函数值差至少为固定正数的点对。对 $x_n$ 抽收敛子列，$y_n$ 的相应子列趋于同一点，连续性导致函数值差趋零，矛盾。
+\tjentry{calc-tj-10-05}{83}
+\section{数学分析扩展知识：仅供知识问答}
+本节与高数条目去重。指定的数学分析参考书版次及页码仍待核对。
+\subsection{实数与点集}
+\subsubsection{上确界与下确界}
+设非空 $A\subseteq\mathbb R$ 有上界。$s=\sup A$ 指 $s$ 为上界且每个 $\varepsilon>0$ 都存在 $x\in A$ 使 $s-\varepsilon<x\le s$。若 $A$ 有下界，则 $t=\inf A$ 指 $t$ 为下界且每个 $\varepsilon>0$ 都存在 $x\in A$ 使 $t\le x<t+\varepsilon$。确界不必属于集合。
+
+\textbf{证明思路或理解要点：}这是最小上界、最大下界的等价定义：若某个正误差区间内无集合元素，就可得到更小的上界或更大的下界。
+\qaonly{calc-an-real-001}
+\subsubsection{实数的确界性质}
+实数完备性的确界表述：每个非空有上界的实数集合存在实数上确界；等价地每个非空有下界的实数集合存在实数下确界。非空、有界及实数范围均不可省略。
+
+\textbf{证明思路或理解要点：}此性质可作为实数公理，不在未选定实数构造的情况下循环证明。下确界性质可由集合取负号及上确界性质推出；有理数集不满足同一完备性。
+\qaonly{calc-an-real-002}
+\subsubsection{聚点与去心邻域}
+对 $D\subseteq\mathbb R$，若每个 $\delta>0$ 都存在 $x\in D$ 满足 $0<|x-a|<\delta$，则 $a$ 为 $D$ 的聚点。点 $a$ 可属于或不属于 $D$。去心邻域为 $\{x:0<|x-a|<\delta\}$；聚点条件保证可从定义域中实际趋近 $a$。
+
+\textbf{证明思路或理解要点：}定义无需证明。可依次在半径 $1/n$ 内取非 $a$ 的点，构造趋于 $a$ 的数列；反过来这种点列保证每个去心邻域与 $D$ 相交。
+\qaonly{calc-an-real-003}
+\subsection{数列的进一步结构}
+\subsubsection{Bolzano--Weierstrass 定理}
+每个有界实数列都有收敛子列，称 Bolzano--Weierstrass 定理。结论只保证存在一个收敛子列，不保证原数列收敛。
+
+\textbf{证明思路或理解要点：}把包含全部项的闭区间二分，每次保留含无穷多项的一半。得到长度趋零的嵌套闭区间，在各区间内按递增指标取项，便形成趋于共同点的子列。
+\qaonly{calc-an-seq-002}
+\subsubsection{上极限与下极限}
+对有界实数列，令 $u_n=\sup\{a_k:k\ge n\}$、$\ell_n=\inf\{a_k:k\ge n\}$。$u_n$ 单调非增且有界，$\ell_n$ 单调非减且有界；定义 $\limsup a_n=\lim u_n$、$\liminf a_n=\lim\ell_n$。原数列收敛当且仅当二者相等，且相等值就是极限。
+
+\textbf{证明思路或理解要点：}尾集合逐渐缩小给出单调性；若上下极限相等，利用 $\ell_n\le a_n\le u_n$ 夹逼。反向由收敛数列尾部的全部项落在同一误差区间得到。
+\qaonly{calc-an-seq-004}
+\end{document}

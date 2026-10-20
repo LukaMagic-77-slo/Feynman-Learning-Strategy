@@ -1,0 +1,10 @@
+{
+  "catalog_sha256": "4e42168285d7cb4f132ec8f6ba89d92bc14427e26150cd569e83b467785b3043",
+  "parents": 53,
+  "children": 122,
+  "qa_results": 53,
+  "practice_results": 48,
+  "lossless_reconstruction": true,
+  "vectors_finite_normalized_384d": true,
+  "max_child_tokens": 128
+}

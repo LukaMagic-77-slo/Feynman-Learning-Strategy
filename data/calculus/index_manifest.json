@@ -2,9 +2,9 @@
   "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
   "dimension": 384,
   "token_limit": 128,
-  "catalog_sha256": "4e42168285d7cb4f132ec8f6ba89d92bc14427e26150cd569e83b467785b3043",
+  "catalog_sha256": "b2d15ecc80a4abcec1ef9aedca9749af43b154ef204d66a3842956f63db1e359",
   "parents": 53,
-  "children": 122,
+  "children": 228,
   "qa_only_parents": 5,
   "max_child_tokens": 128,
   "children_manifest": [
@@ -27,6 +27,32 @@
       "tokens": 36
     },
     {
+      "id": "calc-tj-01-01:question:000",
+      "parent_id": "calc-tj-01-01",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "一个输入对应几个输出才算映射？",
+      "text": "映射的定义\n典型问法：一个输入对应几个输出才算映射？",
+      "tokens": 23,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-01-01:question:001",
+      "parent_id": "calc-tj-01-01",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "单射、满射、双射怎样区分？",
+      "text": "映射的定义\n典型问法：单射、满射、双射怎样区分？",
+      "tokens": 24,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-01-02:content:000",
       "parent_id": "calc-tj-01-02",
       "kind": "content",
@@ -43,6 +69,32 @@
       "body": "定义无需证明。相同公式配不同定义域可以表示不同函数。",
       "text": "函数的定义\n证明思路：定义无需证明。相同公式配不同定义域可以表示不同函数。",
       "tokens": 25
+    },
+    {
+      "id": "calc-tj-01-02:question:000",
+      "parent_id": "calc-tj-01-02",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "定义域相同但表达式不同的两个函数怎样判断相等？",
+      "text": "函数的定义\n典型问法：定义域相同但表达式不同的两个函数怎样判断相等？",
+      "tokens": 25,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-01-02:question:001",
+      "parent_id": "calc-tj-01-02",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "函数的值域和陪域有什么区别？",
+      "text": "函数的定义\n典型问法：函数的值域和陪域有什么区别？",
+      "tokens": 21,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-01-03:content:000",
@@ -81,6 +133,32 @@
       "tokens": 66
     },
     {
+      "id": "calc-tj-01-03:question:000",
+      "parent_id": "calc-tj-01-03",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "判断函数奇偶性之前为什么要检查定义域？",
+      "text": "函数的基本特性\n典型问法：判断函数奇偶性之前为什么要检查定义域？",
+      "tokens": 22,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-01-03:question:001",
+      "parent_id": "calc-tj-01-03",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "周期函数、单调函数和有界函数分别有什么特点？",
+      "text": "函数的基本特性\n典型问法：周期函数、单调函数和有界函数分别有什么特点？",
+      "tokens": 25,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-01-04:content:000",
       "parent_id": "calc-tj-01-04",
       "kind": "content",
@@ -106,6 +184,32 @@
       "body": "单射保证每个像只有一个原像，从而逆对应唯一。严格单调使不同自变量的函数值不同。",
       "text": "逆映射、反函数与复合函数\n证明思路：单射保证每个像只有一个原像，从而逆对应唯一。严格单调使不同自变量的函数值不同。",
       "tokens": 44
+    },
+    {
+      "id": "calc-tj-01-04:question:000",
+      "parent_id": "calc-tj-01-04",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "函数什么时候才有反函数？",
+      "text": "逆映射、反函数与复合函数\n典型问法：函数什么时候才有反函数？",
+      "tokens": 23,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-01-04:question:001",
+      "parent_id": "calc-tj-01-04",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "复合函数的定义域应该怎样确定？",
+      "text": "逆映射、反函数与复合函数\n典型问法：复合函数的定义域应该怎样确定？",
+      "tokens": 26,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-01-05:content:000",
@@ -144,6 +248,32 @@
       "tokens": 66
     },
     {
+      "id": "calc-tj-01-05:question:000",
+      "parent_id": "calc-tj-01-05",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "sinh和cosh怎样用指数函数表示？",
+      "text": "双曲函数与反双曲函数\n典型问法：sinh和cosh怎样用指数函数表示？",
+      "tokens": 27,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-01-05:question:001",
+      "parent_id": "calc-tj-01-05",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "双曲函数的恒等式与三角函数的恒等式有什么不同？",
+      "text": "双曲函数与反双曲函数\n典型问法：双曲函数的恒等式与三角函数的恒等式有什么不同？",
+      "tokens": 33,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-02-01:content:000",
       "parent_id": "calc-tj-02-01",
       "kind": "content",
@@ -171,6 +301,32 @@
       "tokens": 29
     },
     {
+      "id": "calc-tj-02-01:question:000",
+      "parent_id": "calc-tj-02-01",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "数列收敛定义中任意epsilon和存在N的先后顺序意味着什么？",
+      "text": "数列极限的定义\n典型问法：数列收敛定义中任意epsilon和存在N的先后顺序意味着什么？",
+      "tokens": 33,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-02-01:question:001",
+      "parent_id": "calc-tj-02-01",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "怎样用邻域理解数列趋近一个数？",
+      "text": "数列极限的定义\n典型问法：怎样用邻域理解数列趋近一个数？",
+      "tokens": 26,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-02-02:content:000",
       "parent_id": "calc-tj-02-02",
       "kind": "content",
@@ -187,6 +343,32 @@
       "body": "若同时趋于不同的 $A,B$，取 $\\varepsilon=|A-B|/3$；充分大的 $n$ 同时接近两者，三角不等式给出 $|A-B|<2|A-B|/3$，矛盾。",
       "text": "极限唯一性定理\n证明思路：若同时趋于不同的 $A,B$，取 $\\varepsilon=|A-B|/3$；充分大的 $n$ 同时接近两者，三角不等式给出 $|A-B|<2|A-B|/3$，矛盾。",
       "tokens": 72
+    },
+    {
+      "id": "calc-tj-02-02:question:000",
+      "parent_id": "calc-tj-02-02",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "怎样用反证法说明数列不可能趋向两个不同的数？",
+      "text": "极限唯一性定理\n典型问法：怎样用反证法说明数列不可能趋向两个不同的数？",
+      "tokens": 29,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-02-02:question:001",
+      "parent_id": "calc-tj-02-02",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "证明数列极限唯一时为什么取两个候选极限距离的三分之一？",
+      "text": "极限唯一性定理\n典型问法：证明数列极限唯一时为什么取两个候选极限距离的三分之一？",
+      "tokens": 32,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-02-03:content:000",
@@ -207,6 +389,32 @@
       "tokens": 54
     },
     {
+      "id": "calc-tj-02-03:question:000",
+      "parent_id": "calc-tj-02-03",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "如何把数列尾部的界和前面有限项合起来得到全体项的界？",
+      "text": "收敛数列有界性定理\n典型问法：如何把数列尾部的界和前面有限项合起来得到全体项的界？",
+      "tokens": 37,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-02-03:question:001",
+      "parent_id": "calc-tj-02-03",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "收敛数列的有界性有逆命题吗？",
+      "text": "收敛数列有界性定理\n典型问法：收敛数列的有界性有逆命题吗？",
+      "tokens": 31,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-02-04:content:000",
       "parent_id": "calc-tj-02-04",
       "kind": "content",
@@ -225,6 +433,32 @@
       "tokens": 54
     },
     {
+      "id": "calc-tj-02-04:question:000",
+      "parent_id": "calc-tj-02-04",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "数列趋向正数时能否出现无限多个负项？",
+      "text": "收敛数列保号性定理\n典型问法：数列趋向正数时能否出现无限多个负项？",
+      "tokens": 31,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-02-04:question:001",
+      "parent_id": "calc-tj-02-04",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "保号性为何通常只要求从某一项以后成立？",
+      "text": "收敛数列保号性定理\n典型问法：保号性为何通常只要求从某一项以后成立？",
+      "tokens": 30,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-02-05:content:000",
       "parent_id": "calc-tj-02-05",
       "kind": "content",
@@ -241,6 +475,32 @@
       "body": "因为 $n_k\\ge k$，原数列的尾部估计也适用于充分大的子列指标。",
       "text": "收敛数列与子列的关系定理\n证明思路：因为 $n_k\\ge k$，原数列的尾部估计也适用于充分大的子列指标。",
       "tokens": 42
+    },
+    {
+      "id": "calc-tj-02-05:question:000",
+      "parent_id": "calc-tj-02-05",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "原数列收敛时任意抽出的子列会趋向哪里？",
+      "text": "收敛数列与子列的关系定理\n典型问法：原数列收敛时任意抽出的子列会趋向哪里？",
+      "tokens": 34,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-02-05:question:001",
+      "parent_id": "calc-tj-02-05",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "两个子列极限不相同能说明原数列什么性质？",
+      "text": "收敛数列与子列的关系定理\n典型问法：两个子列极限不相同能说明原数列什么性质？",
+      "tokens": 33,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-03-01:content:000",
@@ -270,6 +530,32 @@
       "tokens": 46
     },
     {
+      "id": "calc-tj-03-01:question:000",
+      "parent_id": "calc-tj-03-01",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "函数在某点没有定义还能讨论该点的极限吗？",
+      "text": "自变量趋于有限点时的函数极限\n典型问法：函数在某点没有定义还能讨论该点的极限吗？",
+      "tokens": 35,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-03-01:question:001",
+      "parent_id": "calc-tj-03-01",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "函数极限定义中的去心邻域为什么排除中心点？",
+      "text": "自变量趋于有限点时的函数极限\n典型问法：函数极限定义中的去心邻域为什么排除中心点？",
+      "tokens": 34,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-03-02:content:000",
       "parent_id": "calc-tj-03-02",
       "kind": "content",
@@ -286,6 +572,32 @@
       "body": "必要性是限制到一侧；充分性取左右两侧可用半径的较小值。同侧无定义时不能直接套用双侧判别。",
       "text": "单侧极限及双侧极限的判别\n证明思路：必要性是限制到一侧；充分性取左右两侧可用半径的较小值。同侧无定义时不能直接套用双侧判别。",
       "tokens": 55
+    },
+    {
+      "id": "calc-tj-03-02:question:000",
+      "parent_id": "calc-tj-03-02",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "左极限和右极限分别存在就能说函数极限存在吗？",
+      "text": "单侧极限及双侧极限的判别\n典型问法：左极限和右极限分别存在就能说函数极限存在吗？",
+      "tokens": 37,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-03-02:question:001",
+      "parent_id": "calc-tj-03-02",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "怎样用单侧极限判断分段函数在连接处是否有极限？",
+      "text": "单侧极限及双侧极限的判别\n典型问法：怎样用单侧极限判断分段函数在连接处是否有极限？",
+      "tokens": 37,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-03-03:content:000",
@@ -315,6 +627,32 @@
       "tokens": 43
     },
     {
+      "id": "calc-tj-03-03:question:000",
+      "parent_id": "calc-tj-03-03",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "x趋于正无穷与负无穷的极限怎样区分？",
+      "text": "自变量趋于无穷大时的函数极限\n典型问法：x趋于正无穷与负无穷的极限怎样区分？",
+      "tokens": 38,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-03-03:question:001",
+      "parent_id": "calc-tj-03-03",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "自变量趋于无穷时的M与epsilon各控制什么？",
+      "text": "自变量趋于无穷大时的函数极限\n典型问法：自变量趋于无穷时的M与epsilon各控制什么？",
+      "tokens": 39,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-03-04:content:000",
       "parent_id": "calc-tj-03-04",
       "kind": "content",
@@ -331,6 +669,32 @@
       "body": "假设极限为两个不同数，取它们距离的三分之一作误差，再在两组条件同时成立处用三角不等式得到矛盾。",
       "text": "函数极限唯一性定理\n证明思路：假设极限为两个不同数，取它们距离的三分之一作误差，再在两组条件同时成立处用三角不等式得到矛盾。",
       "tokens": 47
+    },
+    {
+      "id": "calc-tj-03-04:question:000",
+      "parent_id": "calc-tj-03-04",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "沿同一种趋近方式函数可以有两个极限值吗？",
+      "text": "函数极限唯一性定理\n典型问法：沿同一种趋近方式函数可以有两个极限值吗？",
+      "tokens": 30,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-03-04:question:001",
+      "parent_id": "calc-tj-03-04",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "函数极限唯一性的证明如何使用三角不等式？",
+      "text": "函数极限唯一性定理\n典型问法：函数极限唯一性的证明如何使用三角不等式？",
+      "tokens": 28,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-03-05:content:000",
@@ -351,6 +715,32 @@
       "tokens": 57
     },
     {
+      "id": "calc-tj-03-05:question:000",
+      "parent_id": "calc-tj-03-05",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "函数趋向有限值时在哪个邻域内能找到统一的界？",
+      "text": "函数极限局部有界性定理\n典型问法：函数趋向有限值时在哪个邻域内能找到统一的界？",
+      "tokens": 34,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-03-05:question:001",
+      "parent_id": "calc-tj-03-05",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "局部有界为什么不能推出极限存在？",
+      "text": "函数极限局部有界性定理\n典型问法：局部有界为什么不能推出极限存在？",
+      "tokens": 27,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-03-06:content:000",
       "parent_id": "calc-tj-03-06",
       "kind": "content",
@@ -369,6 +759,32 @@
       "tokens": 69
     },
     {
+      "id": "calc-tj-03-06:question:000",
+      "parent_id": "calc-tj-03-06",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "函数极限是负数时附近的函数值是否也为负？",
+      "text": "函数极限局部保号性定理\n典型问法：函数极限是负数时附近的函数值是否也为负？",
+      "tokens": 32,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-03-06:question:001",
+      "parent_id": "calc-tj-03-06",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "函数极限为零时还能使用保号性吗？",
+      "text": "函数极限局部保号性定理\n典型问法：函数极限为零时还能使用保号性吗？",
+      "tokens": 30,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-03-07:content:000",
       "parent_id": "calc-tj-03-07",
       "kind": "content",
@@ -385,6 +801,32 @@
       "body": "取误差 $|L|/2$，使用反三角不等式 $|f(x)|\\ge |L|-|f(x)-L|$。",
       "text": "非零极限的定量下界定理\n证明思路：取误差 $|L|/2$，使用反三角不等式 $|f(x)|\\ge |L|-|f(x)-L|$。",
       "tokens": 58
+    },
+    {
+      "id": "calc-tj-03-07:question:000",
+      "parent_id": "calc-tj-03-07",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "如何保证趋近非零数的函数绝对值远离零？",
+      "text": "非零极限的定量下界定理\n典型问法：如何保证趋近非零数的函数绝对值远离零？",
+      "tokens": 33,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-03-07:question:001",
+      "parent_id": "calc-tj-03-07",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "把函数放到分母前如何确保附近不会为零？",
+      "text": "非零极限的定量下界定理\n典型问法：把函数放到分母前如何确保附近不会为零？",
+      "tokens": 32,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-03-08:content:000",
@@ -414,6 +856,32 @@
       "tokens": 84
     },
     {
+      "id": "calc-tj-03-08:question:000",
+      "parent_id": "calc-tj-03-08",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "海涅定理中的任意趋近数列应满足什么限制？",
+      "text": "函数极限与数列极限的关系定理（教材星号）\n典型问法：海涅定理中的任意趋近数列应满足什么限制？",
+      "tokens": 39,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-03-08:question:001",
+      "parent_id": "calc-tj-03-08",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "怎样选择两条趋近数列来证明函数极限不存在？",
+      "text": "函数极限与数列极限的关系定理（教材星号）\n典型问法：怎样选择两条趋近数列来证明函数极限不存在？",
+      "tokens": 39,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-04-01:content:000",
       "parent_id": "calc-tj-04-01",
       "kind": "content",
@@ -432,6 +900,32 @@
       "tokens": 53
     },
     {
+      "id": "calc-tj-04-01:question:000",
+      "parent_id": "calc-tj-04-01",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "无穷小是一个固定数还是与趋近过程有关的变量？",
+      "text": "无穷小的定义\n典型问法：无穷小是一个固定数还是与趋近过程有关的变量？",
+      "tokens": 28,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-04-01:question:001",
+      "parent_id": "calc-tj-04-01",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "同一个表达式在不同趋近过程中都算无穷小吗？",
+      "text": "无穷小的定义\n典型问法：同一个表达式在不同趋近过程中都算无穷小吗？",
+      "tokens": 28,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-04-02:content:000",
       "parent_id": "calc-tj-04-02",
       "kind": "content",
@@ -448,6 +942,32 @@
       "body": "令 $\\alpha=f-L$，两个极限定义中的误差表达式完全相同。",
       "text": "有限极限与无穷小的等价表述定理\n证明思路：令 $\\alpha=f-L$，两个极限定义中的误差表达式完全相同。",
       "tokens": 43
+    },
+    {
+      "id": "calc-tj-04-02:question:000",
+      "parent_id": "calc-tj-04-02",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "f趋于A与f减A趋于零为什么等价？",
+      "text": "有限极限与无穷小的等价表述定理\n典型问法：f趋于A与f减A趋于零为什么等价？",
+      "tokens": 36,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-04-02:question:001",
+      "parent_id": "calc-tj-04-02",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "怎样把有极限的函数写成常数加误差项？",
+      "text": "有限极限与无穷小的等价表述定理\n典型问法：怎样把有极限的函数写成常数加误差项？",
+      "tokens": 37,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-04-03:content:000",
@@ -477,6 +997,32 @@
       "tokens": 44
     },
     {
+      "id": "calc-tj-04-03:question:000",
+      "parent_id": "calc-tj-04-03",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "函数无穷大的定义为什么用绝对值超过任意界？",
+      "text": "无穷大的定义\n典型问法：函数无穷大的定义为什么用绝对值超过任意界？",
+      "tokens": 25,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-04-03:question:001",
+      "parent_id": "calc-tj-04-03",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "正无穷、负无穷与无穷大的区别是什么？",
+      "text": "无穷大的定义\n典型问法：正无穷、负无穷与无穷大的区别是什么？",
+      "tokens": 26,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-04-04:content:000",
       "parent_id": "calc-tj-04-04",
       "kind": "content",
@@ -493,6 +1039,32 @@
       "body": "互换误差与阈值：$|f|>1/\\varepsilon$ 蕴含 $|1/f|<\\varepsilon$；$0<|f|<1/M$ 蕴含 $|1/f|>M$。",
       "text": "无穷大与无穷小的倒数关系定理\n证明思路：互换误差与阈值：$|f|>1/\\varepsilon$ 蕴含 $|1/f|<\\varepsilon$；$0<|f|<1/M$ 蕴含 $|1/f|>M$。",
       "tokens": 75
+    },
+    {
+      "id": "calc-tj-04-04:question:000",
+      "parent_id": "calc-tj-04-04",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "无穷小取倒数一定得到正无穷吗？",
+      "text": "无穷大与无穷小的倒数关系定理\n典型问法：无穷小取倒数一定得到正无穷吗？",
+      "tokens": 33,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-04-04:question:001",
+      "parent_id": "calc-tj-04-04",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "倒数关系中的非零条件应在什么范围内成立？",
+      "text": "无穷大与无穷小的倒数关系定理\n典型问法：倒数关系中的非零条件应在什么范围内成立？",
+      "tokens": 33,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-05-01:content:000",
@@ -513,6 +1085,32 @@
       "tokens": 50
     },
     {
+      "id": "calc-tj-05-01:question:000",
+      "parent_id": "calc-tj-05-01",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "有限个无穷小相加是否仍是无穷小？",
+      "text": "无穷小之和定理\n典型问法：有限个无穷小相加是否仍是无穷小？",
+      "tokens": 28,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-05-01:question:001",
+      "parent_id": "calc-tj-05-01",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "无穷小求和定理能直接用于无限多个加数吗？",
+      "text": "无穷小之和定理\n典型问法：无穷小求和定理能直接用于无限多个加数吗？",
+      "tokens": 31,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-05-02:content:000",
       "parent_id": "calc-tj-05-02",
       "kind": "content",
@@ -529,6 +1127,32 @@
       "body": "取界 $M>0$，让 $|\\alpha|<\\varepsilon/M$。常数有界，而无穷小在局部有界，所以可反复应用乘积结论。",
       "text": "有界函数与无穷小乘积定理\n证明思路：取界 $M>0$，让 $|\\alpha|<\\varepsilon/M$。常数有界，而无穷小在局部有界，所以可反复应用乘积结论。",
       "tokens": 64
+    },
+    {
+      "id": "calc-tj-05-02:question:000",
+      "parent_id": "calc-tj-05-02",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "两个函数相乘趋于零是否要求两个因子都趋于零？",
+      "text": "有界函数与无穷小乘积定理\n典型问法：两个函数相乘趋于零是否要求两个因子都趋于零？",
+      "tokens": 36,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-05-02:question:001",
+      "parent_id": "calc-tj-05-02",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "有界因子可以没有极限而使乘积成为无穷小吗？",
+      "text": "有界函数与无穷小乘积定理\n典型问法：有界因子可以没有极限而使乘积成为无穷小吗？",
+      "tokens": 37,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-05-03:content:000",
@@ -558,6 +1182,32 @@
       "tokens": 69
     },
     {
+      "id": "calc-tj-05-03:question:000",
+      "parent_id": "calc-tj-05-03",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "极限的商法则对分母有什么要求？",
+      "text": "函数极限四则运算定理\n典型问法：极限的商法则对分母有什么要求？",
+      "tokens": 29,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-05-03:question:001",
+      "parent_id": "calc-tj-05-03",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "两个函数都没有极限时还能直接拆开乘积的极限吗？",
+      "text": "函数极限四则运算定理\n典型问法：两个函数都没有极限时还能直接拆开乘积的极限吗？",
+      "tokens": 34,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-05-04:content:000",
       "parent_id": "calc-tj-05-04",
       "kind": "content",
@@ -574,6 +1224,32 @@
       "body": "采用与函数极限四则运算相同的误差分解，把邻域条件换成指标充分大。",
       "text": "数列极限四则运算定理\n证明思路：采用与函数极限四则运算相同的误差分解，把邻域条件换成指标充分大。",
       "tokens": 41
+    },
+    {
+      "id": "calc-tj-05-04:question:000",
+      "parent_id": "calc-tj-05-04",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "两个收敛数列的和差积商是否收敛？",
+      "text": "数列极限四则运算定理\n典型问法：两个收敛数列的和差积商是否收敛？",
+      "tokens": 32,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-05-04:question:001",
+      "parent_id": "calc-tj-05-04",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "数列相除的极限运算什么时候合法？",
+      "text": "数列极限四则运算定理\n典型问法：数列相除的极限运算什么时候合法？",
+      "tokens": 30,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-05-05:content:000",
@@ -594,6 +1270,32 @@
       "tokens": 46
     },
     {
+      "id": "calc-tj-05-05:question:000",
+      "parent_id": "calc-tj-05-05",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "取极限以后严格不等号能保留吗？",
+      "text": "极限的不等式保序定理\n典型问法：取极限以后严格不等号能保留吗？",
+      "tokens": 29,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-05-05:question:001",
+      "parent_id": "calc-tj-05-05",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "两个函数在邻域内有大小关系时极限之间是什么关系？",
+      "text": "极限的不等式保序定理\n典型问法：两个函数在邻域内有大小关系时极限之间是什么关系？",
+      "tokens": 33,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-05-06:content:000",
       "parent_id": "calc-tj-05-06",
       "kind": "content",
@@ -610,6 +1312,32 @@
       "body": "先由外层极限选误差对应的 $u$ 邻域，再由内层极限把 $g(x)$ 放入其中。非零距离条件保证落入的是去心邻域。",
       "text": "复合函数的极限运算法则\n证明思路：先由外层极限选误差对应的 $u$ 邻域，再由内层极限把 $g(x)$ 放入其中。非零距离条件保证落入的是去心邻域。",
       "tokens": 62
+    },
+    {
+      "id": "calc-tj-05-06:question:000",
+      "parent_id": "calc-tj-05-06",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "内层函数趋近某点为何不足以直接套用外层极限？",
+      "text": "复合函数的极限运算法则\n典型问法：内层函数趋近某点为何不足以直接套用外层极限？",
+      "tokens": 34,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-05-06:question:001",
+      "parent_id": "calc-tj-05-06",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "复合极限法则为什么需要检查内层是否取到外层的趋近点？",
+      "text": "复合函数的极限运算法则\n典型问法：复合极限法则为什么需要检查内层是否取到外层的趋近点？",
+      "tokens": 36,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-06-01:content:000",
@@ -630,6 +1358,32 @@
       "tokens": 52
     },
     {
+      "id": "calc-tj-06-01:question:000",
+      "parent_id": "calc-tj-06-01",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "怎样用两个同极限数列夹住第三个数列？",
+      "text": "数列夹逼准则\n典型问法：怎样用两个同极限数列夹住第三个数列？",
+      "tokens": 28,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-06-01:question:001",
+      "parent_id": "calc-tj-06-01",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "数列夹逼只在充分大下标以后成立是否足够？",
+      "text": "数列夹逼准则\n典型问法：数列夹逼只在充分大下标以后成立是否足够？",
+      "tokens": 28,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-06-02:content:000",
       "parent_id": "calc-tj-06-02",
       "kind": "content",
@@ -646,6 +1400,32 @@
       "body": "合并两端极限给出的邻域或尾部阈值，再用夹在同一个误差区间中的关系。",
       "text": "函数夹逼准则\n证明思路：合并两端极限给出的邻域或尾部阈值，再用夹在同一个误差区间中的关系。",
       "tokens": 40
+    },
+    {
+      "id": "calc-tj-06-02:question:000",
+      "parent_id": "calc-tj-06-02",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "函数的夹逼法对上下界的极限有什么要求？",
+      "text": "函数夹逼准则\n典型问法：函数的夹逼法对上下界的极限有什么要求？",
+      "tokens": 25,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-06-02:question:001",
+      "parent_id": "calc-tj-06-02",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "夹逼函数是否需要在中心点也满足不等式？",
+      "text": "函数夹逼准则\n典型问法：夹逼函数是否需要在中心点也满足不等式？",
+      "tokens": 26,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-06-03:content:000",
@@ -666,6 +1446,32 @@
       "tokens": 70
     },
     {
+      "id": "calc-tj-06-03:question:000",
+      "parent_id": "calc-tj-06-03",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "单调数列收敛还需要什么条件？",
+      "text": "单调有界数列收敛准则\n典型问法：单调数列收敛还需要什么条件？",
+      "tokens": 27,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-06-03:question:001",
+      "parent_id": "calc-tj-06-03",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "递增有上界的数列极限与上确界有什么关系？",
+      "text": "单调有界数列收敛准则\n典型问法：递增有上界的数列极限与上确界有什么关系？",
+      "tokens": 33,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-06-04:content:000",
       "parent_id": "calc-tj-06-04",
       "kind": "content",
@@ -682,6 +1488,32 @@
       "body": "按单调方向取该邻域函数值的上确界或下确界；用确界性质选一点，单调性控制此点至端点之间的全部函数值。",
       "text": "单侧单调有界函数极限准则\n证明思路：按单调方向取该邻域函数值的上确界或下确界；用确界性质选一点，单调性控制此点至端点之间的全部函数值。",
       "tokens": 57
+    },
+    {
+      "id": "calc-tj-06-04:question:000",
+      "parent_id": "calc-tj-06-04",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "有界单调函数在区间端点是否存在单侧极限？",
+      "text": "单侧单调有界函数极限准则\n典型问法：有界单调函数在区间端点是否存在单侧极限？",
+      "tokens": 35,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-06-04:question:001",
+      "parent_id": "calc-tj-06-04",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "单调函数左极限存在是否说明它在该点连续？",
+      "text": "单侧单调有界函数极限准则\n典型问法：单调函数左极限存在是否说明它在该点连续？",
+      "tokens": 33,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-06-05:content:000",
@@ -702,6 +1534,38 @@
       "tokens": 84
     },
     {
+      "id": "calc-tj-06-05:question:000",
+      "parent_id": "calc-tj-06-05",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "柯西数列的条件直观上描述了尾部项怎样相互接近？",
+      "text": "柯西极限存在准则（教材星号）\n典型问法：柯西数列的条件直观上描述了尾部项怎样相互接近？",
+      "tokens": 37,
+      "question_metadata": {
+        "origin": "public_question_inspired",
+        "note": "参考公开提问的主题独立整理为中文；非原文、非真实中文查询日志。",
+        "source": {
+          "url": "https://math.stackexchange.com/questions/405497/i-would-like-to-know-an-intuitive-way-to-understand-a-cauchy-sequence-and-the-ca",
+          "title": "I would like to know an intuitive way to understand a Cauchy sequence and the Cauchy criterion.",
+          "platform": "Mathematics Stack Exchange",
+          "accessed": "2026-10-20"
+        }
+      }
+    },
+    {
+      "id": "calc-tj-06-05:question:001",
+      "parent_id": "calc-tj-06-05",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "为什么相邻两项差趋于零不能代替柯西条件？",
+      "text": "柯西极限存在准则（教材星号）\n典型问法：为什么相邻两项差趋于零不能代替柯西条件？",
+      "tokens": 34,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-06-06:content:000",
       "parent_id": "calc-tj-06-06",
       "kind": "content",
@@ -718,6 +1582,32 @@
       "body": "第一个在 $0<x<\\pi/2$ 用 $\\sin x<x<\\tan x$ 夹逼，负侧用偶性。第二个先证明数列 $(1+1/n)^n$ 单调有界并定义其极限为 $e$，再用整数夹逼推广到实参数，负侧作变量代换。",
       "text": "两个重要极限\n证明思路：第一个在 $0<x<\\pi/2$ 用 $\\sin x<x<\\tan x$ 夹逼，负侧用偶性。第二个先证明数列 $(1+1/n)^n$ 单调有界并定义其极限为 $e$，再用整数夹逼推广到实参数，负侧作变量代换。",
       "tokens": 93
+    },
+    {
+      "id": "calc-tj-06-06:question:000",
+      "parent_id": "calc-tj-06-06",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "sinx除以x的标准极限适用于什么趋近过程？",
+      "text": "两个重要极限\n典型问法：sinx除以x的标准极限适用于什么趋近过程？",
+      "tokens": 27,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-06-06:question:001",
+      "parent_id": "calc-tj-06-06",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "第二重要极限中底数和指数如何共同变化得到e？",
+      "text": "两个重要极限\n典型问法：第二重要极限中底数和指数如何共同变化得到e？",
+      "tokens": 27,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-07-01:content:000",
@@ -747,6 +1637,32 @@
       "tokens": 70
     },
     {
+      "id": "calc-tj-07-01:question:000",
+      "parent_id": "calc-tj-07-01",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "高阶无穷小与等价无穷小怎样通过比值区分？",
+      "text": "高阶、低阶、同阶与等价无穷小的定义\n典型问法：高阶无穷小与等价无穷小怎样通过比值区分？",
+      "tokens": 41,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-07-01:question:001",
+      "parent_id": "calc-tj-07-01",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "同阶无穷小是否一定等价？",
+      "text": "高阶、低阶、同阶与等价无穷小的定义\n典型问法：同阶无穷小是否一定等价？",
+      "tokens": 33,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-07-02:content:000",
       "parent_id": "calc-tj-07-02",
       "kind": "content",
@@ -765,6 +1681,32 @@
       "tokens": 50
     },
     {
+      "id": "calc-tj-07-02:question:000",
+      "parent_id": "calc-tj-07-02",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "如何通过两个无穷小之差判断它们是否等价？",
+      "text": "等价无穷小的判别定理\n典型问法：如何通过两个无穷小之差判断它们是否等价？",
+      "tokens": 31,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-07-02:question:001",
+      "parent_id": "calc-tj-07-02",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "等价无穷小为什么可以理解成相对误差趋于零？",
+      "text": "等价无穷小的判别定理\n典型问法：等价无穷小为什么可以理解成相对误差趋于零？",
+      "tokens": 33,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-07-03:content:000",
       "parent_id": "calc-tj-07-03",
       "kind": "content",
@@ -781,6 +1723,32 @@
       "body": "将 $\\beta/\\alpha$ 分解为 $(\\beta/\\widetilde\\beta)(\\widetilde\\beta/\\widetilde\\alpha)(\\widetilde\\alpha/\\alpha)$，两端因子趋于 $1$。和差中的抵消可能改变误差阶数。",
       "text": "等价无穷小替换定理\n证明思路：将 $\\beta/\\alpha$ 分解为 $(\\beta/\\widetilde\\beta)(\\widetilde\\beta/\\widetilde\\alpha)(\\widetilde\\alpha/\\alpha)$，两端因子趋于 $1$。和差中的抵消可能改变误差阶数。",
       "tokens": 90
+    },
+    {
+      "id": "calc-tj-07-03:question:000",
+      "parent_id": "calc-tj-07-03",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "使用等价无穷小替换需要检查哪些条件？",
+      "text": "等价无穷小替换定理\n典型问法：使用等价无穷小替换需要检查哪些条件？",
+      "tokens": 30,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-07-03:question:001",
+      "parent_id": "calc-tj-07-03",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "两个近似式相减时为何要注意主项抵消？",
+      "text": "等价无穷小替换定理\n典型问法：两个近似式相减时为何要注意主项抵消？",
+      "tokens": 31,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-08-01:content:000",
@@ -810,6 +1778,32 @@
       "tokens": 80
     },
     {
+      "id": "calc-tj-08-01:question:000",
+      "parent_id": "calc-tj-08-01",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "函数在一点连续需要哪三个条件？",
+      "text": "函数在一点连续的定义\n典型问法：函数在一点连续需要哪三个条件？",
+      "tokens": 23,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-08-01:question:001",
+      "parent_id": "calc-tj-08-01",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "连续的增量定义怎样与极限定义联系起来？",
+      "text": "函数在一点连续的定义\n典型问法：连续的增量定义怎样与极限定义联系起来？",
+      "tokens": 27,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-08-02:content:000",
       "parent_id": "calc-tj-08-02",
       "kind": "content",
@@ -826,6 +1820,32 @@
       "body": "分类以左右有限极限为依据。可去间断可补成共同极限而连续；跳跃间断不能仅靠修改单点函数值消除。",
       "text": "间断点及其类型\n证明思路：分类以左右有限极限为依据。可去间断可补成共同极限而连续；跳跃间断不能仅靠修改单点函数值消除。",
       "tokens": 48
+    },
+    {
+      "id": "calc-tj-08-02:question:000",
+      "parent_id": "calc-tj-08-02",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "可去间断点和跳跃间断点如何区分？",
+      "text": "间断点及其类型\n典型问法：可去间断点和跳跃间断点如何区分？",
+      "tokens": 28,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-08-02:question:001",
+      "parent_id": "calc-tj-08-02",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "单侧极限不存在的间断点属于哪一类？",
+      "text": "间断点及其类型\n典型问法：单侧极限不存在的间断点属于哪一类？",
+      "tokens": 27,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-09-01:content:000",
@@ -846,6 +1866,32 @@
       "tokens": 46
     },
     {
+      "id": "calc-tj-09-01:question:000",
+      "parent_id": "calc-tj-09-01",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "连续函数相除在分母为零的位置还连续吗？",
+      "text": "连续函数四则运算定理\n典型问法：连续函数相除在分母为零的位置还连续吗？",
+      "tokens": 30,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-09-01:question:001",
+      "parent_id": "calc-tj-09-01",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "有限个连续函数求和求积能保留连续性吗？",
+      "text": "连续函数四则运算定理\n典型问法：有限个连续函数求和求积能保留连续性吗？",
+      "tokens": 30,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-09-02:content:000",
       "parent_id": "calc-tj-09-02",
       "kind": "content",
@@ -862,6 +1908,32 @@
       "body": "严格单调保证逆对应存在，连续性和介值性质保证值域没有空缺。用 $x_0$ 两侧邻近点的像夹住 $y_0=f(x_0)$，即可将像的邻域拉回到 $x_0$ 的邻域。",
       "text": "严格单调连续函数的反函数连续性定理\n证明思路：严格单调保证逆对应存在，连续性和介值性质保证值域没有空缺。用 $x_0$ 两侧邻近点的像夹住 $y_0=f(x_0)$，即可将像的邻域拉回到 $x_0$ 的邻域。",
       "tokens": 86
+    },
+    {
+      "id": "calc-tj-09-02:question:000",
+      "parent_id": "calc-tj-09-02",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "为什么严格单调且连续的函数有连续反函数？",
+      "text": "严格单调连续函数的反函数连续性定理\n典型问法：为什么严格单调且连续的函数有连续反函数？",
+      "tokens": 33,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-09-02:question:001",
+      "parent_id": "calc-tj-09-02",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "反函数连续性定理为何要求原函数定义在区间上？",
+      "text": "严格单调连续函数的反函数连续性定理\n典型问法：反函数连续性定理为何要求原函数定义在区间上？",
+      "tokens": 36,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-09-03:content:000",
@@ -882,6 +1954,32 @@
       "tokens": 61
     },
     {
+      "id": "calc-tj-09-03:question:000",
+      "parent_id": "calc-tj-09-03",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "什么条件下可以把极限移入连续的外层函数？",
+      "text": "外层连续时的复合极限定理\n典型问法：什么条件下可以把极限移入连续的外层函数？",
+      "tokens": 32,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-09-03:question:001",
+      "parent_id": "calc-tj-09-03",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "外层连续时内层取到极限点会妨碍复合极限吗？",
+      "text": "外层连续时的复合极限定理\n典型问法：外层连续时内层取到极限点会妨碍复合极限吗？",
+      "tokens": 36,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-09-04:content:000",
       "parent_id": "calc-tj-09-04",
       "kind": "content",
@@ -898,6 +1996,32 @@
       "body": "先由内层连续得 $g(x)\\to g(a)$，再用外层连续的复合极限定理。有限次重复即得初等函数结论。",
       "text": "复合函数连续性定理\n证明思路：先由内层连续得 $g(x)\\to g(a)$，再用外层连续的复合极限定理。有限次重复即得初等函数结论。",
       "tokens": 53
+    },
+    {
+      "id": "calc-tj-09-04:question:000",
+      "parent_id": "calc-tj-09-04",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "两个连续函数复合以后在什么点连续？",
+      "text": "复合函数连续性定理\n典型问法：两个连续函数复合以后在什么点连续？",
+      "tokens": 24,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-09-04:question:001",
+      "parent_id": "calc-tj-09-04",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "证明复合函数连续需要检查内层值落在哪里吗？",
+      "text": "复合函数连续性定理\n典型问法：证明复合函数连续需要检查内层值落在哪里吗？",
+      "tokens": 27,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-10-01:content:000",
@@ -918,6 +2042,32 @@
       "tokens": 79
     },
     {
+      "id": "calc-tj-10-01:question:000",
+      "parent_id": "calc-tj-10-01",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "连续函数一定取得最大值和最小值吗？",
+      "text": "有界性与最大值最小值定理\n典型问法：连续函数一定取得最大值和最小值吗？",
+      "tokens": 31,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-10-01:question:001",
+      "parent_id": "calc-tj-10-01",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "最值定理为什么强调闭区间而不是开区间？",
+      "text": "有界性与最大值最小值定理\n典型问法：最值定理为什么强调闭区间而不是开区间？",
+      "tokens": 33,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-10-02:content:000",
       "parent_id": "calc-tj-10-02",
       "kind": "content",
@@ -934,6 +2084,32 @@
       "body": "不断二分并保留端点异号的一半，若中点为零则结束。否则嵌套区间长度趋零，其共同极限点由连续性被迫满足函数值为零。",
       "text": "零点定理\n证明思路：不断二分并保留端点异号的一半，若中点为零则结束。否则嵌套区间长度趋零，其共同极限点由连续性被迫满足函数值为零。",
       "tokens": 56
+    },
+    {
+      "id": "calc-tj-10-02:question:000",
+      "parent_id": "calc-tj-10-02",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "端点函数值异号怎样保证中间有零点？",
+      "text": "零点定理\n典型问法：端点函数值异号怎样保证中间有零点？",
+      "tokens": 25,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-10-02:question:001",
+      "parent_id": "calc-tj-10-02",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "零点定理能保证零点唯一吗？",
+      "text": "零点定理\n典型问法：零点定理能保证零点唯一吗？",
+      "tokens": 23,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-tj-10-03:content:000",
@@ -954,6 +2130,32 @@
       "tokens": 55
     },
     {
+      "id": "calc-tj-10-03:question:000",
+      "parent_id": "calc-tj-10-03",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "连续函数的介值性质和单调性有什么关系？",
+      "text": "介值定理\n典型问法：连续函数的介值性质和单调性有什么关系？",
+      "tokens": 25,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-10-03:question:001",
+      "parent_id": "calc-tj-10-03",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "介值定理中的目标值必须位于哪两个值之间？",
+      "text": "介值定理\n典型问法：介值定理中的目标值必须位于哪两个值之间？",
+      "tokens": 26,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-10-04:content:000",
       "parent_id": "calc-tj-10-04",
       "kind": "content",
@@ -972,6 +2174,38 @@
       "tokens": 80
     },
     {
+      "id": "calc-tj-10-04:question:000",
+      "parent_id": "calc-tj-10-04",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "从定义中的量词次序怎样看出一致连续与逐点连续的差别？",
+      "text": "一致连续的定义（教材星号）\n典型问法：从定义中的量词次序怎样看出一致连续与逐点连续的差别？",
+      "tokens": 35,
+      "question_metadata": {
+        "origin": "public_question_inspired",
+        "note": "参考公开提问的主题独立整理为中文；非原文、非真实中文查询日志。",
+        "source": {
+          "url": "https://math.stackexchange.com/questions/653100/difference-between-continuity-and-uniform-continuity",
+          "title": "Difference between continuity and uniform continuity",
+          "platform": "Mathematics Stack Exchange",
+          "accessed": "2026-10-20"
+        }
+      }
+    },
+    {
+      "id": "calc-tj-10-04:question:001",
+      "parent_id": "calc-tj-10-04",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "一致连续中的delta可以随区间内的位置改变吗？",
+      "text": "一致连续的定义（教材星号）\n典型问法：一致连续中的delta可以随区间内的位置改变吗？",
+      "tokens": 31,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-tj-10-05:content:000",
       "parent_id": "calc-tj-10-05",
       "kind": "content",
@@ -988,6 +2222,32 @@
       "body": "若不一致连续，可取 $|x_n-y_n|\\to0$ 但函数值差至少为固定正数的点对。对 $x_n$ 抽收敛子列，$y_n$ 的相应子列趋于同一点，连续性导致函数值差趋零，矛盾。",
       "text": "闭区间上一致连续性定理（教材星号）\n证明思路：若不一致连续，可取 $|x_n-y_n|\\to0$ 但函数值差至少为固定正数的点对。对 $x_n$ 抽收敛子列，$y_n$ 的相应子列趋于同一点，连续性导致函数值差趋零，矛盾。",
       "tokens": 94
+    },
+    {
+      "id": "calc-tj-10-05:question:000",
+      "parent_id": "calc-tj-10-05",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "为什么闭区间上的连续函数能用同一个delta控制所有点？",
+      "text": "闭区间上一致连续性定理（教材星号）\n典型问法：为什么闭区间上的连续函数能用同一个delta控制所有点？",
+      "tokens": 39,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-tj-10-05:question:001",
+      "parent_id": "calc-tj-10-05",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "把闭区间换成开区间后一致连续性结论还一定成立吗？",
+      "text": "闭区间上一致连续性定理（教材星号）\n典型问法：把闭区间换成开区间后一致连续性结论还一定成立吗？",
+      "tokens": 41,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-an-real-001:content:000",
@@ -1017,6 +2277,38 @@
       "tokens": 51
     },
     {
+      "id": "calc-an-real-001:question:000",
+      "parent_id": "calc-an-real-001",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "最大值与上确界的概念区别在哪里？",
+      "text": "上确界与下确界\n典型问法：最大值与上确界的概念区别在哪里？",
+      "tokens": 25,
+      "question_metadata": {
+        "origin": "public_question_inspired",
+        "note": "参考公开提问的主题独立整理为中文；非原文、非真实中文查询日志。",
+        "source": {
+          "url": "https://math.stackexchange.com/questions/160451/difference-between-supremum-and-maximum",
+          "title": "Difference between supremum and maximum",
+          "platform": "Mathematics Stack Exchange",
+          "accessed": "2026-10-20"
+        }
+      }
+    },
+    {
+      "id": "calc-an-real-001:question:001",
+      "parent_id": "calc-an-real-001",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "如何用任意小的误差刻画最小上界？",
+      "text": "上确界与下确界\n典型问法：如何用任意小的误差刻画最小上界？",
+      "tokens": 28,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-an-real-002:content:000",
       "parent_id": "calc-an-real-002",
       "kind": "content",
@@ -1033,6 +2325,32 @@
       "body": "此性质可作为实数公理，不在未选定实数构造的情况下循环证明。下确界性质可由集合取负号及上确界性质推出；有理数集不满足同一完备性。",
       "text": "实数的确界性质\n证明思路：此性质可作为实数公理，不在未选定实数构造的情况下循环证明。下确界性质可由集合取负号及上确界性质推出；有理数集不满足同一完备性。",
       "tokens": 61
+    },
+    {
+      "id": "calc-an-real-002:question:000",
+      "parent_id": "calc-an-real-002",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "实数完备性为何要对非空有上界集合提出要求？",
+      "text": "实数的确界性质\n典型问法：实数完备性为何要对非空有上界集合提出要求？",
+      "tokens": 30,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-an-real-002:question:001",
+      "parent_id": "calc-an-real-002",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "在有理数范围内确界性质哪里可能失败？",
+      "text": "实数的确界性质\n典型问法：在有理数范围内确界性质哪里可能失败？",
+      "tokens": 25,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-an-real-003:content:000",
@@ -1062,6 +2380,32 @@
       "tokens": 70
     },
     {
+      "id": "calc-an-real-003:question:000",
+      "parent_id": "calc-an-real-003",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "聚点是否必须属于原集合？",
+      "text": "聚点与去心邻域\n典型问法：聚点是否必须属于原集合？",
+      "tokens": 23,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-an-real-003:question:001",
+      "parent_id": "calc-an-real-003",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "孤立点和聚点在去心邻域中有什么区别？",
+      "text": "聚点与去心邻域\n典型问法：孤立点和聚点在去心邻域中有什么区别？",
+      "tokens": 30,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
       "id": "calc-an-seq-002:content:000",
       "parent_id": "calc-an-seq-002",
       "kind": "content",
@@ -1078,6 +2422,38 @@
       "body": "把包含全部项的闭区间二分，每次保留含无穷多项的一半。得到长度趋零的嵌套闭区间，在各区间内按递增指标取项，便形成趋于共同点的子列。",
       "text": "Bolzano--Weierstrass 定理\n证明思路：把包含全部项的闭区间二分，每次保留含无穷多项的一半。得到长度趋零的嵌套闭区间，在各区间内按递增指标取项，便形成趋于共同点的子列。",
       "tokens": 71
+    },
+    {
+      "id": "calc-an-seq-002:question:000",
+      "parent_id": "calc-an-seq-002",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "Rudin对有界数列存在收敛子列的证明是什么思路？",
+      "text": "Bolzano--Weierstrass 定理\n典型问法：Rudin对有界数列存在收敛子列的证明是什么思路？",
+      "tokens": 35,
+      "question_metadata": {
+        "origin": "public_question_inspired",
+        "note": "参考公开提问的主题独立整理为中文；非原文、非真实中文查询日志。",
+        "source": {
+          "url": "https://math.stackexchange.com/questions/1725332/rudins-proof-of-every-bounded-sequence-has-a-convergent-subsequence",
+          "title": "Rudin’s proof of every bounded sequence has a convergent subsequence.",
+          "platform": "Mathematics Stack Exchange",
+          "accessed": "2026-10-20"
+        }
+      }
+    },
+    {
+      "id": "calc-an-seq-002:question:001",
+      "parent_id": "calc-an-seq-002",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "有限维欧氏空间里的有界数列如何使用致密性定理？",
+      "text": "Bolzano--Weierstrass 定理\n典型问法：有限维欧氏空间里的有界数列如何使用致密性定理？",
+      "tokens": 36,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     },
     {
       "id": "calc-an-seq-004:content:000",
@@ -1105,6 +2481,32 @@
       "body": "尾集合逐渐缩小给出单调性；若上下极限相等，利用 $\\ell_n\\le a_n\\le u_n$ 夹逼。反向由收敛数列尾部的全部项落在同一误差区间得到。",
       "text": "上极限与下极限\n证明思路：尾集合逐渐缩小给出单调性；若上下极限相等，利用 $\\ell_n\\le a_n\\le u_n$ 夹逼。反向由收敛数列尾部的全部项落在同一误差区间得到。",
       "tokens": 72
+    },
+    {
+      "id": "calc-an-seq-004:question:000",
+      "parent_id": "calc-an-seq-004",
+      "kind": "question",
+      "ordinal": 0,
+      "body": "振荡数列没有极限时如何用上极限和下极限描述？",
+      "text": "上极限与下极限\n典型问法：振荡数列没有极限时如何用上极限和下极限描述？",
+      "tokens": 34,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
+    },
+    {
+      "id": "calc-an-seq-004:question:001",
+      "parent_id": "calc-an-seq-004",
+      "kind": "question",
+      "ordinal": 1,
+      "body": "上极限与下极限相等和数列收敛有什么关系？",
+      "text": "上极限与下极限\n典型问法：上极限与下极限相等和数列收敛有什么关系？",
+      "tokens": 32,
+      "question_metadata": {
+        "origin": "authored_from_knowledge",
+        "note": "依据父条目编写的检索问法；非用户真实日志，非答案。"
+      }
     }
   ]
 }

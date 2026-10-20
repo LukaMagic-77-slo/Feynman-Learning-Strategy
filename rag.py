@@ -65,7 +65,7 @@ class RAG:
         if not self.model:
             raise ValueError("请设置DASHSCOPE_MODEL或显式传入model")
 
-    def search(self, query, num_results=5):
+    def search(self, query, num_results=None):
         return self.index.search(query, course=self.course, num_results=num_results)
 
     def build_context(self, search_results):

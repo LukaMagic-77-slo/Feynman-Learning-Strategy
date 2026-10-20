@@ -4,6 +4,7 @@ import json
 import math
 from calculus_index import CATALOG, ROOT, ParentChildIndex, build_chunks
 from vector import create_vector_store
+from calculus_retrieval import MODES
 
 
 def main():
@@ -34,15 +35,27 @@ def main():
         for kind in ("content", "proof_sketch"):
             parts = [c for c in children if c["parent_id"] == p["id"] and c["kind"] == kind]
             assert "".join(c["body"] for c in sorted(parts, key=lambda c:c["ordinal"])) == p[kind]
+        questions = sorted([c for c in children if c["parent_id"] == p["id"] and c["kind"] == "question"],
+                           key=lambda c: c["ordinal"])
+        assert [c["body"] for c in questions] == [q["text"] for q in p.get("typical_questions", [])]
     qa = index.search("上确界与下确界", num_results=100, purpose="qa")
     practice = index.search("上确界与下确界", num_results=100, purpose="practice")
     assert len(qa) == 53 and len(practice) == 48
     assert all(r["使用范围"] != "qa_only" for r in practice)
     assert len({r["知识点id"] for r in qa}) == len(qa)
+    practice_snapshot = index.snapshot(purpose="practice")
+    query = "上确界与下确界"
+    query_vector = store.embedder.encode(query, normalize_embeddings=True)
+    for mode in MODES:
+        found = practice_snapshot.rank(query, query_vector, mode, num_results=100)
+        assert all(r["使用范围"] != "qa_only" for r in found)
+        assert len({r["知识点id"] for r in found}) == len(found)
     report = {"catalog_sha256": hashlib.sha256(raw).hexdigest(),
               "parents": len(parents), "children": len(children),
               "qa_results": len(qa), "practice_results": len(practice),
               "lossless_reconstruction": True, "vectors_finite_normalized_384d": True,
+              "question_chunks": sum(c["kind"] == "question" for c in children),
+              "all_retrieval_modes_exclude_qa_only_in_practice": True,
               "max_child_tokens": max(c["tokens"] for c in children)}
     (ROOT/"evaluation/calculus_validation.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")

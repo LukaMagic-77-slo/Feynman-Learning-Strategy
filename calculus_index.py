@@ -6,6 +6,7 @@ from pathlib import Path
 import re
 
 from vector import DEFAULT_EMBEDDING_MODEL, create_vector_store, vec_to_str
+from calculus_retrieval import MODES, RetrievalSnapshot
 
 ROOT = Path(__file__).resolve().parent
 CATALOG = ROOT / "data/calculus/catalog.json"
@@ -64,6 +65,21 @@ def build_chunks(catalog, tokenizer, limit=128):
                     "body": body, "text": text,
                     "tokens": token_count(tokenizer, text),
                 })
+        for n, question in enumerate(entry.get("typical_questions", [])):
+            body = question["text"].strip()
+            if not body or question["origin"] not in ("authored_from_knowledge", "public_question_inspired"):
+                raise ValueError(f"问法为空或来源类型错误: {entry['id']}")
+            if question["origin"] == "public_question_inspired" and not question.get("source", {}).get("url"):
+                raise ValueError(f"公开问法缺少来源: {entry['id']}")
+            text = entry["topic"] + "\n典型问法：" + body
+            if token_count(tokenizer, text) > limit:
+                raise ValueError(f"典型问法过长，须人工缩短: {entry['id']}:{n}")
+            children.append({
+                "id": f"{entry['id']}:question:{n:03}", "parent_id": entry["id"],
+                "kind": "question", "ordinal": n, "body": body, "text": text,
+                "tokens": token_count(tokenizer, text),
+                "question_metadata": {k: v for k, v in question.items() if k != "text"},
+            })
     if len({p["id"] for p in parents}) != len(parents) or not parents:
         raise ValueError("父块 ID 重复或知识库为空")
     return parents, children
@@ -115,36 +131,30 @@ class ParentChildIndex:
                              (child["id"], child["parent_id"], Jsonb(child), vector))
         return parents, children
 
-    def search(self, query, course="高等数学", num_results=5, purpose="qa"):
-        if not isinstance(query, str) or not query.strip() or num_results < 1:
-            raise ValueError("问题不能为空，结果数须为正")
+    def snapshot(self, course="高等数学", purpose="qa"):
         if purpose not in ("qa", "practice"):
             raise ValueError("purpose 必须为 qa 或 practice")
         s = self.store
-        if token_count(s.embedder.tokenizer, query) > s.embedder.max_seq_length:
-            raise ValueError("问题超过模型输入长度，请缩短问题，避免静默截断")
-        vector = vec_to_str(s.embedder.encode(query, normalize_embeddings=True))
         with s._connect() as conn:
             config = conn.execute("SELECT model,dimension,token_limit FROM feynman_child_config").fetchone()
             if config != (s.embedding_model, s.dimension, int(s.embedder.max_seq_length)):
                 raise ValueError("检索模型与索引配置不一致")
-            # 全量精确余弦检索后对父块取最佳子块，避免多个子块占满 Top-5。
-            rows = conn.execute("""WITH best AS (
-                SELECT DISTINCT ON (p.parent_id) p.parent_id, p.payload,
-                    c.child_id, c.embedding <=> %s::vector AS distance
+            # 小型语料：一次读取同一过滤条件下的两路候选，避免权限范围不一致。
+            rows = conn.execute("""SELECT p.payload,c.payload,c.embedding::text
                 FROM feynman_parent_knowledge p
                 JOIN feynman_child_knowledge c ON c.parent_id=p.parent_id
                 WHERE p.course=%s AND (%s OR p.practice_eligible)
-                ORDER BY p.parent_id, distance, c.child_id)
-                SELECT payload,child_id,1-distance FROM best
-                ORDER BY distance,parent_id LIMIT %s""",
-                (vector, course, purpose == "qa", num_results)).fetchall()
-        return [{
-            "知识点id": p["id"], "课程": course, "章节": p["group"], "主题": p["topic"],
-            "知识点内容": p["content"] + "\n证明思路或理解要点：" + p["proof_sketch"],
-            "关键词": p["keywords"], "相似度": float(score), "命中子块": cid,
-            "使用范围": p["scope"], "来源": p.get("source"),
-        } for p, cid, score in rows]
+                ORDER BY p.parent_id,c.child_id""", (course, purpose == "qa")).fetchall()
+        return RetrievalSnapshot([(p, c, json.loads(v)) for p, c, v in rows])
+
+    def search(self, query, course="高等数学", num_results=10, purpose="qa", mode="hybrid"):
+        if not isinstance(query, str) or not query.strip() or num_results < 1:
+            raise ValueError("问题不能为空，结果数须为正")
+        s = self.store
+        if token_count(s.embedder.tokenizer, query) > s.embedder.max_seq_length:
+            raise ValueError("问题超过模型输入长度，请缩短问题，避免静默截断")
+        vector = s.embedder.encode(query, normalize_embeddings=True)
+        return self.snapshot(course, purpose).rank(query, vector, mode, num_results)
 
 
 def main():
@@ -152,6 +162,7 @@ def main():
     parser.add_argument("command", choices=["ingest", "search", "evaluate"])
     parser.add_argument("query", nargs="?")
     parser.add_argument("--purpose", default="qa", choices=["qa", "practice"])
+    parser.add_argument("--mode", default="hybrid", choices=MODES)
     args = parser.parse_args()
     store = create_vector_store()
     index = ParentChildIndex(store)
@@ -171,20 +182,10 @@ def main():
     elif args.command == "search":
         if not args.query:
             parser.error("search 需要问题")
-        print(json.dumps(index.search(args.query, purpose=args.purpose), ensure_ascii=False, indent=2))
+        print(json.dumps(index.search(args.query, purpose=args.purpose, mode=args.mode), ensure_ascii=False, indent=2))
     else:
-        cases = json.loads((ROOT / "evaluation/calculus_questions.json").read_text(encoding="utf-8"))
-        results = []
-        for case in cases:
-            found = [r["知识点id"] for r in index.search(case["question"])]
-            results.append({**case, "retrieved": found, "hit": bool(set(found)&set(case["relevant"]))})
-        report = {"metric": "Hit@5 (distinct parents)", "dataset": "开发者编写的初步知识理解测试，非独立盲测",
-                  "total": len(results), "hits": sum(r["hit"] for r in results),
-                  "hit_rate": sum(r["hit"] for r in results)/len(results),
-                  "cases": results}
-        (ROOT / "evaluation/calculus_results.json").write_text(
-            json.dumps(report, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
-        print(json.dumps({k:v for k,v in report.items() if k!="cases"}, ensure_ascii=False))
+        from evaluation.evaluate_calculus_hybrid import evaluate
+        evaluate(index)
 
 
 if __name__ == "__main__":

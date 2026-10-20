@@ -1,10 +1,12 @@
 {
-  "catalog_sha256": "4e42168285d7cb4f132ec8f6ba89d92bc14427e26150cd569e83b467785b3043",
+  "catalog_sha256": "b2d15ecc80a4abcec1ef9aedca9749af43b154ef204d66a3842956f63db1e359",
   "parents": 53,
-  "children": 122,
+  "children": 228,
   "qa_results": 53,
   "practice_results": 48,
   "lossless_reconstruction": true,
   "vectors_finite_normalized_384d": true,
+  "question_chunks": 106,
+  "all_retrieval_modes_exclude_qa_only_in_practice": true,
   "max_child_tokens": 128
 }

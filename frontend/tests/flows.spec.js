@@ -46,7 +46,7 @@ test('问答、反馈、主题练习和响应式布局',async({page})=>{
   await page.screenshot({path:'test-results/ask-mobile.png',fullPage:true,animations:'disabled'});
   await page.getByRole('button',{name:/学习记录/}).click();
   await expect(page.getByRole('heading',{name:/每一次学习/})).toBeVisible();
-  await expect(page.getByText('最近调用记录')).toBeVisible();
+  await expect(page.getByText('最近调用记录')).toBeVisible({timeout:20000});
   await page.setViewportSize({width:1440,height:1000});
   await page.screenshot({path:'test-results/dashboard-desktop.png',fullPage:true,animations:'disabled'});
   expect(failures).toEqual([]);

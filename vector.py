@@ -77,7 +77,9 @@ class PgVectorStore:
                     doc['主题'], doc['知识点内容'], Jsonb(doc['关键词']), vec_to_str(vec)))
         return len(documents)
 
-    def search(self, query, course='概率论', num_results=5):
+    def search(self, query, course='概率论', num_results=None):
+        if num_results is None:
+            num_results = 10 if course == '高等数学' else 5
         if course == '高等数学':
             from calculus_index import ParentChildIndex
             return ParentChildIndex(self).search(query, course, num_results)

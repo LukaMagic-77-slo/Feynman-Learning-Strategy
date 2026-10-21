@@ -49,7 +49,7 @@
       "module_id": "functions-limits",
       "group": "第一节：映射与函数",
       "topic": "映射的定义",
-      "content": "设 $A,B$ 为非空集合。映射 $f:A\\to B$ 为每个 $x\\in A$ 指定唯一的 $f(x)\\in B$。定义域为 $A$，到达集为 $B$，值域为 $f(A)=\\{f(x):x\\in A\\}$。不同自变量可有同一像；每个自变量不能对应多个像。",
+      "content": "设 $A,B$ 为非空集合。映射 $f:A\\to B$ 为每个 $x\\in A$ 指定唯一的 $f(x)\\in B$。定义域为 $A$，到达集（也称为陪域）为 $B$，值域为 $f(A)=\\{f(x):x\\in A\\}$。不同自变量可有同一像；每个自变量不能对应多个像。",
       "keywords": [
         "映射的定义"
       ],
@@ -59,7 +59,7 @@
         "chapter": "第一章 函数与极限",
         "pdf_page": "14"
       },
-      "proof_sketch": "定义无需证明。判断是否为映射应检查全体自变量都有像、像属于到达集且唯一。",
+      "proof_sketch": "判断是否为映射应检查全体自变量都有像、像属于陪域 $B$ 且唯一。",
       "practice_eligible": true,
       "content_review": "依据同济第一章整理，证明思路为独立撰写",
       "typical_questions": [
@@ -90,7 +90,7 @@
         "chapter": "第一章 函数与极限",
         "pdf_page": "16--17"
       },
-      "proof_sketch": "定义无需证明。相同公式配不同定义域可以表示不同函数。",
+      "proof_sketch": "相同公式配不同定义域可以表示不同函数。",
       "practice_eligible": true,
       "content_review": "依据同济第一章整理，证明思路为独立撰写",
       "typical_questions": [
@@ -214,7 +214,7 @@
         "chapter": "第一章 函数与极限",
         "pdf_page": "33--34"
       },
-      "proof_sketch": "定义无需证明。有限个前项不影响定义中的尾部条件。",
+      "proof_sketch": "有限个前项不影响定义中的尾部条件。",
       "practice_eligible": true,
       "content_review": "依据同济第一章整理，证明思路为独立撰写",
       "typical_questions": [
@@ -369,7 +369,7 @@
         "chapter": "第一章 函数与极限",
         "pdf_page": "40--41"
       },
-      "proof_sketch": "定义无需证明。去心条件排除了 $x=a$，故改变单点函数值不改变该极限。",
+      "proof_sketch": "去心条件排除了 $x=a$，故改变单点函数值不改变该极限。",
       "practice_eligible": true,
       "content_review": "依据同济第一章整理，证明思路为独立撰写",
       "typical_questions": [
@@ -431,7 +431,7 @@
         "chapter": "第一章 函数与极限",
         "pdf_page": "44"
       },
-      "proof_sketch": "定义无需证明。双向判别分别限制到两端，再取两个阈值的较大者。",
+      "proof_sketch": "双向判别分别限制到两端，再取两个阈值的较大者。",
       "practice_eligible": true,
       "content_review": "依据同济第一章整理，证明思路为独立撰写",
       "typical_questions": [
@@ -617,7 +617,7 @@
         "chapter": "第一章 函数与极限",
         "pdf_page": "47"
       },
-      "proof_sketch": "定义无需证明。判断时必须写明趋近过程，例如 $x$ 在 $x\\to0$ 时是无穷小，在 $x\\to1$ 时不是。",
+      "proof_sketch": "判断时必须写明趋近过程，例如 $x$ 在 $x\\to0$ 时是无穷小，在 $x\\to1$ 时不是。",
       "practice_eligible": true,
       "content_review": "依据同济第一章整理，证明思路为独立撰写",
       "typical_questions": [
@@ -679,7 +679,7 @@
         "chapter": "第一章 函数与极限",
         "pdf_page": "48--49"
       },
-      "proof_sketch": "定义无需证明。无穷大要求所有充分接近的点都越过任意阈值，普通无界只要求能找到超过阈值的点。",
+      "proof_sketch": "无穷大要求所有充分接近的点都越过任意阈值，普通无界只要求能找到超过阈值的点。",
       "practice_eligible": true,
       "content_review": "依据同济第一章整理，证明思路为独立撰写",
       "typical_questions": [
@@ -1119,7 +1119,7 @@
         "chapter": "第一章 函数与极限",
         "pdf_page": "66"
       },
-      "proof_sketch": "定义无需证明。先固定同一趋近过程并核对分母；同阶不等于等价，例如 $2x$ 与 $x$ 在 $x\\to0$ 时同阶而不等价。",
+      "proof_sketch": "先固定同一趋近过程并核对分母；同阶不等于等价，例如 $2x$ 与 $x$ 在 $x\\to0$ 时同阶而不等价。",
       "practice_eligible": true,
       "content_review": "依据同济第一章整理，证明思路为独立撰写",
       "typical_questions": [
@@ -1491,7 +1491,7 @@
         "chapter": "第一章 函数与极限",
         "pdf_page": "82"
       },
-      "proof_sketch": "定义无需证明。一致连续蕴含逐点连续，反之不成立：$1/x$ 在 $(0,1]$ 连续，取 $x_n=1/n,y_n=1/(n+1)$，距离趋零而函数值之差恒为 $1$。",
+      "proof_sketch": "一致连续蕴含逐点连续，反之不成立：$1/x$ 在 $(0,1]$ 连续，取 $x_n=1/n,y_n=1/(n+1)$，距离趋零而函数值之差恒为 $1$。",
       "practice_eligible": true,
       "content_review": "依据同济第一章整理，证明思路为独立撰写",
       "typical_questions": [
@@ -1612,7 +1612,7 @@
         "聚点与去心邻域"
       ],
       "scope": "qa_only",
-      "proof_sketch": "定义无需证明。可依次在半径 $1/n$ 内取非 $a$ 的点，构造趋于 $a$ 的数列；反过来这种点列保证每个去心邻域与 $D$ 相交。",
+      "proof_sketch": "可依次在半径 $1/n$ 内取非 $a$ 的点，构造趋于 $a$ 的数列；反过来这种点列保证每个去心邻域与 $D$ 相交。",
       "practice_eligible": false,
       "content_review": "完整表述及证明思路；数分来源版次待核",
       "typical_questions": [

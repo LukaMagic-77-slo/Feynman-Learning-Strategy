@@ -1,10 +1,10 @@
-# 高等数学知识目录（初稿）
+# 高等数学知识索引（初稿）
 
 `catalog.json` 与现有概率论 `knowledge.json` 分开保存。`modules` 按课程学习顺序排列；目前只为第一部分“函数与极限”撰写了知识条目，后续部分只有目录。
 
 函数与极限现有 48 条同济大学数学系《高等数学》第七版上册第一章的改写条目，另有 5 条去重后的数学分析扩展条目。教材中的星号内容一并收录；推论放在对应主条目内。逐条审阅见 `latex-review/main.tex`，网页目录由同一审阅稿生成。数学分析扩展条目标有 `scope=qa_only`，仅用于知识问答，不用于费曼练习出题；其指定参考书的版次与页码仍待核。
 
-2026-10-20 已建立独立的 `feynman_parent_knowledge` / `feynman_child_knowledge` 索引：53 个父块、228 个子块（原有 122 个陈述/证明子块，新增 106 个典型问法子块）。原概率论 `feynman_knowledge` 表不变。网页目录支持浏览陈述与证明思路；网页聊天及练习入口仍为概率论。高数检索可通过下列命令或 `PgVectorStore.search(course="高等数学")` 调用，默认启用 BM25/RRF 混合检索。
+2026-10-20 已建立独立的 `feynman_parent_knowledge` / `feynman_child_knowledge` 索引：53 个父块、228 个子块（原有 122 个陈述/证明子块，新增 106 个典型问法子块）。原概率论 `feynman_knowledge` 表不变。网页目录支持浏览陈述与证明思路；网页知识问答可切换到高数，采用 BM25/RRF 检索 10 个父块。高数问答由后端直接检索，再调用回答模型一次；概率论仍沿用 Agent 工具调用。费曼练习按所选章节、主题精确读取 48 条可练习的高数条目，排除 5 条仅供问答的数学分析扩展。命令行也可通过下列命令或 `PgVectorStore.search(course="高等数学")` 调用检索。
 
 父块保留完整陈述、附属推论、证明思路、来源和使用范围。子块分别从陈述和证明思路生成，重复条目标题，按实际 MiniLM tokenizer 计数（包括特殊 token），上限 128 tokens。优先句号、分号、逗号切分；超长文字退到字符边界，`$...$` 公式保持完整，无法容纳的公式报错。子块无重叠且可无损拼回原字段，完整上下文由父块提供。
 
@@ -14,7 +14,7 @@ BM25 参数为 `k1=1.5,b=0.75`，中文采用相邻双字片段，拉丁字母�
 
 每个父条目的 `typical_questions` 包含两个短问法，独立生成 `kind=question` 的子块，保留来源元数据，超出 128 tokens 时拒绝入库而不截断。问法只用于召回，不替代知识陈述，也不作为事实答案拼入回答上下文。问法继承父块使用范围。可在 `典型问法.md` 浏览：4 条参考已核对的 Mathematics Stack Exchange 公开提问主题独立整理，102 条依据父条目编写；均不冒充真实中文查询日志。来源不是知识内容的权威校对依据。
 
-`scope=qa_only` 在父块和检索过滤中保留；`ParentChildIndex.search(..., purpose="practice")` 会排除这 5 个父块。未来接入高数练习入口时必须使用该过滤，不可复用默认 QA 检索。
+`scope=qa_only` 在父块和检索过滤中保留；`ParentChildIndex.search(..., purpose="practice")` 会排除这 5 个父块。网页费曼练习通过 `practice_eligible` 字段筛选，避免将仅供问答的条目用于出题。
 
 在仓库根目录运行（本地 PostgreSQL 和 `.env` 需可用；模型已缓存时可设置 `HF_HUB_OFFLINE=1`）：
 
@@ -30,7 +30,7 @@ BM25 参数为 `k1=1.5,b=0.75`，中文采用相邻双字片段，拉丁字母�
 .venv/Scripts/python.exe -m evaluation.evaluate_calculus_independent
 ```
 
-`index_manifest.json` 保存源目录 SHA-256、分块文本及 token 数；向量本体存于本地数据库，不提交 Git。原始 42 道测试及 25/42 结果保留在 `evaluation/calculus_questions.json` 和 `evaluation/calculus_results.json`。`evaluate` 现运行四种方式对照，将结果写入 `evaluation/calculus_hybrid_results.json`，不覆盖旧基线。
+`index_manifest.json` 保存源目录 SHA-256、分块文本及 token 数；向量本体存于本地数据库，不提交 Git。原始 42 道训练集测试及 25/42 结果保留在 `evaluation/calculus_questions.json` 和 `evaluation/calculus_results.json`。`evaluate` 现运行四种方式对照，将结果写入 `evaluation/calculus_hybrid_results.json`，不覆盖旧基线。
 
 | 方式 | Hit@5 | Hit@20 |
 | --- | --- | --- |
@@ -44,3 +44,5 @@ BM25 参数为 `k1=1.5,b=0.75`，中文采用相邻双字片段，拉丁字母�
 新增的 80 道整理题使用固定 10 条返回结果，对照原向量、问法向量、BM25、等权 RRF、BM25：向量＝2：1 的加权 RRF。等权 RRF Hit@10 为 76/80，加权 RRF 为 75/80。完整评测见 `evaluation/calculus_independent_80_results.md` 和对应 JSON。高数检索目前默认等权 RRF、返回 10 条；概率论仍默认返回 5 条。向回答模型传入 10 个完整父块时，输入 token 会相应增加。
 
 结果中的 `mean_ranking_ms` 仅为内存排名时间，不含模型加载、数据库连接或编码；数据库快照加载和批量编码单独记录，不等于在线单请求延迟。实现参考：[Elastic RRF 文档](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion)。
+
+2026-10-21 已将 10 个父条目的现有表述修改同步至数据库并重建子块，仍为 53 父块、228 子块；目录哈希与数据库一致性校验通过。80 题回归复测等权 RRF Hit@10 为 74/80（92.5%），旧快照 76/80 保留供比较。见 evaluation/calculus_independent_80_recheck.json 与结果说明。

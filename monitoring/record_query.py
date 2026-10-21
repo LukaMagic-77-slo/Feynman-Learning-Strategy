@@ -67,7 +67,7 @@ def get_chat_list(limit=100):
                     WHERE chat_id IS NOT NULL AND purpose = 'qa_answer'
                     GROUP BY chat_id
                 )
-                SELECT c.chat_id, h.question, c.updated_at, c.turns
+                SELECT c.chat_id, h.question, c.updated_at, c.turns, h.course
                 FROM chats c JOIN chat_history h ON h.id = c.first_id
                 ORDER BY c.updated_at DESC, c.first_id DESC
                 LIMIT %s
@@ -76,7 +76,7 @@ def get_chat_list(limit=100):
             rows = cur.fetchall()
     finally:
         conn.close()
-    return [dict(zip(['chat_id', 'title', 'updated_at', 'turns'], row)) for row in rows]
+    return [dict(zip(['chat_id', 'title', 'updated_at', 'turns', 'course'], row)) for row in rows]
 
 
 def get_history(limit=10, chat_id=None):

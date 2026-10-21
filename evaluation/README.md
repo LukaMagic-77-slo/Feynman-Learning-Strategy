@@ -2,6 +2,8 @@
 
 本模块检查知识问答的两个层面：能否检索到目标知识，以及生成的答案是否正确完整。它不负责在线用户解释评分，后者位于 [practice](../practice/README.md)。
 
+以下四步是概率论离线评估；每条知识五题不等于在线费曼练习每次出五题。
+
 ## 文件与执行顺序
 
 从项目根目录执行，不需要切换到本目录：
@@ -40,3 +42,11 @@ AQA 将问题、目标知识内容 answer_orig 与 RAG 答案 answer_llm 交给�
 
 欢迎贡献独立真实问题、人工相关性标签、裁判误判案例和重复实验方案。上传结果前检查错误信息、回答内容和来源版权，移除个人信息及敏感配置。
 
+
+## 高数评测入口
+
+- `python calculus_index.py evaluate`：42 道开发题，比较原向量、问法向量、BM25、等权 RRF，结果写入 calculus_hybrid_results.json。
+- `python -m evaluation.evaluate_calculus_independent`：80 道独立整理题，以 Top-10 比较五种方式（包括 BM25 权重为 2 的 RRF），同时统计 Hit@5 和 Hit@10。
+- `python -m evaluation.verify_calculus_index`：校验目录、数据库父子块、384 维归一化向量与 qa_only 过滤，不调用生成模型。
+
+高数 53 个父条目、每条两个典型问法用于索引，80 道评测题不入库。检索标注允许多个 relevant_ids，Hit@k 按至少命中其中一个计算。历史等权 RRF Hit@10=76/80，详见 calculus_independent_80_results.md；索引内容更新后需重新运行，结果不等于生成答案准确率。高数尚未把原概率论答案生成与 LLM 裁判脚本改造成完整的同一在线流程评测，因此不能宣称高数 AQA 已完成。

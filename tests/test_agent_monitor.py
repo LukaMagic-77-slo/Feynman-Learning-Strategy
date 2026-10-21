@@ -158,6 +158,32 @@ class AgentMonitorTests(unittest.TestCase):
             self.assertEqual(save.call_count, 2)
         self.store.search.assert_not_called()
 
+    def test_calculus_answer_retrieves_before_one_model_call(self):
+        self.client.responses.create.return_value = response([self.message], '连续性答案', 25)
+        self.store.embedder.max_seq_length = 128
+        self.store.embedder.tokenizer.encode.return_value = [1, 2]
+        self.store.embedder.tokenizer.decode.return_value = '连续性 为什么'
+        self.store.search.return_value = [{'知识点id': 'calc-01', '知识点内容': '连续的定义'}]
+        history = [{'role': 'user', 'content': '解释连续性'},
+                   {'role': 'assistant', 'content': '之前的回答'}]
+        actor = AgentWithRecord(self.client, course='高等数学')
+        def persist(record, question, course):
+            record.id = 101
+            return 101, None
+        with patch('assistant.get_index', return_value=self.store), \
+             patch('assistant.persist_record', side_effect=persist) as save:
+            self.assertEqual(actor.rag('为什么', history=history), '连续性答案')
+        self.store.search.assert_called_once_with('为什么 解释连续性', course='高等数学', num_results=10)
+        self.client.responses.create.assert_called_once()
+        call = self.client.responses.create.call_args.kwargs
+        self.assertNotIn('tools', call)
+        self.assertEqual(call['input'][1:3], history)
+        self.assertIn('calc-01', call['input'][3]['content'])
+        self.assertEqual(len(actor.call_record), 1)
+        self.assertEqual(actor.last_call.total_tokens, 25)
+        self.assertEqual(actor.last_conversation_id, 101)
+        save.assert_called_once()
+
 
 if __name__ == '__main__':
     unittest.main()

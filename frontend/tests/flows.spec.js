@@ -9,7 +9,7 @@ test('问答、反馈、主题练习和响应式布局',async({page})=>{
     answer:'概率密度可以大于 1。**概率是区间上的积分**，例如：\\(f(x)=4\\)。',
     record_id:101,usage,sources:[{id:'prob-cont-pdf-005',topic:'概率密度函数：密度可以大于1'}]}});});
   await page.route('**/api/feedback',route=>{votes.push(JSON.parse(route.request().postData()));return route.fulfill({json:{id:1}});});
-  await page.route('**/api/sections',route=>route.fulfill({json:['连续型随机变量与常见分布']}));
+  await page.route('**/api/sections?*',route=>route.fulfill({json:['连续型随机变量与常见分布']}));
   await page.route('**/api/topics?*',route=>route.fulfill({json:['正态分布：标准化','指数分布：无记忆性']}));
   await page.route('**/api/practice/questions',route=>route.fulfill({json:{
     exercise_id:'test-exercise',question:'为什么标准化时要除以标准差？',record_id:201,usage}}));
@@ -38,7 +38,8 @@ test('问答、反馈、主题练习和响应式布局',async({page})=>{
   await page.getByRole('button',{name:'点赞',exact:true}).click();
   await expect.poll(()=>votes.length).toBe(3);expect(votes[2].record_id).toBe(202);expect(judgeCalls).toBe(1);
   await page.screenshot({path:'test-results/practice-desktop.png',fullPage:true,animations:'disabled'});
-  await page.getByRole('combobox',{name:'选择主题'}).selectOption('指数分布：无记忆性');
+  await page.getByRole('combobox', {name:'选择主题'}).click();
+  await page.getByRole('option', {name:'指数分布：无记忆性', exact:true}).click();
   await expect(page.getByText('为什么标准化时要除以标准差？')).toHaveCount(0);
   await page.setViewportSize({width:390,height:844});
   await page.getByRole('button',{name:/知识问答/}).click();

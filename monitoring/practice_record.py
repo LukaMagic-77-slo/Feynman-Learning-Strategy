@@ -62,12 +62,13 @@ class PracticeWithRecord:
         # 快照用于后续评分，避免页面切换主题后错用资料。
         knowledge = json.loads(json.dumps(documents, ensure_ascii=False))
         start = time.perf_counter()
-        question, usage = feynman(self.client, STUDENT_INSTRUCTIONS, knowledge)
+        instructions = STUDENT_INSTRUCTIONS.replace('概率论', self.course)
+        question, usage = feynman(self.client, instructions, knowledge)
         elapsed = time.perf_counter() - start
         if not question.strip():
             raise ValueError("模型返回空问题")
         self._question, self._knowledge = question, knowledge
-        self._save(STUDENT_INSTRUCTIONS,
+        self._save(instructions,
                    json.dumps(knowledge, ensure_ascii=False, indent=2),
                    question, usage, elapsed, "student_question", question)
         self.question_record_id = self.last_conversation_id
@@ -87,9 +88,11 @@ class PracticeWithRecord:
             user_answer=user_answer,
         )
         start = time.perf_counter()
-        result, usage = judge_answer(self.client, self._question, self._knowledge, user_answer)
+        instructions = EXPLANATION_JUDGE_INSTRUCTIONS.replace('概率论', self.course)
+        result, usage = judge_answer(self.client, self._question, self._knowledge,
+                                     user_answer, instructions=instructions)
         elapsed = time.perf_counter() - start
-        self._save(EXPLANATION_JUDGE_INSTRUCTIONS, prompt, result.model_dump_json(),
+        self._save(instructions, prompt, result.model_dump_json(),
                    usage, elapsed, "explanation_judge", self._question, user_answer)
         self.judge_record_id = self.last_conversation_id
         return result, usage

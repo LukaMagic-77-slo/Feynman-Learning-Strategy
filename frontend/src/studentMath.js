@@ -13,3 +13,10 @@ export function normalizeStudentMath(question) {
     index % 2 ? part : part.replace(legacyNotation, asLatex)
   ).join('');
 }
+
+// KaTeX does not implement \centernot; normalize common model output before parsing.
+export function normalizeUnsupportedMath(text) {
+  return String(text || '')
+    .replace(/\\centernot\s*\\(?:implies|Rightarrow)\b/g, '\\nRightarrow')
+    .replace(/\\centernot\s*\\(?:to|rightarrow)\b/g, '\\nrightarrow');
+}

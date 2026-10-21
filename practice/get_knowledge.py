@@ -14,6 +14,11 @@ def get_connection():
 
 def get_sections(course):
     """返回课程下的章节列表。"""
+    if course == '高等数学':
+        with get_connection() as conn:
+            exists = conn.execute("""SELECT EXISTS (SELECT 1 FROM feynman_parent_knowledge
+                WHERE course=%s AND practice_eligible)""", (course,)).fetchone()[0]
+        return ['函数与极限'] if exists else []
     with get_connection() as conn:
         rows = conn.execute(
             '''SELECT DISTINCT section FROM feynman_knowledge
@@ -25,6 +30,14 @@ def get_sections(course):
 
 def get_topics(course, section):
     """返回指定章节下的主题列表。"""
+    if course == '高等数学':
+        if section != '函数与极限':
+            return []
+        with get_connection() as conn:
+            rows = conn.execute("""SELECT payload->>'group' AS topic
+                FROM feynman_parent_knowledge WHERE course=%s AND practice_eligible
+                GROUP BY topic ORDER BY MIN(parent_id)""", (course,)).fetchall()
+        return [row[0] for row in rows]
     with get_connection() as conn:
         rows = conn.execute(
             '''SELECT DISTINCT topic FROM feynman_knowledge
@@ -36,6 +49,17 @@ def get_topics(course, section):
 
 def get_knowledge(course, section, topic):
     """按课程、章节、主题精确查询，返回知识记录列表。"""
+    if course == '高等数学':
+        if section != '函数与极限':
+            return []
+        with get_connection() as conn:
+            rows = conn.execute("""SELECT payload FROM feynman_parent_knowledge
+                WHERE course=%s AND practice_eligible AND payload->>'group'=%s
+                ORDER BY parent_id""", (course, topic)).fetchall()
+        return [{'知识点id': p['id'], '课程': course, '章节': section, '主题': topic,
+                 '小主题': p['topic'],
+                 '知识点内容': p['content'] + '\n证明思路：' + p['proof_sketch'],
+                 '关键词': p['keywords']} for (p,) in rows]
     with get_connection() as conn:
         rows = conn.execute(
             '''SELECT knowledge_id, course, section, topic, content, keywords

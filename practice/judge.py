@@ -102,7 +102,7 @@ EXPLANATION_JUDGE_PROMPT = """
 请围绕学生问题判断用户的解释，不要求复述全部知识资料。
 """.strip()
 
-def judge_answer(client, question, knowledge_field, user_answer):
+def judge_answer(client, question, knowledge_field, user_answer, instructions=None):
     knowledge_field = json.dumps(knowledge_field, ensure_ascii=False, indent=2)
     prompt = EXPLANATION_JUDGE_PROMPT.format(
         question = question,
@@ -112,7 +112,7 @@ def judge_answer(client, question, knowledge_field, user_answer):
 
     result, usage = llm_structured_retry(
          client, 
-         EXPLANATION_JUDGE_INSTRUCTIONS,
+         instructions or EXPLANATION_JUDGE_INSTRUCTIONS,
          prompt,
          ExplanationEvaluation,
     )

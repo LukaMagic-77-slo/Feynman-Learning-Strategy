@@ -105,6 +105,7 @@ class Operation(BaseModel):
 class Question(Operation):
     question: str = Field(min_length=1, max_length=6000)
     chat_id: UUID | None = None
+    course: Literal['概率论', '高等数学'] = '概率论'
 
     @field_validator('question')
     @classmethod
@@ -117,6 +118,7 @@ class Question(Operation):
 class PracticeQuestion(Operation):
     section: str = Field(min_length=1, max_length=300)
     topic: str = Field(min_length=1, max_length=300)
+    course: Literal['概率论', '高等数学'] = '概率论'
 
 
 class Explanation(Operation):
@@ -186,8 +188,8 @@ def health():
 
 
 @app.get('/api/sections')
-def sections():
-    return get_sections('概率论')
+def sections(course: Literal['概率论', '高等数学'] = '概率论'):
+    return get_sections(course)
 
 
 @app.get('/api/calculus/catalog')
@@ -197,8 +199,9 @@ def calculus_catalog():
 
 
 @app.get('/api/topics')
-def topics(section: str = Query(min_length=1, max_length=300)):
-    return get_topics('概率论', section)
+def topics(section: str = Query(min_length=1, max_length=300),
+           course: Literal['概率论', '高等数学'] = '概率论'):
+    return get_topics(course, section)
 
 
 @app.get('/api/chats')
@@ -222,10 +225,13 @@ def qa(body: Question, state=Depends(session)):
         history = []
         if body.chat_id is not None:
             rows = get_history(limit=None, chat_id=str(body.chat_id))
+            if any(row['course'] != body.course for row in rows):
+                raise HTTPException(409, '聊天课程不一致，请新建聊天')
             for row in rows:
                 history.append({'role': 'user', 'content': row['question']})
                 history.append({'role': 'assistant', 'content': row['answer']})
-        actor = create_assistant(client=model_client())
+        actor = (create_assistant(client=model_client()) if body.course == '概率论'
+                 else create_assistant(client=model_client(), course=body.course))
         answer = (actor.rag(body.question, history=history)
                   if body.chat_id is not None else actor.rag(body.question))
         result = monitor_result(state, actor)
@@ -241,14 +247,14 @@ def qa(body: Question, state=Depends(session)):
                 record.session_id = actor.session_id
                 record.answer = answer
                 history_id = save_history(
-                    record, body.question, '概率论',
+                    record, body.question, body.course,
                     conversation_id=actor.last_conversation_id,
                     usage=result['usage'],
                 )
             except Exception:
                 log.exception('Chat history save failed')
                 history_warning = '答案已生成，但聊天历史保存失败；当前答案仍可查看。'
-        return {'question': body.question, 'answer': answer,
+        return {'question': body.question, 'answer': answer, 'course': body.course,
                 # 当前Agent未单独返回引用列表；不额外搜索或替换工具。
                 'sources': [],
                 'chat_id': str(body.chat_id) if body.chat_id else None,
@@ -260,14 +266,16 @@ def qa(body: Question, state=Depends(session)):
 @app.post('/api/practice/questions')
 def practice_question(body: PracticeQuestion, state=Depends(session)):
     def action():
-        actor = PracticeWithRecord(model_client())
+        actor = (PracticeWithRecord(model_client()) if body.course == '概率论'
+                 else PracticeWithRecord(model_client(), course=body.course))
         try:
             question, _ = actor.ask(body.section, body.topic)
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from exc
         state.exercise = actor
         return {'exercise_id': actor.session_id, 'question': question,
-                'section': body.section, 'topic': body.topic, **monitor_result(state, actor)}
+                'section': body.section, 'topic': body.topic, 'course': body.course,
+                **monitor_result(state, actor)}
     return once(state, 'practice-question', body, action)
 
 

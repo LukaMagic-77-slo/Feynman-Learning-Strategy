@@ -40,3 +40,22 @@ export function TeachBackArt() {
     <path d="M226 94c-5 16-19 25-36 27m0 0 7-7m-7 7 9 6" stroke="var(--violet)" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>;
 }
+
+export function MathOverviewArt() {
+  return <svg className="heading-art heading-art--math" viewBox="0 0 280 170" fill="none" aria-hidden="true" focusable="false">
+    <ellipse cx="139" cy="155" rx="113" ry="6" fill="var(--blue-soft)"/>
+    <path d="M25 43c36-10 70-8 110 3v94c-38-10-75-12-110-2V43Z" fill="white" stroke="var(--blue)" strokeWidth="2.5" strokeLinejoin="round"/>
+    <path d="M135 46c39-11 76-13 112-3v95c-36-10-73-8-112 2V46Z" fill="var(--violet-soft)" stroke="var(--violet)" strokeWidth="2.5" strokeLinejoin="round"/>
+    <path d="M135 47v93M25 138c39-9 74-7 110 4 39-11 75-13 112-4" stroke="var(--blue)" strokeWidth="2" strokeLinecap="round"/>
+    <text x="45" y="93" fill="var(--blue)" fontFamily="Georgia, serif" fontSize="34" fontStyle="italic">∑</text>
+    <path d="M82 72h31M82 82h24M82 92h33M45 111h69" stroke="var(--blue)" strokeWidth="2" strokeLinecap="round" opacity=".65"/>
+    <path d="M160 112 184 64l40 51-64-3Z" fill="white" stroke="var(--violet)" strokeWidth="2" strokeLinejoin="round"/>
+    <circle cx="184" cy="64" r="3" fill="var(--blue)"/><circle cx="160" cy="112" r="3" fill="var(--blue)"/><circle cx="224" cy="115" r="3" fill="var(--blue)"/>
+    <path d="M165 123h52" stroke="var(--violet)" strokeWidth="1.5" strokeLinecap="round" opacity=".7"/>
+    <rect x="16" y="12" width="44" height="29" rx="9" fill="var(--blue-soft)" stroke="var(--blue)" strokeWidth="2"/>
+    <text x="28" y="34" fill="var(--blue)" fontFamily="Georgia, serif" fontSize="25">∞</text>
+    <rect x="214" y="15" width="47" height="32" rx="9" fill="white" stroke="var(--violet)" strokeWidth="2"/>
+    <path d="M226 25h23m-23 8h23M234 22v14m9-14v14" stroke="var(--violet)" strokeWidth="1.3"/>
+    <circle cx="261" cy="76" r="3" fill="var(--violet)"/>
+  </svg>;
+}

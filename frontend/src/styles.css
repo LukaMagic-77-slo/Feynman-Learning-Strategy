@@ -29,3 +29,6 @@
 .calculus-pending{text-align:center;padding:68px 18px;color:#93a28e}.calculus-pending svg{margin:auto}.calculus-pending h3{font-size:16px;color:#627e60;margin:13px 0 8px}.calculus-pending p,.calculus-loading{font-size:12px;line-height:1.8;color:#899888}
 @media(max-width:920px){.calculus-layout{grid-template-columns:1fr}.calculus-modules{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:590px){.calculus-intro h1{font-size:28px}.calculus-modules{grid-template-columns:1fr}.calculus-content{padding:19px 16px}}
+:is(.topbar-actions){display:flex;align-items:center;gap:14px;min-width:0}
+.topbar-actions select{max-width:130px;padding:6px 10px;border:1px solid #d9e2dc;border-radius:8px;background:#fff;color:#263b32;cursor:pointer}
+.answer-table-scroll{max-width:100%;overflow-x:auto;margin:18px 0}.answer-table-scroll table{border-collapse:collapse;min-width:480px;width:100%;font-size:.92em;line-height:1.6}.answer-table-scroll th,.answer-table-scroll td{border:1px solid #dce4e9;padding:9px 12px;text-align:left;vertical-align:top}.answer-table-scroll th{background:#f2f5fa;font-weight:600}.answer-table-scroll tr:nth-child(even) td{background:#fafbfd}

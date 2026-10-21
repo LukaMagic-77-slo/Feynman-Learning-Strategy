@@ -28,9 +28,9 @@ npm run dev
 ## 后端接口
 
 - GET /api/session：分配HttpOnly匿名会话cookie。
-- GET /api/sections，GET /api/topics?section=...：数据库精确筛选。
-- POST /api/qa：复用RAGWithRecord，返回回答、引用ID和用量。
-- POST /api/practice/questions：复用PracticeWithRecord.ask(section,topic)。
+- GET /api/sections?course=...，GET /api/topics?course=...&section=...：按课程精确筛选。
+- POST /api/qa：请求可带 course（概率论/高等数学），使用 AgentWithRecord。概率论走 Agent 工具循环，高数先做混合检索 Top-10 后单次模型回答。sources 当前为空；两门课程共用回答风格，正文不展示内部 ID 或“根据资料”等措辞。
+- POST /api/practice/questions：请求可带 course，复用 PracticeWithRecord.ask(section,topic)，SQL 取资料后一次出一个问题。
 - POST /api/practice/{exercise_id}/judge：复用本次练习资料快照进行评价。
 - POST /api/feedback：关联该浏览器产生的记录，支持赞/踩改票。
 - GET /api/dashboard：全库成功调用、估算费用、反馈和最近记录。

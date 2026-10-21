@@ -1,6 +1,6 @@
 # 费曼练习模块
 
-让用户选择知识主题，再把理解讲给“AI 学生”听。当前只支持数据库内已收录的概率论知识，不覆盖整门课程。
+让用户选择知识主题，再把理解讲给“AI 学生”听。支持已入库的概率论与高数“函数与极限”知识；不覆盖完整课程。
 
 ## 单轮流程
 
@@ -11,7 +11,13 @@
 5. 用户输入解释。
 6. judge.py 中的 judge_answer 根据问题、当次知识与解释输出结构化评价。
 
-这里不使用向量搜索，也不需要加载嵌入模型；但知识表需要先通过根目录 vector.py 入库。SQL 查询面向 feynman_knowledge。
+这里不使用向量搜索，也不需要加载嵌入模型；但知识表需要先通过根目录 vector.py 入库。概率论 SQL 查询面向 feynman_knowledge；高数通过 calculus_index.py 入库后，查询 feynman_parent_knowledge，并要求 practice_eligible=true。
+
+## 出题数量与高数范围
+
+每次点击开始练习，模型只提出一个问题。高数按“函数与极限 → 教材小节主题”选资料，一个主题可能包含多个父条目；不是每个知识点固定五题，没有逐条轮换覆盖保证。README 中“每条知识生成五题”指概率论离线检索评测。高数每条的两个典型问法是检索子块，在线练习不从中抽题。
+
+48 个同济条目可练习，5 个数学分析扩展仅供知识问答。未入库的七章不出现在练习选项。混合检索只用于高数知识问答；练习取完整父条目及证明思路，保留原有“出题 → 解释 → 评价”流程。
 
 ## 文件职责
 
@@ -27,7 +33,7 @@
 界面通过 [monitoring/practice_record.py](../monitoring/practice_record.py) 的 PracticeWithRecord 使用本模块：
 
 ```python
-exercise = PracticeWithRecord(client)
+exercise = PracticeWithRecord(client, course="高等数学")
 question, usage = exercise.ask(section, topic)
 # 将同一个 exercise 对象保留到用户提交解释
 evaluation, usage = exercise.judge(user_answer)

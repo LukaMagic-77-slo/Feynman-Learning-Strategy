@@ -13,6 +13,7 @@ from openai import OpenAI
 from data_ingest import load_knowledge_data
 from rag import RAG
 from vector import create_vector_store
+from agent.langchain_framework import LangChainRAG
 
 FIELDS = ['id', 'question', 'answer_orig', 'answer_llm']
 ERROR_FIELDS = ['id', 'question', 'error_type', 'error']
@@ -123,14 +124,16 @@ def main():
         raise ValueError('测试集为空，或存在空问题/未知知识点ID')
     if len({record_key(r) for r in answers}) != len(answers):
         raise ValueError('测试集含重复(id, question)')
-    # RAG普通生成不经过llm_structured_retry；超时和有限重试直接交给SDK。
-    with OpenAI(api_key=os.environ['DASHSCOPE_API_KEY'],
-                base_url=os.environ['DASHSCOPE_BASE_URL'],
-                timeout=60.0, max_retries=2) as client:
-        assistant = RAG(create_vector_store(), client, model=os.environ['DASHSCOPE_MODEL'])
-        run_generation(answers, assistant, idtodoc,
-                       PROJECT_DIR / 'data' / 'aqa_answers.csv',
-                       PROJECT_DIR / 'data' / 'aqa_answers_errors.csv')
+
+    assistant = LangChainRAG()
+    run_generation(
+        answers,
+        assistant,
+        idtodoc,
+        PROJECT_DIR / "data" / "aqa_answers_langchain.csv",
+        PROJECT_DIR / "data" / "aqa_answers_langchain_errors.csv",
+        max_workers=6,
+    )
 
 
 if __name__ == '__main__':

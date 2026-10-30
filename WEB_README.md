@@ -29,7 +29,7 @@ npm run dev
 
 - GET /api/session：分配HttpOnly匿名会话cookie。
 - GET /api/sections，GET /api/topics?section=...：数据库精确筛选。
-- POST /api/qa：复用RAGWithRecord，返回回答、引用ID和用量。
+- POST /api/qa：通过 `monitoring.assistant.create_assistant()` 创建 `AgentWithRecord`，包装当前 `LangChainRAG`；返回最终回答、最终模型记录 ID 和整轮用量。当前独立 `sources` 列表为空，不额外执行搜索补来源。
 - POST /api/practice/questions：复用PracticeWithRecord.ask(section,topic)。
 - POST /api/practice/{exercise_id}/judge：复用本次练习资料快照进行评价。
 - POST /api/feedback：关联该浏览器产生的记录，支持赞/踩改票。
@@ -46,3 +46,9 @@ API会话保存在单个Python进程内，闲置4小时后失效，重启后需�
 沿用用户现有导入路径，由api.py配置monitoring、evaluation和根目录路径。Streamlit与Python业务文件不因新前端重写。
 
 API重用嵌入模型以避免每次下载，首次问答可能较慢。网络错误在页面显示，不泄露后端配置；失败或重试的完整计费仍以模型控制台为准。不要同时操作两个前端，以免把同一学习过程拆成不同匿名会话。
+
+## 当前后端与历史版本
+
+当前问答链路为 `api.py → monitoring/assistant.py → agent/langchain_framework.py`。`agent/langchain_tools.py` 复用 `vector.py` 搜索；`agent/langchain_monitor.py` 收集逐次模型记录，外层包装统一入库。费曼练习仍使用 `PracticeWithRecord` 与原生模型 client，不跟随问答更换框架。
+
+`rag.py` 和手写 `agent/agentloop.py` 保留用于学习对照，不是当前 API 问答入口。聊天历史仍由 API 查询、传入并保存，不使用框架 checkpointer；一次最终问答写一条 `chat_history`，一次模型调用写一条 `conversations`。完整阅读顺序见 [项目迭代导览](docs/EVOLUTION.md)。

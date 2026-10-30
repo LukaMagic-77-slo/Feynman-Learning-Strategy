@@ -1,26 +1,42 @@
 # 监控接入说明
 
-## Agent问答接入（2026-10-17）
+## 当前：LangChain 问答监控
 
-monitoring/assistant.py 的 AgentWithRecord 包装现有 RAGWithAgent，保持 .rag(query) 与前端监控属性兼容，不修改工具选择和 Agent Loop。React /api/qa 已改为通过 create_assistant 进入该包装；Streamlit 沿用同一工厂。
+`monitoring/assistant.py` 的 `AgentWithRecord` 当前继承 `LangChainRAG`，保持 `.rag(query, history=None)` 与前端监控属性兼容。React `/api/qa` 与 Streamlit 都通过不带 client 参数的 `create_assistant()` 创建助手；练习仍单独使用原生 client，不在本次迁移范围内。
 
-工具只由 agent/tools.py 的装饰器与 register_tools.py 注册；监控层与 API 不注入、不覆盖任何工具 handler。新增工具无需修改监控接线。当前 API 保留 sources 字段为空列表，因为 Agent 尚未提供独立引用列表；答案正文中的引用仍由 Agent 自己生成，不为展示来源额外执行搜索。
+当前工具由 `agent/langchain_tools.py` 的 `@tool` 定义，在 `langchain_framework.py` 中交给 `create_agent`；旧 `tools.py`、`register_tools.py` 只服务于保留的手写循环。监控层与 API 不注入、不覆盖工具 handler。当前 API 保留 `sources` 字段为空列表；答案正文中的引用由 Agent 生成，不为展示来源额外执行搜索。
 
-每次 .rag 开始清空本次记录并分配任务 session_id。循环结束（或中途异常退出）后，在 finally 中遍历已收集的 call_record，复用 persist_record / save_conversation 逐条插入 conversations。每个模型 response 一行，同一任务共享 session_id 和用户问题；不修改表结构或 Dashboard 查询。当前采用循环退出后入库，进程强制退出时内存记录仍可能丢失。
+职责分为三层：
+
+1. `LangChainRAG.rag()`：清空原列表、生成本轮 `session_id`，调用框架；退出时补齐 `question` 和 `session_id`。
+2. `langchain_monitor.create_monitor(call_record)`：用 `wrap_model_call` 包围每次模型调用，保存请求快照并创建 `LLMCallRecord`，追加到同一个列表；本层不写数据库。
+3. `AgentWithRecord.rag()`：在父类退出后通过 `finally` 调用 `_persist_calls()`，逐条保存、回填 ID，并提供页面汇总。
+
+任务结束（或中途异常退出）后，复用 `persist_record / save_conversation` 逐条插入 `conversations`。常规模型调用对应一个 AIMessage、一条记录；同一任务共享 `session_id` 和用户问题。没有改表结构或 Dashboard 查询。当前采用任务退出后入库，进程强制退出时内存记录仍可能丢失。
+
+中间件闭包持有初始化时的列表，因此父类使用 `.clear()`，不能重新赋值为新列表。同一助手目前只适合串行任务；不同请求不应并发清空或共用这份记录状态。API 每次问答新建助手，而离线生成脚本的共享对象并发仍需后续隔离。
 
 last_call 是仅供页面展示的 Token / 耗时 / 费用汇总，不额外入库；last_conversation_id 指向成功任务的最后一条模型记录，供最终答案点赞。任一保存失败会保留答案并显示保存警告。重用助手不会重复插入之前任务的记录。
 
-Dashboard 因而展示实际模型调用次数，不是用户任务次数。工具调用轮次可能没有文本，answer 列为空是现有 Agent 的正常记录表现；完整工具轨迹尚未单独保存。每条 prompt 保存对应请求的输入快照。费用继续沿用现有估算规则，未重新核价。
+Dashboard 展示已保存模型调用次数，不是用户任务次数。工具调用轮次可能没有文本，`answer` 列为空是正常表现。每条 `prompt` 保存本次输入快照；后续模型输入可包含已执行工具的返回，但尚未独立保存完整工具执行轨迹。`response_time` 是包围模型 handler 的耗时，不包含框架随后执行的本地搜索；工具耗时与任务总耗时未单独统计。费用沿用现有估算规则，未重新核价。
 
-本次未实现聊天历史系统、工具执行表、多轮追问或 Agent 循环上限；上述能力与本次监控接入分开推进。
+聊天历史已另行接入，见 [历史侧栏说明](HISTORY_README.md)；工具执行表、费曼练习的自适应多轮追问，以及本项目显式配置的调用次数上限尚未实现。框架自带执行限制不等于业务层已经配置了自己的预算。
 
 保留原导入路径。前端或测试入口需与当前运行环境一样，保证项目根目录、monitoring和evaluation目录可被导入；本次未重构导入。
 
 ## 问答
 
-继续使用assistant.create_assistant()创建RAGWithRecord，调用assistant.rag(question)。现在rag成功后自动调用save_conversation，不要在前端再重复保存同一条。记录ID在assistant.last_conversation_id，记录对象在assistant.last_call。
+使用 `assistant.create_assistant()` 创建 `AgentWithRecord`，调用 `assistant.rag(question)`。不要在前端再保存一遍模型记录。最终模型记录 ID 在 `assistant.last_conversation_id`，整轮汇总对象在 `assistant.last_call`；汇总对象沿用最后一条记录 ID，但其 Token、耗时和费用已求和，不是一条新的数据库记录。
 
-若模型调用失败，旧last_call和ID会清空，异常继续抛出。若模型成功但数据库写入失败，仍返回答案，last_conversation_id为None，last_monitor_error包含错误；前端应提示记录保存失败且隐藏反馈按钮。
+若任务失败，旧的最终反馈 ID 清空，异常继续抛出，已完成的调用仍尝试保存。若模型成功但最后一条记录保存失败，答案仍返回、`last_conversation_id` 为 None；若只有前面的记录保存失败，最终 ID 仍可能有效。任意入库错误都会汇总到 `last_monitor_error`，前端应显示警告；没有最终 ID 时不能提交反馈。
+
+## 保留的早期实现
+
+- `call_record.py` 的 `LLMCallRecord` 与 `calculate_cost` 仍被当前中间件复用，不是废弃文件。
+- 同文件的 `RAGWithRecord` 保留早期“一次 RAG 模型调用”的监控写法，不是当前工厂创建的对象。
+- 手写 `RAGWithAgent` 仍在 `agent/agentloop.py`，当前 `AgentWithRecord` 已不继承它。不要仅凭类名中的 Agent 推断底层仍是手写循环。
+
+按演进顺序阅读见 [项目迭代导览](../docs/EVOLUTION.md)。
 
 ## 费曼练习
 

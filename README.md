@@ -1,12 +1,29 @@
 # 费曼学习平台 · Feynman Platform
 
-模块说明：[数据](data/README.md) · [评估](evaluation/README.md) · [费曼练习](practice/README.md) · [监控与反馈](monitoring/README.md) · [React 前端](frontend/README.md) · [后端测试](tests/README.md) · [浏览器测试](frontend/tests/README.md)。根目录的 RAG、向量存储和 API 说明见下文及 [Web 接入说明](WEB_README.md)。
+阅读入口：[项目迭代导览](docs/EVOLUTION.md) · [Agent：手写版与 LangChain 版](agent/README.md)。
+
+模块说明：[数据](data/README.md) · [评估](evaluation/README.md) · [费曼练习](practice/README.md) · [监控与反馈](monitoring/README.md) · [聊天历史](monitoring/HISTORY_README.md) · [React 前端](frontend/README.md) · [后端测试](tests/README.md) · [浏览器测试](frontend/tests/README.md)。根目录的 RAG、向量存储和 API 说明见下文及 [Web 接入说明](WEB_README.md)。
+
+## 当前运行版本与学习脉络
+
+本仓库保留从基础 RAG、手写 Agent Loop 到 LangChain 的学习实现，不是三个同时运行的问答后端。当前知识问答使用 **LangChain**；费曼练习仍使用原有 SQL 选题、出题和评价逻辑，没有随问答一起迁移。
+
+| 阶段 | 阅读位置 | 当前角色 |
+| --- | --- | --- |
+| 1. 数据与显式 RAG | `data_ingest.py`、`vector.py`、`rag.py` | 数据和检索继续共用；`rag.py` 保留为基础实现 |
+| 2. 质量评估 | `evaluation/` | 保留检索指标与裁判；答案生成已切到 LangChain |
+| 3. 费曼练习 | `practice/` | 继续运行的主题练习业务 |
+| 4. 监控与界面 | `monitoring/`、`app.py`、`api.py`、`frontend/` | 共用数据库与展示接口 |
+| 5. 手写 Agent 与聊天历史 | `agent/agentloop.py`、`register_tools.py`、`tools.py`；历史模块 | 手写循环保留作学习对照；聊天历史继续使用 |
+| 6. LangChain 接入 | `agent/langchain_*.py` | 当前问答执行层与逐次模型调用监控 |
+
+这是阅读与演进顺序，不是独立、冻结的版本快照。为保留现有导入与入口，本次不移动源码、不复制多套项目；完整旧版本应通过 Git 历史查看。
 
 ### 上传 GitHub 前
 
 仓库提供 `.env.example`，复制为 `.env` 后填写本机配置。`.env`、虚拟环境、Node 依赖、构建产物及评估错误 CSV 已配置忽略；已有答案和评分 CSV 仍可提交，请先人工确认隐私、版权与内容。忽略规则不能移除已经提交到历史中的秘密，若曾泄露密钥需立即撤销并更换。
 
-提交前运行 `git status --short`，暂存后通过 `git diff --cached --stat` 和 `git diff --cached` 检查实际上传内容。不要提交真实用户记录、数据库转储或密钥。克隆者需要自行构建前端并初始化数据库，数据库内容不会随代码自动上传。当前尚未添加开源许可证，公开仓库不等于授予任意复用权限，正式发布前请确定合适的许可证。
+提交前运行 `git status --short`，暂存后通过 `git diff --cached --stat` 和 `git diff --cached` 检查实际上传内容。不要提交真实用户记录、数据库转储或密钥。克隆者需要自行构建前端并初始化数据库，数据库内容不会随代码自动上传。代码许可证见 [MIT License](LICENSE)；引用资料与贡献数据仍需单独确认来源和使用权限。
 
 一个围绕概率论知识库构建的学习实践项目：不仅向 AI 提问，也尝试把知识讲给 AI 听。
 
@@ -19,7 +36,9 @@
 
 ### 1. 知识问答：先把疑问讲清楚
 
-用户输入问题，系统从知识库中进行向量检索，将相关内容作为上下文交给模型生成回答。界面展示回答、参考知识点、调用用量，并支持点赞或点踩。
+用户输入问题，LangChain Agent 可以调用知识库搜索工具，取得资料后继续生成回答。每轮可能有多次模型调用。界面展示回答、调用用量，并支持点赞或点踩；当前 API 的独立 `sources` 列表为空，引用主要由答案正文展示，不为填充来源列表再额外搜索。
+
+工具可用不代表每题都必然执行检索。是否使用工具需要通过提示词、执行轨迹或进一步的程序约束验证，不能仅凭答案正确就认为搜索已经执行。
 
 ### 2. 费曼练习：这次你来当老师
 
@@ -34,7 +53,9 @@ data/knowledge.json
         │ 本地读取、字段校验、向量编码与入库
         ▼
 PostgreSQL + pgvector
-        ├─ 问答：问题 → 向量检索 Top 5 → 构建上下文 → LLM 回答
+        ├─ 问答：问题 → LangChain Agent → search 工具 → 向量检索 Top 5
+        │                         ↑                       │
+        │                         └──── 工具结果 ──────────┘ → 回答 / 继续调用
         └─ 练习：章节 / 主题 → SQL 精确筛选 → 学生出题 → 用户解释 → LLM 评价
                                       │
                          调用记录 / 用量 / 耗时 / 估算费用
@@ -43,7 +64,7 @@ PostgreSQL + pgvector
                                       │
                          React 界面 / Streamlit / Dashboard
 
-离线评估：知识 → 生成测试问题 → 检索评估 → RAG 生成答案 → LLM 裁判
+离线评估：知识 → 生成测试问题 → 检索评估 → LangChain 生成答案 → 原有 LLM 裁判
 ```
 
 ## 项目结构
@@ -53,13 +74,23 @@ feynman-platform/
 ├── data/                         # 原始知识、生成测试集、答案与评估结果
 │   ├── knowledge.json            # 两个学习模块共用的知识源
 │   ├── ground_truth.csv          # 测试问题与目标知识点 ID
-│   ├── aqa_answers.csv           # 问题、参考内容、RAG 答案
-│   ├── aqa_judge_results.csv      # 裁判评分、理由及用量
+│   ├── aqa_answers.csv           # 旧版 RAG 答案，保留用于对照
+│   ├── aqa_judge_results.csv      # 旧版裁判结果
+│   ├── aqa_answers_langchain.csv # 当前 LangChain 答案
+│   ├── aqa_judge_results_langchain.csv # 当前 LangChain 答案的裁判结果
 │   └── README.md                 # 数据约定、来源与审核说明
 ├── data_ingest.py                # 读取并校验本地知识数据
 ├── vector.py                     # PgVectorStore：编码、持久化、检索
-├── rag.py                        # RAG：搜索、组织上下文、生成回答
-├── main.py                       # 基础问答命令行入口
+├── rag.py                        # 阶段 1：显式 RAG，保留作基础实现
+├── main.py                       # 当前 LangChain 命令行入口，不自动入库
+├── agent/
+│   ├── README.md                 # 两代 Agent 的阅读与职责对照
+│   ├── agentloop.py              # 阶段 5：手写模型 / 工具循环
+│   ├── register_tools.py         # 手写版工具定义与 handler 注册
+│   ├── tools.py                  # 手写版搜索工具
+│   ├── langchain_framework.py    # 当前 LangChainRAG：模型、Agent、rag 接口
+│   ├── langchain_tools.py        # 当前搜索工具及索引缓存
+│   └── langchain_monitor.py      # 当前中间件：每次模型调用生成记录
 ├── practice/
 │   ├── get_knowledge.py          # SQL 查询章节、主题及对应知识
 │   ├── match_topic.py            # 本地文档的章节 / 主题匹配辅助函数
@@ -76,17 +107,19 @@ feynman-platform/
 │   └── run_llm_judge.py          # 并发裁判、保存结果及失败记录
 ├── monitoring/
 │   ├── init_db.py                # 创建 / 补充调用记录与反馈表
-│   ├── call_record.py            # LLMCallRecord、RAGWithRecord
-│   ├── assistant.py              # 创建带监控的问答助手
+│   ├── call_record.py            # 共用 LLMCallRecord；保留早期 RAGWithRecord
+│   ├── assistant.py              # AgentWithRecord：包装 LangChainRAG 并入库
 │   ├── practice_record.py        # PracticeWithRecord：练习出题与评价监控
 │   ├── save_record.py            # 调用记录写入数据库
 │   ├── save_feedback.py          # 保存反馈，支持改票
+│   ├── save_history.py           # 每轮最终问答保存一条聊天历史
 │   ├── record_query.py           # 查询调用记录与聚合统计
 │   └── README.md                 # 监控对象及接入说明
 ├── api.py                        # FastAPI：复用后端业务，提供接口和静态页面
 ├── frontend/                     # React + Vite + Tailwind 前端
 ├── app.py                        # 保留的 Streamlit 界面
 ├── tests/                        # 数据 / 业务 / API 测试
+├── docs/EVOLUTION.md              # 按迭代顺序阅读代码的导览
 ├── WEB_README.md                  # 新前端开发、接口及会话说明
 ├── pyproject.toml
 └── uv.lock
@@ -114,12 +147,15 @@ feynman-platform/
 ## RAG 与练习的核心对象
 
 - `PgVectorStore` 管理知识向量入库与搜索；问答默认检索前 5 条知识。
-- `RAG` 负责“检索 → 构建上下文 → 构建提示词 → 调用模型”。
-- `RAGWithRecord` 在现有问答逻辑外接入监控，成功生成后自动保存记录。
+- `RAG` 保留早期固定的“检索 → 构建上下文 → 构建提示词 → 调用模型”流程，不是当前网页入口。
+- `RAGWithAgent` 保留手写 Agent Loop 与工具分发，当前入口不再使用这套循环。
+- `LangChainRAG` 提供兼容的 `.rag(query, history=None)` 接口，内部由框架组织模型与工具调用；中间件在内存中收集 `call_record`。
+- `AgentWithRecord` 包装当前 `LangChainRAG`，任务退出后逐条保存记录，并提供前端需要的汇总和最终记录 ID。
+- `RAGWithRecord` 是早期基础 RAG 的监控包装，保留作学习对照。
 - `PracticeWithRecord` 组织指定主题的出题与评价，并保留当次题目的知识快照，避免评价依据与题目错配。
 - `LLMCallRecord` 统一表达模型、提示词、回答、Token、耗时、估算费用及调用用途。
 
-前端负责展示和收集输入；密钥、模型请求、知识查询与数据库写入留在后端。基础 `RAG` 和练习函数可单独调用，但不等于自动接入了监控；界面使用带记录的包装对象。
+前端负责展示和收集输入；密钥、模型请求、知识查询与数据库写入留在后端。直接使用 `LangChainRAG` 会收集内存记录，但不会自动写监控数据库；界面通过 `monitoring/assistant.py` 的工厂创建带入库的包装对象。基础 `RAG` 和练习函数也可单独调用。
 
 ## Evaluation：分别检查检索和回答
 
@@ -138,13 +174,15 @@ feynman-platform/
 
 ### 第三步：生成 RAG 答案
 
-`run_answers_gen.py` 对测试问题调用 RAG，将 `id`、`question`、`answer_orig` 和 `answer_llm` 保存到 CSV。参考答案来自目标知识点内容，而不是搜索出的五条资料逐条评分。
+`run_answers_gen.py` 当前对测试问题调用 `LangChainRAG`，将 `id`、`question`、`answer_orig` 和 `answer_llm` 保存到 `aqa_answers_langchain.csv`。参考答案来自目标知识点内容，而不是搜索出的五条资料逐条评分。旧的 `aqa_answers.csv` 不被当前脚本作为新版本结果使用。
 
 ### 第四步：AQA / LLM-as-a-Judge
 
 裁判接收问题、参考内容和生成答案，输出 `reasoning` 与 `score`（`good` / `bad`），评判关键知识是否正确、完整，不要求逐字一致。
 
 答案生成与裁判脚本支持并发、进度条、失败记录和断点续跑：成功结果逐条保存；失败项单独写入错误 CSV。答案按 `(id, question)` 跳过已完成项，裁判还使用输入与配置指纹判断是否需要重新评价。
+
+当前生成脚本已配置全量数据、6 线程；但接入内存调用记录后，同一个 `LangChainRAG` 对象中的列表尚未做并发隔离。新一轮验证建议先用 `answers[:5]` 和 `max_workers=1`；增加并发前需改成任务独立对象或任务级记录隔离。不要把此问题与独立裁判请求的并发混为一谈。本次目录整理不修改评估参数或并发逻辑。
 
 > 测试问题和参考内容来自同一小规模知识库，存在合成测试偏差。LLM 裁判也不是客观真值。当前结果用于开发对比，不应宣称为真实学生场景的准确率；后续需要独立问题、人工标注和评分一致性检查。费曼练习的系统化离线评估仍待完善。
 
@@ -169,8 +207,11 @@ uv run python evaluation/run_llm_judge.py
 | `feynman_vector_config` | 嵌入模型名称与维度，用于配置一致性检查 |
 | `conversations` | 模型调用内容、Token、耗时、费用估算及业务关联 |
 | `feedback` | 对调用结果的用户反馈，通过记录 ID 关联 |
+| `chat_history` | 一轮用户提问与最终回答，供历史侧栏恢复；不参与模型调用计费统计 |
 
 调用用途 `purpose` 分为 `qa_answer`（问答）、`student_question`（出题）、`explanation_judge`（解释评价）。一次练习通常包含出题、评价两次模型调用，不能把调用数当作学习人数或练习次数。
+
+LangChain 问答通过 `wrap_model_call` 在每次模型调用后创建 `LLMCallRecord`，由外层保存到 `conversations`。`record.id` 是数据库主键；`session_id` 关联一次用户任务中的多次模型调用；`chat_id` 关联连续多轮聊天。最终回答记录用于反馈，页面用量为整轮汇总，汇总不再重复入库。模型请求耗时不包含独立执行的本地搜索耗时，也不是整轮任务总耗时。
 
 两个模块都支持结果反馈：问答关联回答记录，练习评价关联裁判记录。同一记录、来源和会话用户再次投票会更新原反馈，支持赞踩改票，避免重复点击不断新增。匿名会话 ID 不是登录身份。
 
@@ -200,7 +241,7 @@ DATABASE_URL=postgresql://user:change_me@localhost:5434/feynman
 EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
 ```
 
-当前代码使用 Responses API 和结构化输出，不能仅凭“兼容 OpenAI”就假定任意服务端都支持。请确认所选区域、模型、接口与配额可用。首次加载嵌入模型需要下载，模型下载网络与 LLM API 网络是两个独立环节。
+当前问答使用 LangChain 的 OpenAI 模型适配器；练习与离线结构化裁判仍直接使用 SDK / Responses API。不能把 `agent.invoke()` 等同于固定调用 Responses API，也不能仅凭“兼容 OpenAI”就假定工具调用、结构化输出和所有供应商字段均可用。请确认所选区域、模型、接口与配额可用。首次加载嵌入模型需要下载，模型下载网络与 LLM API 网络是两个独立环节。
 
 ### 2. 首次创建数据库容器
 
@@ -251,7 +292,7 @@ cd ..
 # Streamlit 界面
 uv run streamlit run app.py
 
-# 基础命令行问答
+# 当前 LangChain 命令行问答（不写监控数据库）
 uv run python main.py "概率密度为什么可以大于1？"
 
 # 单独验证检索
@@ -265,6 +306,8 @@ uv run python -m unittest discover -s tests -v
 ```
 
 测试覆盖数据、业务链路及 API；模型操作通过替身验证，不代表真实模型质量。API Dashboard 测试可能读取本地数据库，需要有效的数据库配置。前端浏览器测试位于 `frontend/tests/`，可在配置好 Playwright 浏览器环境后执行 `npm run test:ui`。
+
+**迁移中的测试状态：** `tests/test_agent_monitor.py` 仍按手写 Agent 的 client 注入和注册表设计，尚未适配当前 LangChain 包装类，不能宣称完整测试集已通过。迁移时先更新模型替身与中间件测试，不要直接把旧测试当作当前接线的证明；本次整理不运行可能漏掉模型替身的旧监控测试。
 
 当前版本是本机单用户原型：没有完整登录、权限和生产部署方案。FastAPI 匿名会话保存在单进程内，闲置过期或进程重启后需要重新出题，不应直接增加多个 workers。Dashboard 含问题、解释、完整提示词等内容，**不要直接公开暴露接口或提交含个人信息的数据库 / CSV**。
 

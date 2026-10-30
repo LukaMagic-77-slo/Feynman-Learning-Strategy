@@ -219,7 +219,7 @@ def qa(body: Question, state=Depends(session)):
             for row in rows:
                 history.append({'role': 'user', 'content': row['question']})
                 history.append({'role': 'assistant', 'content': row['answer']})
-        actor = create_assistant(client=model_client())
+        actor = create_assistant()
         answer = (actor.rag(body.question, history=history)
                   if body.chat_id is not None else actor.rag(body.question))
         result = monitor_result(state, actor)

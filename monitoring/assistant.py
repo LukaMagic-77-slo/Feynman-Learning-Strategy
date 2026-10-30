@@ -9,13 +9,13 @@ from openai import OpenAI
 
 load_dotenv(Path(__file__).resolve().parents[1] / '.env')
 
-from agent.agentloop import RAGWithAgent
+from agent.langchain_framework import LangChainRAG
 from call_record import persist_record
 
 
-class AgentWithRecord(RAGWithAgent):
-    def __init__(self, client, course='概率论'):
-        super().__init__(client=client)
+class AgentWithRecord(LangChainRAG):
+    def __init__(self, course='概率论'):
+        super().__init__()
         self.course = course
         self.last_call = None
         self.last_conversation_id = None
@@ -23,14 +23,12 @@ class AgentWithRecord(RAGWithAgent):
         self.session_id = None
 
     def rag(self, query, history=None):
-        self.call_record = []
         self.last_call = None
         self.last_conversation_id = None
         self.last_monitor_error = None
-        self.session_id = str(uuid4())
         succeeded = False
         try:
-            answer = self.agent_loop(query, history=history)
+            answer = super().rag(query, history=history)
             succeeded = True
             return answer
         finally:
@@ -40,10 +38,8 @@ class AgentWithRecord(RAGWithAgent):
     def _persist_calls(self, query, succeeded):
         errors = []
         for record in self.call_record:
-            record.question = query
             record.course = self.course
             record.purpose = 'qa_answer'
-            record.session_id = self.session_id
             if record.id is None:
                 _, error = persist_record(record, query, self.course)
                 if error:
@@ -65,12 +61,5 @@ class AgentWithRecord(RAGWithAgent):
         self.last_monitor_error = '; '.join(errors) or None
 
 
-def create_assistant(client=None):
-    if client is None:
-        client = OpenAI(
-            api_key=os.environ['DASHSCOPE_API_KEY'],
-            base_url=os.environ['DASHSCOPE_BASE_URL'],
-            timeout=60.0,
-            max_retries=2,
-        )
-    return AgentWithRecord(client=client)
+def create_assistant():
+    return AgentWithRecord()

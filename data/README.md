@@ -41,10 +41,14 @@ knowledge.json 是人工维护的知识源；通过根目录 data_ingest.py 校�
 | 文件 | 字段 / 用途 |
 | --- | --- |
 | ground_truth.csv | question、id；生成问题与目标知识对应 |
-| aqa_answers.csv | id、question、answer_orig、answer_llm |
-| aqa_judge_results.csv | question、id、score、reasoning、input_hash、usage_json |
-| aqa_answers_errors.csv | 答案生成失败记录，仅本地保留 |
-| aqa_judge_errors.csv | 裁判失败及诊断信息，仅本地保留 |
+| aqa_answers.csv | 旧版 RAG 的 id、question、answer_orig、answer_llm，保留对照 |
+| aqa_judge_results.csv | 旧版评分：question、id、score、reasoning、input_hash、usage_json |
+| aqa_answers_langchain.csv | 当前 LangChain 版答案；字段与旧版答案相同 |
+| aqa_judge_results_langchain.csv | 当前 LangChain 答案的评分；沿用原裁判及字段 |
+| aqa_answers_errors.csv / aqa_judge_errors.csv | 旧版失败诊断，仅本地保留 |
+| aqa_answers_langchain_errors.csv / aqa_judge_errors_langchain.csv | 当前版本失败诊断，仅本地保留 |
+
+新旧结果按文件名分开，不代表可以直接比较准确率。比较时需确认测试问题、知识库、模型、提示词和成功样本范围一致；小批五题验证不是全知识库评估。代码的阅读与演进顺序见 [项目迭代导览](../docs/EVOLUTION.md)。
 
 评估运行顺序、费用和续跑规则见 [evaluation/README.md](../evaluation/README.md)。更新知识后重新入库不会自动删除数据库中被 JSON 移除的条目；备份历史结果，避免误用旧评估。
 

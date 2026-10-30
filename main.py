@@ -2,17 +2,14 @@ import argparse
 import os
 from dotenv import load_dotenv
 from vector import PROJECT_DIR, create_vector_store
-from rag import RAG
+from agent.langchain_framework import LangChainRAG
 
 def create_assistant():
     load_dotenv(PROJECT_DIR / '.env')
     missing = [k for k in ['DASHSCOPE_API_KEY','DASHSCOPE_BASE_URL','DASHSCOPE_MODEL'] if not os.getenv(k)]
     if missing:
         raise ValueError(f'缺少配置：{missing}')
-    from openai import OpenAI
-    return RAG(index=create_vector_store(), llm_client=OpenAI(
-        api_key=os.environ['DASHSCOPE_API_KEY'], base_url=os.environ['DASHSCOPE_BASE_URL']),
-        model=os.environ['DASHSCOPE_MODEL'])
+    return LangChainRAG()
 
 def main():
     parser = argparse.ArgumentParser()

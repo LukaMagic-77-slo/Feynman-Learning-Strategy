@@ -69,42 +69,39 @@ def calculate_cost(model, usage):
 
 class RAGWithAgent:
     def __init__(
-            self, 
-            client = client,
-            Agent_instruction = AGENT_INSTRUCTIONS
+            self,
+            client,
+            agent_instruction=AGENT_INSTRUCTIONS
     ):
         self.client = client
+        self.instruction=agent_instruction
         self.tool_list = tool_list
-        self.tool_handlers = tool_handlers
-        self.instruction = Agent_instruction
+        self.tool_handler = tool_handlers
         self.call_record = []
         self.model = os.getenv("DASHSCOPE_MODEL")
 
+
     def make_call(self, call):
         args = json.loads(call.arguments)
-        handler = self.tool_handlers[call.name]
-        results = handler(**args)
-        results_json = json.dumps(results, ensure_ascii=False)
+        name = call.name
+        handler = self.tool_handler[name]
+        result = handler(**args)
+        result_json = json.dumps(result, ensure_ascii=True)
 
-        function_call_record = {
+        record = {
             "type": "function_call_output",
             "call_id": call.call_id,
-            "output": results_json,
+            "output": result_json,
         }
-        
-        return function_call_record
+
+        return record
 
     def agent_loop(self, query, history=None):
-        input = [
-            {"role": "system", "content": self.instruction}
-        ]
+        input = [{"role": "system", "content": self.instruction}]
 
         input.extend(history or [])
 
-        input.append({
-            "role": "user",
-            "content": query,
-        })
+        input.append({"role": "user", "content": query})
 
         while True:
             function_call = False
@@ -122,10 +119,13 @@ class RAGWithAgent:
             )
         
             response = self.client.responses.create(
-                model = self.model,
-                input = input,
-                tools = self.tool_list
+                model=self.model,
+                input=input,
+                tools=self.tool_list
             )
+
+            input.extend(response.output)
+
             response_time = time.perf_counter() - start_time
             usage = response.usage
             cost = calculate_cost(self.model, usage)
@@ -144,20 +144,17 @@ class RAGWithAgent:
 
             self.call_record.append(record)
 
-
-            input.extend(response.output)
-
-            for item in response.output:
-
-                if item.type == "function_call":
+            for call in response.output:
+                if call.type == "function_call":
                     function_call = True
-                    call = self.make_call(item)
-                    input.append(call)
+                    result = self.make_call(call)
+                    input.append(result)
 
-                elif item.type == "message":
-                    answer = item.content[0].text
+                if call.type == "message":
+                    answer = call.content[0].text
 
             if not function_call:
                 break
 
         return answer
+

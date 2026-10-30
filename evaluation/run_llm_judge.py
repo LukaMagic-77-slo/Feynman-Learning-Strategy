@@ -108,8 +108,10 @@ def run_judging(answers, client, output, error_output, workers=6):
 
 
 def main():
-    answers = read_rows(PROJECT_DIR / 'data' / 'aqa_answers.csv',
-                        ['id', 'question', 'answer_orig', 'answer_llm'])
+    answers = read_rows(
+        PROJECT_DIR / "data" / "aqa_answers_langchain.csv",
+        ["id", "question", "answer_orig", "answer_llm"],
+    )
     if not answers or any(not r[f].strip() for r in answers
                           for f in ['id','question','answer_orig','answer_llm']):
         raise ValueError('答案文件为空或必需字段包含空值')
@@ -122,9 +124,13 @@ def main():
     with OpenAI(api_key=os.environ['DASHSCOPE_API_KEY'],
                 base_url=os.environ['DASHSCOPE_BASE_URL'],
                 timeout=60.0, max_retries=0) as client:
-        run_judging(answers, client,
-                    PROJECT_DIR / 'data' / 'aqa_judge_results.csv',
-                    PROJECT_DIR / 'data' / 'aqa_judge_errors.csv')
+        run_judging(
+            answers,
+            client,
+            PROJECT_DIR / "data" / "aqa_judge_results_langchain.csv",
+            PROJECT_DIR / "data" / "aqa_judge_errors_langchain.csv",
+            workers=6,
+        )
 
 
 if __name__ == '__main__':
